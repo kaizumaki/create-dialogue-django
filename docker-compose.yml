@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+  # https://hub.docker.com/r/mysql/mysql-server/
+  db:
+    image: mysql/mysql-server:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=P@ssw0rd
+      - MYSQL_ROOT_HOST=%
+    volumes:
+      - ./db-datadir:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+
+  web:
+    build: .
+    command: sh -c "./manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
