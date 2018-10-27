@@ -1,3 +1,7 @@
 CREATE DATABASE IF NOT EXISTS django CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE USER IF NOT EXISTS 'django'@'localhost' IDENTIFIED BY 'P@ssw0rd_django';
+GRANT ALL PRIVILEGES ON django.* TO 'django'@'localhost' WITH GRANT OPTION;
+CREATE USER IF NOT EXISTS 'django'@'0.0.0.0' IDENTIFIED BY 'P@ssw0rd_django';
+GRANT ALL PRIVILEGES ON django.* TO 'django'@'0.0.0.0' WITH GRANT OPTION;
 CREATE USER IF NOT EXISTS 'django'@'%' IDENTIFIED BY 'P@ssw0rd_django';
-GRANT ALL PRIVILEGES ON django.* TO 'django'@'%';
+GRANT ALL PRIVILEGES ON django.* TO 'django'@'%' WITH GRANT OPTION;
