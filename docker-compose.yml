@@ -16,7 +16,7 @@ services:
 
   web:
     build: .
-    command: sh -c "./manage.py runserver 0.0.0.0:8000"
+    command: sh -c "./wait-for-it.sh db:3306; python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/code
     ports:
