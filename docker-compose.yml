@@ -2,9 +2,8 @@ version: '3'
 
 services:
 
-  # https://hub.docker.com/r/mysql/mysql-server/
   db:
-    image: mysql/mysql-server:5.7
+    image: mysql:5.7
     command: mysqld --user=mysql --innodb-use-native-aio=0
     environment:
       - MYSQL_ROOT_PASSWORD=P@ssw0rd
