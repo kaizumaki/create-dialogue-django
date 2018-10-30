@@ -10,6 +10,7 @@ class KeywordSerializer(serializers.ModelSerializer):
 
 class AnswerSerializer(serializers.ModelSerializer):
     keywords = KeywordSerializer(many=True)
+    answer_text = serializers.JSONField(True)
 
     class Meta:
         model = Answer
