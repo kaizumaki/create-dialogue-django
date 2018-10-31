@@ -1,0 +1,132 @@
+.btn-wrap {
+  margin: 1em 0 2em;
+}
+
+.btn {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  font-size: $font-size-lg;
+  font-weight: bold;
+  padding: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all .2s;
+  top: -1px;
+  @include bp(xs) {
+    padding: 1em 2em;
+  }
+  i {
+    padding: 0 .3em;
+  }
+  &:hover {
+    top: 3px;
+  }
+  &:active {
+    top: 7px;
+  }
+  &-main {
+    color: #fff;
+    background-color: $color-main;
+    box-shadow: 0 8px 0 0 darken($color-main, 14%);
+    &:hover {
+      box-shadow: 0 5px 0 0 darken($color-main, 20%);
+    }
+    &:active {
+      box-shadow: 0 1px 0 0 darken($color-main, 26%);
+    }
+  }
+  &-sub1 {
+    color: #fff;
+    background-color: $color-sub1;
+    border: 1px solid darken($color-sub1, 2%);
+    box-shadow: 0 8px 0 0 darken($color-sub1, 4%);
+    &:hover {
+      box-shadow: 0 5px 0 0 darken($color-sub1, 10%);
+    }
+    &:active {
+      box-shadow: 0 1px 0 0 darken($color-sub1, 16%);
+    }
+  }
+  &-red {
+    color: #fff;
+    background-color: $color-red;
+    box-shadow: 0 8px 0 0 darken($color-red, 6%);
+    &:hover {
+      box-shadow: 0 5px 0 0 darken($color-red, 12%);
+    }
+    &:active {
+      box-shadow: 0 1px 0 0 darken($color-red, 18%);
+    }
+  }
+  &-pink {
+    color: #fff;
+    background-color: $color-pink;
+    box-shadow: 0 8px 0 0 darken($color-pink, 6%);
+    &:hover {
+      box-shadow: 0 5px 0 0 darken($color-pink, 12%);
+    }
+    &:active {
+      box-shadow: 0 1px 0 0 darken($color-pink, 18%);
+    }
+  }
+  &-yellow {
+    color: #850096;
+    background-color: $color-yellow;
+    box-shadow: 0 8px 0 0 darken($color-yellow, 2%);
+    &:hover {
+      box-shadow: 0 5px 0 0 darken($color-yellow, 6%);
+    }
+    &:active {
+      box-shadow: 0 1px 0 0 darken($color-yellow, 10%);
+    }
+  }
+  &-blue {
+    color: #fff;
+    background-color: $color-blue;
+    box-shadow: 0 8px 0 0 darken($color-blue, 14%);
+    &:hover {
+      box-shadow: 0 5px 0 0 darken($color-blue, 20%);
+    }
+    &:active {
+      box-shadow: 0 1px 0 0 darken($color-blue, 26%);
+    }
+  }
+  &-green {
+    color: #fff;
+    background-color: $color-green;
+    box-shadow: 0 8px 0 0 darken($color-green, 4%);
+    &:hover {
+      box-shadow: 0 5px 0 0 darken($color-green, 10%);
+    }
+    &:active {
+      box-shadow: 0 1px 0 0 darken($color-green, 16%);
+    }
+  }
+}
+
+.btn-inline-wrap {
+  margin: 1em 0;
+  @include bp(xs) {
+    display: inline-block;
+    margin: .5em .5em .5em 0;
+  }
+}
+
+.btn-inline {
+  @extend .btn;
+  display: block;
+  padding: .3em 1em;
+  @include bp(xs) {
+    display: inline-block;
+  }
+}
+
+.btn-sm {
+  @extend .btn;
+  padding: .3em .5em;
+  @include bp(xs) {
+    padding: .3em .5em;
+  }
+}

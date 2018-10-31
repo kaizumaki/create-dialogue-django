@@ -1,0 +1,98 @@
+// -----------------------------------------------------------------
+// Default styles
+// -----------------------------------------------------------------
+.is-hidden {
+  display: none;
+}
+
+.is-visible {
+  display: block;
+}
+
+.is-inline {
+  display: inline;
+}
+
+// -----------------------------------------------------------------
+// XS styles
+// -----------------------------------------------------------------
+.is-hidden-xs {
+  @include bp(xs) {
+    display: none;
+  }
+}
+
+.is-visible-xs {
+  @include bp(xs) {
+    display: block;
+  }
+}
+
+.is-inline-xs {
+  @include bp(xs) {
+    display: inline;
+  }
+}
+
+// -----------------------------------------------------------------
+// SM styles
+// -----------------------------------------------------------------
+.is-hidden-sm {
+  @include bp(sm) {
+    display: none;
+  }
+}
+
+.is-visible-sm {
+  @include bp(sm) {
+    display: block;
+  }
+}
+
+.is-inline-sm {
+  @include bp(sm) {
+    display: inline;
+  }
+}
+
+// -----------------------------------------------------------------
+// MD styles
+// -----------------------------------------------------------------
+.is-hidden-md {
+  @include bp(md) {
+    display: none;
+  }
+}
+
+.is-visible-md {
+  @include bp(md) {
+    display: block;
+  }
+}
+
+.is-inline-md {
+  @include bp(md) {
+    display: inline;
+  }
+}
+
+// -----------------------------------------------------------------
+// LG styles
+// -----------------------------------------------------------------
+.is-hidden-lg {
+  @include bp(lg) {
+    display: none;
+  }
+}
+
+.is-visible-lg {
+  @include bp(lg) {
+    display: block;
+  }
+}
+
+.is-inline-lg {
+  @include bp(lg) {
+    display: inline;
+  }
+}

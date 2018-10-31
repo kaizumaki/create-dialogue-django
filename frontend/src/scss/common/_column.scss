@@ -1,0 +1,18 @@
+.column-2 {
+  column-count: 1;
+  column-gap: 1.5em;
+  @include bp(sm) {
+    column-count: 2;
+  }
+}
+
+.column-3 {
+  column-count: 1;
+  column-gap: 1.5em;
+  @include bp(xs) {
+    column-count: 2;
+  }
+  @include bp(sm) {
+    column-count: 3;
+  }
+}

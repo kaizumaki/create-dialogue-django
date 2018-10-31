@@ -1,0 +1,32 @@
+.global-nav-wrap {
+  background-color: rgba(#fff, .4);
+}
+
+.global-nav {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 1px 2px;
+}
+
+.global-nav-item {
+  margin: 2px 1px;
+  background-color: $color-main;
+  a {
+    display: block;
+    font-size: $font-size-sm;
+    color: #fff;
+    text-decoration: none;
+    padding: .5em 1em;
+  }
+}
+
+.global-nav-home {
+  flex: 0 0 auto;
+  color: $color-main;
+  background-color: #fff;
+  border: 1px solid $color-main;
+  a {
+    height: 100%;
+    padding: 0 1em;
+  }
+}

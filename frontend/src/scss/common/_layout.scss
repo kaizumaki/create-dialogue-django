@@ -1,0 +1,85 @@
+.layout-row {
+  &--form-header {
+    background-color: $color-main;
+    border-bottom: 2px solid $color-logo-mark;
+    padding: 0.5em 0;
+  }
+  &--header-top {
+    background-color: $color-main;
+    height: 7px;
+  }
+  &--header-bottom {
+    background-color: $color-accent;
+    height: 7px;
+  }
+  &--sitetop-nav {
+    border-bottom: 7px solid $color-accent;
+  }
+  &--global-nav {
+    background-color: $color-main;
+  }
+  &--aside {
+    border-top: 1px solid $color-gray;
+  }
+  &--footer {
+    background-color: $color-main;
+    color: #fff;
+  }
+  &--footer-nav {
+    border-top: 2px solid $color-main;
+  }
+  &--copyright {
+    background-color: $color-gray;
+    color: $color-main;
+  }
+  &--colored {
+    background-size: 4px 4px;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 1) 25%, transparent 25%,
+      transparent 50%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 1) 75%,
+      transparent 75%, transparent);
+    background-color: #fff;
+    background-image: -webkit-gradient(linear, 0 0, 100% 100%,
+      color-stop(.25, rgba(0,0,0,0.05)),
+      color-stop(.25, transparent),
+      color-stop(.5, transparent),
+      color-stop(.5,rgba(0,0,0,0.05)),
+      color-stop(.75, rgba(0,0,0,0.05)),
+      color-stop(.75, transparent),
+      to(transparent));
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      &:not(:target) {
+        background-color: #f2f2f2;
+      }
+    }
+  }
+}
+
+.layout-container {
+  position: relative;
+  max-width: 1200px;
+  box-sizing: content-box;
+  margin: 0 auto;
+  padding-left: 1em;
+  padding-right: 1em;
+  @include bp(xl) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  &--header {
+    padding: .5em 1em;
+  }
+  &--main  {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+  }
+  &--footer  {
+    padding: 0 1em;
+  }
+  &--grid {
+    padding-top: 1.5em;
+  }
+  &--bgColored {
+    padding-left: 1em !important;
+    padding-right: 1em !important;
+  }
+}

@@ -1,0 +1,87 @@
+// -----------------------------------------------------------------
+// Font sizes
+// -----------------------------------------------------------------
+.font-xl {
+  font-size: $font-size-xl;
+}
+
+.font-lg {
+  font-size: $font-size-lg;
+}
+
+.font-md {
+  font-size: $font-size-base;
+}
+
+.font-sm {
+  font-size: $font-size-sm;
+}
+
+.font-xs {
+  font-size: $font-size-xs;
+}
+
+// -----------------------------------------------------------------
+// Font weight
+// -----------------------------------------------------------------
+.font-bold {
+  font-weight: bold;
+}
+
+.font-normal {
+  font-weight: normal;
+}
+
+.font-bolder {
+  font-weight: 900;
+}
+
+// -----------------------------------------------------------------
+// Font color
+// -----------------------------------------------------------------
+.font-color-main {
+  color: $color-main;
+}
+
+.font-color-sub2 {
+  color: $color-sub2;
+}
+
+.font-color-sub3 {
+  color: $color-sub3;
+}
+
+.font-color-sub1 {
+  color: $color-sub1;
+}
+
+.font-color-white {
+  color: #fff;
+}
+
+.font-color-red {
+  color: $color-red;
+}
+
+.font-color-green {
+  color: $color-green;
+}
+
+.font-color-blue {
+  color: $color-blue;
+}
+
+.font-color-pink {
+  color: $color-pink;
+}
+
+.font-color-yellow {
+  color: $color-l-yellow;
+}
+
+// -----------------------------------------------------------------
+// Font family
+// -----------------------------------------------------------------
+.font-notosans {
+  font-family: 'Noto Sans JP', sans-serif;
+}

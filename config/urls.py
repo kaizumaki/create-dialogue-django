@@ -19,5 +19,6 @@ from dialogue.urls import router as dialogue_router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(dialogue_router.urls)),
+    path('api/v1/', include(dialogue_router.urls)),
+    path('', include('frontend.urls')),
 ]

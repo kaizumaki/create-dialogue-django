@@ -1,0 +1,38 @@
+.deco-triangle {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 15px 0 0;
+    border-color: #fff transparent transparent transparent;
+  }
+}
+
+.deco-triangle-yellow {
+  &::before {
+    border-top-color: $color-yellow;
+  }
+}
+
+.deco-triangle-pink {
+  &::before {
+    border-top-color: $color-pink;
+  }
+}
+
+.deco-triangle-green {
+  &::before {
+    border-top-color: $color-green;
+  }
+}
+
+.deco-triangle-blue {
+  &::before {
+    border-top-color: $color-l-blue;
+  }
+}

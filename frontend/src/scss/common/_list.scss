@@ -1,0 +1,168 @@
+// -----------------------------------------------------------------
+// DL styles
+// -----------------------------------------------------------------
+.list-dl-side {
+  dt {
+    float: left;
+    clear: both;
+    margin-right: 1em;
+    text-align-last: justify;
+    &.letters2 {
+      width: 2em;
+    }
+    &.letters3 {
+      width: 3em;
+    }
+    &.letters4 {
+      width: 4em;
+    }
+  }
+  dd {
+    overflow: hidden;
+  }
+}
+
+.list-dl-qa {
+  counter-reset:number;
+  list-style: none;
+  dt {
+    display: flex;
+    font-weight: bold;
+    border-top: 5px dotted $color-gray;
+    padding-top: 2em;
+    margin-top: 2em;
+    &:first-child {
+      border: none;
+      padding-top: 0;
+      margin-top: 0;
+    }
+    &::before {
+      content: "Q"counter(number)".";
+      counter-increment: number;
+      font-size: $font-size-xl;
+      font-family: 'Merriweather Sans', sans-serif;
+      line-height: 1;
+      color: $color-main;
+      padding-right: 0.5em;
+    }
+  }
+  dd {
+    margin: 1em 0;
+  }
+}
+
+.list-dl-number {
+  counter-reset:number;
+  list-style: none;
+  & > dt {
+    display: flex;
+    font-weight: bold;
+    &::before {
+      content: counter(number)".";
+      counter-increment: number;
+      font-size: inherit;
+      padding-right: 0.5em;
+    }
+  }
+}
+
+dd[data-gridlex*="col"] {
+  margin-left: 0;
+}
+
+// -----------------------------------------------------------------
+// OL styles
+// -----------------------------------------------------------------
+.list-number-lg {
+  counter-reset:number;
+  list-style: none;
+  & > li {
+    margin-bottom: 2em;
+    &::before {
+      float: left;
+      content: counter(number)".";
+      counter-increment: number;
+      font-size: $font-size-lg;
+      font-weight: bold;
+      padding-right: .5em;
+    }
+  }
+  &-color-main > li::before {
+    color: $color-main;
+  }
+}
+
+.list-number-h2 {
+  @extend .list-number-lg;
+  & > li::before {
+    font-size: $font-size-h2;
+  }
+  &-color-main > li::before {
+    color: $color-main;
+  }
+}
+
+.list-bracket-number {
+  counter-reset:number;
+  list-style: none;
+  & > li {
+    display: flex;
+    &::before {
+      content: "（"counter(number)"）";
+      counter-increment: number;
+    }
+  }
+}
+
+// -----------------------------------------------------------------
+// UL styles
+// -----------------------------------------------------------------
+.list-nav-next {
+  li {
+    margin-bottom: .5em;
+    &::before {
+      @include icon-font("Font Awesome 5 Free");
+      content: "\f054";
+      padding-right: .5em;
+      color: $color-sub1;
+      font-weight: bold;
+    }
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    ul {
+      margin: .5em 0;
+    }
+  }
+}
+
+.list-default {
+  list-style: inside disc;
+  li {
+    margin-left: 1em;
+    text-indent: -1em;
+  }
+}
+
+.list-iconfont {
+  li {
+    margin-left: 1.5em;
+    text-indent: -.5em;
+  }
+  i {
+    padding-right: .5em;
+  }
+}
+
+.list-attention {
+  li {
+    margin-left: 1em;
+    text-indent: -1em;
+    &::before {
+      content: '※';
+    }
+  }
+}

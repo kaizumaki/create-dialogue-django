@@ -1,0 +1,27 @@
+.align-right {
+  text-align: right;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-vhcenter {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%,-50%);
+}
+
+.align-vcenter {
+  position: relative;
+  top: 50%;
+  height: auto;
+  transform: translateY(-50%);
+}

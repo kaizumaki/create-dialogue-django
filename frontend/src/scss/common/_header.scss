@@ -1,0 +1,39 @@
+.header {
+  flex-wrap: wrap;
+  @include bp(sm) {
+    flex-wrap: nowrap;
+  }
+}
+
+.header-logo,
+.header-nav {
+  flex: 0 0 100%;
+  @include bp(sm) {
+    flex: 0 0 auto;
+  }
+}
+
+.header-nav-item {
+  flex: 1 1 20%;
+  padding: 0 .5em;
+  margin-top: .5em;
+  border-right: 1px solid $color-gray;
+  &:last-child {
+    border: none;
+  }
+  @include bp(sm) {
+    flex: 1 1 auto;
+    margin: 0;
+  }
+  a {
+    height: 100%;
+  }
+}
+
+.header-catch {
+  font-size: $font-size-sm;
+  color: $color-main;
+  line-height: 1.2;
+  padding: 0 1em;
+  margin: 0;
+}

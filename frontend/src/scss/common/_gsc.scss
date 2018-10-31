@@ -1,0 +1,17 @@
+table.gsc-search-box,
+table[class*="gstl_5"],
+table.gsc-table-result,
+table.gsc-above-wrapper-area-container,
+table.gsc-resultsHeader {
+  margin-bottom: 0;
+  th,td {
+    border: none;
+  }
+  td:not(.gsib_a):not(.gsc-input) {
+    padding: 0;
+  }
+}
+
+.gsc-result .gs-title {
+  height: auto !important;
+}

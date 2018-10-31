@@ -1,0 +1,43 @@
+@import "../vendor/animate/properties";
+@import "../vendor/animate/_flippers/flipInX";
+
+.icon {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  font-size: $font-size-sm;
+  color: inherit;
+  line-height: 1.3;
+  text-decoration: none;
+  text-align: center;
+  @include bp(md) {
+    flex-flow: row nowrap;
+    text-align: left;
+  }
+  &:hover .icon-img {
+    @include flipInX($duration: 1s);
+  }
+}
+
+.icon-img-wrap {
+  flex: 0 0 2em;
+  width: 2em;
+  height: 2em;/* IE11 */
+  margin: .5em auto;
+  overflow: hidden;
+  @include bp(md) {
+    margin: 0 .5em 0 0;
+  }
+}
+
+.icon-under {
+  position: relative;
+  padding-bottom: 2em;
+  &::after {
+    @include icon-font("Font Awesome 5 Free");
+    position: absolute;
+    top: calc(100% - 2em);
+    left: calc(50% - .5em);
+  }
+}

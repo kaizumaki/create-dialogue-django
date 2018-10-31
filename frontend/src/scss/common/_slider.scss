@@ -1,0 +1,47 @@
+.slider-loading {
+  @include aspect-ratio(100%, 30vh);
+  @include bp(xs) {
+    @include aspect-ratio(100%, 40%);
+    max-height: 70vh;
+  }
+}
+
+.slider-loading-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%,-50%);
+}
+
+.slider-enter,
+.slider-appear {
+  opacity: 0;
+  transform: scale(1.0);
+}
+
+.slider-enter.slider-enter-active,
+.slider-appear.slider-appear-active {
+  opacity: 1;
+  transform: scale(1.1);
+  transition: opacity 1s, transform 7s linear;
+}
+
+.slider-leave {
+  opacity: 1;
+}
+
+.slider-leave.slider-leave-active {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.sliderText-appear {
+  opacity: 0;
+}
+
+.sliderText-appear.sliderText-appear-active {
+  opacity: 1;
+  transition: opacity 3s;
+}

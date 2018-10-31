@@ -1,0 +1,104 @@
+// -----------------------------------------------------------------
+// Flex for Media Queries
+// -----------------------------------------------------------------
+
+.mq-grid {
+  @include bp(sm) {
+    display: flex;
+  }
+}
+
+.mq-grid-wrap {
+  @include bp(sm) {
+    flex-flow: row wrap;
+  }
+}
+
+.mq-grid-middle {
+  @include bp(sm) {
+    align-items: center;
+  }
+}
+
+.mq-grid-bottom {
+  @include bp(sm) {
+    align-items: flex-end;
+  }
+}
+
+.mq-grid-reverse {
+  flex-direction: row-reverse;
+}
+
+.mq-col-equalHeight {
+  @include bp(sm) {
+    display: flex;
+    flex-wrap: wrap;
+    > * {
+      flex: 1 0 100%;
+    }
+  }
+}
+
+.mq-col-auto {
+  @include bp(sm) {
+    flex: 1 1 auto;
+  }
+}
+
+.mq-col-grow-auto {
+  @include bp(sm) {
+    flex: 1 0 auto;
+  }
+}
+
+.mq-col-shrink-auto {
+  @include bp(sm) {
+    flex: 0 1 auto;
+  }
+}
+
+.mq-col-padding {
+  @include bp(sm) {
+    padding: $gl-gutter/2;
+  }
+}
+
+.mq-col-half {
+  @include bp(sm) {
+    flex: 1 1 50%;
+    max-width: 50%;
+  }
+  &:nth-child(odd) {
+    @include bp(sm) {
+      padding-right: $gl-gutter/2;
+    }
+  }
+  &:nth-child(even) {
+    @include bp(sm) {
+      padding-left: $gl-gutter/2;
+    }
+  }
+}
+
+.mq-col-one-third {
+  @include bp(sm) {
+    flex: 1 1 calc(100%/3);
+    max-width: calc(100%/3);
+  }
+  &:nth-child(3n+1) {
+    @include bp(sm) {
+      padding: 0 ($gl-gutter/3 * 2) 0 0;
+    }
+  }
+  &:nth-child(3n+2) {
+    @include bp(sm) {
+      padding: 0 ($gl-gutter/3);
+    }
+  }
+  &:nth-child(3n+3) {
+    @include bp(sm) {
+      padding: 0 0 0 ($gl-gutter/3 * 2);
+    }
+  }
+}

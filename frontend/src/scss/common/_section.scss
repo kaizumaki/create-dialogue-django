@@ -1,0 +1,46 @@
+.section {
+  margin: 1.5em 0;
+}
+
+.section-figure-wrap {
+  margin: 1.5em 0;
+  @include bp(sm) {
+    padding-right: 1.5em;
+    margin: 0;
+  }
+}
+
+.section-figure {
+  @include bp(sm) {
+    display: table;
+    width: 200px;
+  }
+}
+
+.section-img {
+  max-width: none;
+  width: 100%;
+  @include bp(sm) {
+    width: auto;
+  }
+}
+
+.section-caption {
+  font-size: $font-size-sm;
+  padding: .5em;
+}
+
+.section-contents-wrap {
+  margin: 1.5em 0;
+  @include bp(sm) {
+    margin: 0;
+  }
+}
+
+.section-title {
+  font-size: $font-size-h3;
+  color: $color-main;
+  padding: .3em 1em;
+  margin-top: 0;
+  border-left: 10px solid $color-main;
+}

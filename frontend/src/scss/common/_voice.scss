@@ -1,0 +1,114 @@
+.voice {
+  border: 2px solid $color-sub1;
+  background-color: lighten($color-sub1, 56%);
+  margin: 1.5em 0;
+  padding: 1em;
+  &.blue {
+    border-color: $color-blue;
+    background-color: lighten($color-blue, 51%);
+  }
+  &.green {
+    border-color: $color-green;
+    background-color: lighten($color-green, 62%);
+  }
+  &.pink {
+    border-color: $color-pink;
+    background-color: lighten($color-pink, 36%);
+  }
+}
+
+.voice-meta,
+.voice-half-meta {
+  font-weight: bold;
+  padding: .5em 0;
+}
+
+.voice-half-meta {
+  @include bp(sm) {
+    text-align: left;
+  }
+}
+
+.voice-title {
+  position: relative;
+  font-size: $font-size-lg;
+  margin: 0 0 .5em 0;
+  padding: .5em 0;
+  border-width: 2px 0;
+  border-style: solid;
+  border-color: rgba($color-sub1, .3);
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 25%;
+    height: 2px;
+    background-color: $color-sub1;
+  }
+  &.blue {
+    border-color: rgba($color-blue, .3);
+    &::before {
+      background-color: $color-blue;
+    }
+  }
+  &.green {
+    border-color: rgba($color-green, .3);
+    &::before {
+      background-color: $color-green;
+    }
+  }
+  &.pink {
+    border-color: rgba($color-pink, .3);
+    &::before {
+      background-color: $color-pink;
+    }
+  }
+  br {
+    display: none;
+    @include bp(sm) {
+      display: inherit;
+    }
+  }
+}
+
+.voice-half {
+  border: 2px solid $color-sub1;
+  margin: 1.5em 0;
+  &.blue {
+    border-color: $color-blue;
+  }
+  &.green {
+    border-color: $color-green;
+  }
+  &.pink {
+    border-color: $color-pink;
+  }
+}
+
+.voice-half-title {
+  font-size: $font-size-lg;
+  color: #fff;
+  background-color: $color-sub1;
+  padding: .5em;
+  margin: 0;
+  br {
+    display: none;
+    @include bp(sm) {
+      display: inherit;
+    }
+  }
+  &.blue {
+    background-color: $color-blue;
+  }
+  &.green {
+    background-color: $color-green;
+  }
+  &.pink {
+    background-color: $color-pink;
+  }
+}
+
+.voice-img {
+  min-width: 150px;
+}

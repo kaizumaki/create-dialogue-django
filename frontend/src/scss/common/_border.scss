@@ -1,0 +1,45 @@
+.border-width {
+  &-1px {
+    border-width: 1px;
+  }
+  &-2px {
+    border-width: 2px;
+  }
+}
+
+.border-style {
+  &-solid {
+    border-style: solid;
+  }
+  &-dotted {
+    border-style: dotted;
+  }
+  &-dashed {
+    border-style: dashed;
+  }
+}
+
+.border-color {
+  &-gray {
+    border-color: $color-gray;
+  }
+  &-red {
+    border-color: $color-red;
+  }
+  &-yellow {
+    border-color: $color-yellow;
+  }
+  &-blue {
+    border-color: $color-blue;
+  }
+  &-green {
+    border-color: $color-green;
+  }
+  &-pink {
+    border-color: $color-pink;
+  }
+}
+
+.border-radius {
+  border-radius: .3em;
+}

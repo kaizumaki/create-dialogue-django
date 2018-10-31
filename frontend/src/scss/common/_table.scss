@@ -1,0 +1,36 @@
+table {
+  margin-bottom: 1.5em;
+}
+
+th,td {
+  border: 1px solid $color-gray;
+  padding: .5em;
+}
+
+.table-border {
+  &-2px th,
+  &-2px td {
+    border-width: 2px;
+  }
+  &-blue th,
+  &-blue td {
+    border-color: lighten($color-blue, 30%);
+  }
+  &-red th,
+  &-red td {
+    border-color: lighten($color-red, 40%);
+  }
+  &-green th,
+  &-green td {
+    border-color: $color-green;
+  }
+}
+
+.table-layout-fixed {
+  table-layout: fixed;
+  word-break: break-word;
+}
+
+.table-cell-nowrap {
+  white-space: nowrap;
+}
