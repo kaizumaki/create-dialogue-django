@@ -28,7 +28,10 @@ class Answer(models.Model):
 
     def answer_text(self):
         if self.answer_texts is not None:
-            return self.answer_texts.split(',')
+            if self.answer_texts.find(',') != -1:
+                return self.answer_texts.split(',')
+            else:
+                return self.answer_texts
 
     def __str__(self):
         return str(self.answer_id)
