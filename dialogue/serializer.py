@@ -33,6 +33,10 @@ class AnswerCreateSerializer(serializers.ModelSerializer):
         instance = Answer.objects.create(**validated_data)
         return instance
 
+    def update(self, instance, validated_data):
+        instance = Answer.objects.filter(answer_id=instance.answer_id).update(**validated_data)
+        return instance
+
 
 class AnswerSerializer(serializers.ModelSerializer):
     keywords = KeywordSerializer(many=True, required=False, allow_null=True)
@@ -51,6 +55,10 @@ class QuestionCreateSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         instance = Question.objects.create(**validated_data)
+        return instance
+
+    def update(self, instance, validated_data):
+        instance = Question.objects.filter(question_id=instance.question_id).update(**validated_data)
         return instance
 
 
