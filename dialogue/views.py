@@ -37,7 +37,7 @@ class QuestionViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.Ret
         write_serializer = QuestionCreateSerializer(question, data=request.data)
         write_serializer.is_valid(raise_exception=True)
         instance = self.perform_update(write_serializer, *args, **kwargs)
-        read_serializer = KeywordSerializer(instance)
+        read_serializer = QuestionSerializer(instance)
         return Response(read_serializer.data)
 
 
@@ -77,7 +77,7 @@ class AnswerViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.Retri
         write_serializer = AnswerCreateSerializer(question, data=request.data)
         write_serializer.is_valid(raise_exception=True)
         instance = self.perform_update(write_serializer, *args, **kwargs)
-        read_serializer = KeywordSerializer(instance)
+        read_serializer = AnswerSerializer(instance)
         return Response(read_serializer.data)
 
 
