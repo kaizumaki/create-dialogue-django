@@ -11,6 +11,10 @@ class KeywordCreateSerializer(serializers.ModelSerializer):
         instance = Keyword.objects.create(**validated_data)
         return instance
 
+    def update(self, instance, validated_data):
+        instance = Keyword.objects.filter(keyword_id=instance.keyword_id).update(**validated_data)
+        return instance
+
 
 class KeywordSerializer(serializers.ModelSerializer):
     class Meta:
