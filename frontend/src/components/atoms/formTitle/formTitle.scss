@@ -1,0 +1,8 @@
+@import "./src/scss/common/variables";
+@import "./src/scss/common/mixin";
+
+.formTitle {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: $font-size-lg;
+}

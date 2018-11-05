@@ -1,0 +1,98 @@
+@import "./src/scss/common/variables";
+@import "./src/scss/common/mixin";
+
+.related {
+  margin: 2em 0;
+}
+
+.relatedTitle {
+  font-size: $font-size-lg;
+  border-bottom: 5px solid $color-main;
+  margin: 0 0 .5em;
+  color: $color-main;
+  &::before {
+    @include icon-font("Font Awesome 5 Free");
+    content: "\f14a";
+    margin-right: .5em;
+  }
+}
+
+.relatedPostList {
+  padding: 0 1em;
+  margin: 0;
+  border: 1px solid $color-gray;
+  @include bp(sm) {
+    display: flex;
+    flex-flow: row wrap;
+  }
+}
+
+.relatedPostItem {
+  border-bottom: 1px dotted $color-gray;
+  @include bp(sm) {
+    flex: 1 1 50%;
+    max-width: 50%;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+  &:nth-child(odd) {
+    @include bp(sm) {
+      padding-right: 1em;
+      border-right: 1px dotted $color-gray;
+    }
+  }
+  &:nth-child(even) {
+    @include bp(sm) {
+      padding-left: 1em;
+    }
+  }
+  &:nth-last-child(2):not(:nth-child(even)) {
+    @include bp(sm) {
+      border-bottom: none;
+    }
+  }
+}
+
+.relatedPostLink {
+  display: block;
+  padding: 1em 0;
+  text-decoration: none;
+  color: $color-base;
+}
+
+.relatedPostLinkInner {
+  display: flex;
+}
+
+.relatedPostImgWrap {
+  @include aspect-ratio(5em, 100%);
+  min-width: 5em;
+  max-height: 5em;
+  margin-right: .5em;
+}
+
+.relatedPostBgImg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.relatedPostTitleWrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: calc(100% - 5.5em);
+}
+
+.relatedPostTitle {
+  font-size: $font-size-base;
+  font-weight: normal;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.relatedPostDate {
+  font-size: $font-size-sm;
+  text-align: right;
+}

@@ -1,0 +1,7 @@
+@import "./src/scss/common/variables";
+@import "./src/scss/common/mixin";
+
+.select {
+  font-size: $font-size-sm;
+  padding: .5em;
+}

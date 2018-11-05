@@ -1,0 +1,27 @@
+@import "./src/scss/common/variables";
+@import "./src/scss/common/mixin";
+
+.btn {
+  position: relative;
+  appearance: none;
+  display: inline-block;
+  font-size: $font-size-sm;
+  border-radius: 3em;
+  padding: .2em .8em;
+  border: none;
+  &:active {
+    top: 1px;
+  }
+}
+
+.dark {
+  composes: btn;
+  color: #fff;
+  background-color: lighten($color-base, 20%);
+}
+
+.light {
+  composes: btn;
+  background-color: lighten($color-base, 65%);
+  border: 1px solid lighten($color-base, 20%);
+}

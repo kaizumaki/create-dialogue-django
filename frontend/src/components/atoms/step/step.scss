@@ -1,0 +1,40 @@
+@import "./src/scss/common/variables";
+@import "./src/scss/common/mixin";
+
+.step {
+  position: relative;
+  display: inline-block;
+  padding-top: 25px;
+  color: lighten($color-base, 25%);
+  &::before {
+    position: absolute;
+    content: "step"counter(steps);
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    background-color: lighten($color-base, 65%);
+    border-radius: 5px;
+    padding: 0 .5em;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.current {
+  composes: step;
+  color: $color-green;
+  &::before {
+    color: #fff;
+    background-color: $color-green;
+  }
+}
+
+.visited {
+  composes: step;
+  &::before {
+    color: #fff;
+    background-color: $color-green;
+  }
+}

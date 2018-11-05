@@ -1,0 +1,32 @@
+@import "./src/scss/common/variables";
+@import "./src/scss/common/mixin";
+
+.scrollToTop {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  z-index: z(scroll-to-top);
+}
+
+.toTop {
+  width: 50px;
+  height: 50px;
+  background-color: rgba($color-base, .5);
+  border-radius: 50%;
+  text-align: center;
+  cursor: default;
+  opacity: 0;
+  transition: all 1s;
+}
+
+.display {
+  composes: toTop;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.toTopIcon {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}

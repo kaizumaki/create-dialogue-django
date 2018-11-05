@@ -1,0 +1,46 @@
+@import "./src/scss/common/variables";
+@import "./src/scss/common/mixin";
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  padding: 2em 0 3em;
+}
+
+.pageNumbers {
+  color: $color-main;
+}
+
+.page {
+  composes: pageNumbers;
+  border: 1px solid $color-gray;
+  padding: .5em .75em;
+  margin: 0 .25em;
+}
+
+.current {
+  composes: page;
+  border: 1px solid $color-main;
+  color: inherit;
+}
+
+.prev,
+.next {
+  composes: pageNumbers;
+  background-color: lighten($color-gray, 10%);
+  border-radius: 2px;
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: .5em;
+  transition: background-color 0.2s ease-in-out, color 0.3s ease-in-out;
+}
+
+.prev:focus,
+.prev:hover,
+.next:focus,
+.next:hover {
+  background-color: darken($color-gray, 30%);
+  color: #fff;
+}

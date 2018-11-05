@@ -1,0 +1,26 @@
+@import "./src/scss/common/variables";
+@import "./src/scss/common/mixin";
+
+.confirmList {
+  border-top: 1px solid;
+  border-color: lighten($color-base, 60%);
+}
+
+.confirmItem {
+  margin: 0;
+  border-bottom: 1px solid;
+  border-color: inherit;
+}
+
+.confirmElement {
+  flex: 1 0 auto !important;/* IE11 */
+  width: 100%;
+  padding: .5em;
+  word-break: break-all;
+}
+
+.confirmElementTitle {
+  composes: confirmElement;
+  font-weight: bold;
+  background-color: darken($color-highlight, 5%);
+}

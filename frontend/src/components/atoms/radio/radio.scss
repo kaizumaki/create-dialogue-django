@@ -1,0 +1,9 @@
+.radio {
+  &:invalid {
+    box-shadow: none;
+  }
+}
+
+.label {
+  padding: 0 .5em;
+}

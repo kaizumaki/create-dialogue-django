@@ -1,0 +1,16 @@
+@import "./src/scss/common/variables";
+@import "./src/scss/common/mixin";
+
+.sendError {
+  position: relative;
+  min-height: 300px;
+}
+
+.messageWrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: auto;
+  transform: translate(-50%,-50%);
+}

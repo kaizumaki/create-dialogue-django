@@ -1,0 +1,20 @@
+@import "./src/scss/common/variables";
+@import "./src/scss/common/mixin";
+
+.checkbox {
+  &:invalid {
+    box-shadow: none;
+  }
+}
+
+.label {
+  padding: 0 .5em;
+}
+
+.red {
+  color: $color-red;
+}
+
+.blue {
+  color: $color-blue;
+}

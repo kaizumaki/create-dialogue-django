@@ -1,0 +1,30 @@
+@import "./src/scss/common/variables";
+@import "./src/scss/common/mixin";
+
+.sending {
+  position: relative;
+  min-height: 300px;
+}
+
+.messageWrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%,-50%);
+  text-align: center;
+}
+
+.animation {
+  animation: fade 1.3s linear infinite alternate;
+}
+
+@keyframes fade {
+  from {
+    opacity: .2;
+  }
+  to {
+    opacity: 1;
+  }
+}

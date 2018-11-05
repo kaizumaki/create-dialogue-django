@@ -1,0 +1,37 @@
+@import "./src/scss/common/variables";
+@import "./src/scss/common/mixin";
+
+.steps {
+  list-style: none;
+  padding: 0;
+}
+
+.stepsItem {
+  position: relative;
+  counter-increment: steps;
+  text-align: center;
+  &::after {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    width: 100%;
+    height: 4px;
+    background-color: lighten($color-base, 65%);
+    top: 11px;
+    left: 50%;
+  }
+  &:last-child::after {
+    width: 0;
+  }
+}
+
+.current {
+  composes: stepsItem;
+}
+
+.visited {
+  composes: stepsItem;
+  &::after {
+    background-color: $color-green;
+  }
+}

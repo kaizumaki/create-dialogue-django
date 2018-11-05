@@ -1,0 +1,49 @@
+@import "./src/scss/common/variables";
+@import "./src/scss/common/mixin";
+
+.tabList {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 0;
+  margin: 0 -1%;
+  @include bp(sm) {
+    margin: 0;
+  }
+}
+
+.tabItem {
+  flex: 0 0 calc(94% / 3);
+  position: relative;
+  top: 0;
+  border: 1px solid $color-gray;
+  background-color: #fff;
+  padding: .3em 1em;
+  margin: 0 1% .3em;
+  text-align: center;
+  cursor: pointer;
+  transition: top .3s;
+  @include bp(sm) {
+    flex: 0 0 6.5em;
+    margin: 0 .3em .2em 0;
+  }
+}
+
+.current {
+  composes: tabItem;
+  background-color: $color-main;
+  color: #fff;
+  top: -.5em;
+  right: 0;
+  z-index: 1;
+  &::before{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin: 0 0 0 -10px;
+    border-width: 15px 10px;
+    border-style: solid;
+    border-color: transparent;
+    border-top: 15px solid $color-main;
+  }
+}

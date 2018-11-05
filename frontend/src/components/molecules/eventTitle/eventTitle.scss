@@ -1,0 +1,7 @@
+@import "./src/scss/common/variables";
+@import "./src/scss/common/mixin";
+
+.formTitle {
+  padding: 1em;
+  border-bottom: 1px solid lighten($color-base, 60%);
+}
