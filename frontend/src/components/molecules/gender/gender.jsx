@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './gender.scss';
-import FormItem from '../formItem/formItem.jsx';
+import FormItem from '../FormItem/FormItem.js';
 import Radio from '../../atoms/radio/radio.jsx';
 
 export default class Gender extends Component {

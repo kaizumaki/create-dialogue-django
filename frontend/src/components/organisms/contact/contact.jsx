@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './contact.scss';
-import FormField from '../../molecules/formField/formField.jsx';
+import FormField from '../../molecules/FormField/FormField.js';
 import StepsContainer from "../../molecules/steps/StepsContainer.jsx";
 import FormTitleWithRequire from '../../molecules/formTitleWithRequire/formTitleWithRequire.jsx';
 import ContactFieldContainer from "../../molecules/contactField/ContactFieldContainer.jsx";

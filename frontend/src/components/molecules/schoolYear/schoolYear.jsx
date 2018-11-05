@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styles from './schoolYear.scss';
-import FormItem from '../formItem/formItem.jsx';
-import ValidateIcon from '../../atoms/validateIcon/validateIcon.jsx';
-import Attention from '../../atoms/attention/attention.jsx';
+import FormItem from '../FormItem/FormItem.js';
+import ValidateIcon from '../../atoms/ValidateIcon/ValidateIcon.js';
+import Attention from '../../atoms/Attention/Attention.js';
 
 export default class SchoolYear extends Component {
   render() {

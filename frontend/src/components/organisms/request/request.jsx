@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './request.scss';
-import FormField from '../../molecules/formField/formField.jsx';
+import FormField from '../../molecules/FormField/FormField.js';
 import FormTitleWithRequire from '../../molecules/formTitleWithRequire/formTitleWithRequire.jsx';
 import NameContainer from "../../molecules/name/NameContainer.jsx";
 import KanaContainer from "../../molecules/kana/KanaContainer.jsx";

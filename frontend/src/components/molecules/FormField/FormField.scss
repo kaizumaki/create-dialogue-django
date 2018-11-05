@@ -1,0 +1,6 @@
+@import "./frontend/src/scss/common/variables";
+@import "./frontend/src/scss/common/mixin";
+
+.formField {
+  border: 1px solid lighten($color-base, 60%);
+}

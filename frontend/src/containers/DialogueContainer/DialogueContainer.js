@@ -1,25 +1,28 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as dialogueActionCreators from '../../actions/dialogue';
-import Dialogue from '../../components/Dialogue/Dialogue';
+import * as questionActionCreators from '../../actions/question';
+import Dialogue from '../../components/organisms/Dialogue/Dialogue';
 
 function mapStateToProps(state) {
-  const dialogue = state.dialogue;
+  const q = state.question;
   return {
-    hotSettings: dialogue.hotSettings,
-    question: dialogue.question,
-    answer: dialogue.answer,
-    keyword: dialogue.keyword
+    title        : q.title,
+    question_id  : q.question_id,
+    question_text: q.question_text,
+    isRequired   : q.isRequired,
+    isValid      : q.isValid,
+    isShowError  : q.isShowError,
+    errorCode    : q.errorCode,
+    errorMsg     : q.errorMsg,
+    temp         : q.temp,
+    label        : encodeURI(q.title)
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(dialogueActionCreators, dispatch)
+    actions: bindActionCreators(Object.assign({}, questionActionCreators), dispatch)
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Dialogue)
+export default connect(mapStateToProps, mapDispatchToProps)(Dialogue);

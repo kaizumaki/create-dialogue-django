@@ -1,0 +1,36 @@
+@import "./frontend/src/scss/common/variables";
+@import "./frontend/src/scss/common/mixin";
+@import "./frontend/src/scss/vendor/animate/properties";
+@import "./frontend/src/scss/vendor/animate/_bouncing-entrances/bounceInUp";
+@import "./frontend/src/scss/vendor/animate/_bouncing-entrances/bounceInDown";
+
+.validateIcon {
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.animate1 {
+  @include bounceInUp($duration: .8s);
+}
+
+.animate2 {
+  @include bounceInDown($duration: .8s);
+}
+
+.icon {
+  @include icon-font("Font Awesome 5 Free");
+  font-size: 24px;
+}
+
+.red {
+  composes: animate1;
+  composes: icon;
+  color: $color-red;
+}
+
+.green {
+  composes: animate2;
+  composes: icon;
+  color: $color-green;
+}

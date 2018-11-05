@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './formTitleWithRequire.scss';
-import Require from '../../atoms/require/require.jsx';
+import Require from '../../atoms/require/Require.js';
 import FormTitle from '../../atoms/formTitle/formTitle.jsx';
 
 class FormTitleWithRequire extends Component {

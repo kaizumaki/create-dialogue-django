@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
 import { configureStore } from './store/configureStore';
 import './scss/styles.scss';
-// import 'handsontable/dist/handsontable.full.css';
 import DialogueContainer from './containers/DialogueContainer/DialogueContainer';
 import * as serviceWorker from './serviceWorker';
 

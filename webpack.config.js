@@ -5,7 +5,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 module.exports = (env, argv) => {
   return {
     devtool: 'source-map',
-    entry: './frontend/src/index.js',
+    entry: ['@babel/polyfill', './frontend/src/index.js'],
     output: {
       path: path.join(__dirname, 'frontend/static/frontend'),
       filename: '[name].bundle.js'
@@ -13,7 +13,7 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           use: {
             loader: "babel-loader"

@@ -1,0 +1,15 @@
+@import "./frontend/src/scss/common/variables";
+@import "./frontend/src/scss/common/mixin";
+
+.textareaField {
+  width: 100%;
+  padding: .3em;
+  border: 1px solid lighten($color-base, 40%);
+  border-radius: 3px;
+  &:focus {
+    background-color: $color-highlight;
+  }
+  &:invalid {
+    box-shadow: none;
+  }
+}

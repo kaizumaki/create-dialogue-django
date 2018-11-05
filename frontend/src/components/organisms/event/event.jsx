@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './event.scss';
-import FormField from '../../molecules/formField/formField.jsx';
-import Marks from '../../atoms/marks/marks.jsx';
+import FormField from '../../molecules/FormField/FormField.js';
+import Marks from '../../atoms/Marks/Marks.js';
 import FormTitleWithRequire from '../../molecules/formTitleWithRequire/formTitleWithRequire.jsx';
 import AddressContainer from "../../molecules/address/AddressContainer.jsx";
 import SubmitFormBtnContainer from '../../molecules/submitFormBtn/SubmitFormBtnContainer.jsx';

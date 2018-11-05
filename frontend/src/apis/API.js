@@ -1,4 +1,8 @@
-export function read(repository,page = 1) {
+export function read(repository) {
+  return access(`/api/v1/${repository}/`,'GET')
+}
+
+export function readPage(repository,page = 1) {
   return access(`/api/v1/${repository}?page=${page}`,'GET')
 }
 
@@ -14,8 +18,8 @@ export function search(repository,word) {
   return access(`/api/v1/${repository}?word=${word}`,'GET')
 }
 
-export function add(repository,data) {
-  return data_access(`/api/v1/${repository}`,'POST',data)
+export function create(repository,data) {
+  return data_access(`/api/v1/${repository}/`,'POST',data)
 }
 
 export function update(repository,id,data) {
@@ -42,7 +46,7 @@ function access(url,method) {
   return _access(url,{
     method:method,
     headers: {
-      'Authorization' : " Basic " + btoa("webstaff:staffnws"),
+      // 'Authorization' : " Basic " + btoa("webstaff:staffnws"),
     },
   });
 }
@@ -52,25 +56,25 @@ function data_access(url,method,data) {
     method:method,
     headers: {
       'content-type': 'application/json',
-      'Authorization' : " Basic " + btoa("webstaff:staffnws"),
+      // 'Authorization' : " Basic " + btoa("webstaff:staffnws"),
     },
     body:JSON.stringify(data)
   });
 }
 
 function _access(url,config) {
-  // console.log("---send---");
-  // console.log(config);
+  console.log("---send---");
+  console.log(config);
   return fetch(url,config)
     .then( result => {
-      // console.log('result : ', result);
+      console.log('result : ', result);
       return result.json();
     })
     .then( json => {
       return { payload:json }
     })
     .catch( error => {
-      // console.log('error : ', error);
+      console.log('error : ', error);
       return { error }
     });
 }

@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import dialogue from './dialogue';
+import question from './question';
 
 const rootReducer = combineReducers({
-  dialogue
+  question
 });
 
 export default rootReducer;

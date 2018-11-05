@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import FormItem from '../formItem/formItem.jsx';
-import Field from '../../atoms/field/field.jsx';
-import ValidateIcon from '../../atoms/validateIcon/validateIcon.jsx';
-import Attention from '../../atoms/attention/attention.jsx';
+import FormItem from '../FormItem/FormItem.js';
+import Field from '../../atoms/Field/Field.js';
+import ValidateIcon from '../../atoms/ValidateIcon/ValidateIcon.js';
+import Attention from '../../atoms/Attention/Attention.js';
 
 export default class Name extends Component {
   render() {

@@ -4,11 +4,11 @@ import flatpickr from 'flatpickr';
 import '!style-loader!css-loader!flatpickr/dist/themes/material_blue.css';
 import { Japanese } from 'flatpickr/dist/l10n/ja';
 import koyomi from 'koyomi';
-import Marks from '../../atoms/marks/marks.jsx';
-import Label from '../../atoms/label/label.jsx';
+import Marks from '../../atoms/Marks/Marks.js';
+import Label from '../../atoms/Label/Label.js';
 import Btn from '../../atoms/btn/btn.jsx';
-import ValidateIcon from '../../atoms/validateIcon/validateIcon.jsx';
-import Attention from '../../atoms/attention/attention.jsx';
+import ValidateIcon from '../../atoms/ValidateIcon/ValidateIcon.js';
+import Attention from '../../atoms/Attention/Attention.js';
 
 class KengakuDate extends Component {
   constructor(props) {
