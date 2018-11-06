@@ -3,4 +3,5 @@ PyMySQL
 djangorestframework
 django-filter
 drf-nested-routers
+drf-writable-nested
 django-silk

@@ -22,10 +22,9 @@ import * as API from '../apis/API'
 export function* createQuestion() {
   while (true) {
     const action = yield take(questionActions.CREATE_QUESTION);
-    console.log(action);
     yield call(API.create,'questions',action.payload.data);
     const { payload, error } = yield call(API.read,'questions');
-    yield call(_setQuestion,payload,error)
+    yield call(_setQuestion,payload,error);
   }
 }
 

@@ -73,7 +73,7 @@ function _access(url,config) {
   return axios(url,config)
     .then( response => {
       console.log('response : ', response);
-      return { payload: response }
+      return { payload: response.data }
     })
     .catch( error => {
       console.log('error : ', error);
