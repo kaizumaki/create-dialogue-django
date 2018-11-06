@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import FormItem from '../FormItem/FormItem';
 import ValidateIcon from '../../atoms/ValidateIcon/ValidateIcon';
-import Marks from '../../atoms/Marks/Marks';
 import Attention from '../../atoms/Attention/Attention';
 import Textarea from '../../atoms/Textarea/Textarea';
-import Field from '../../atoms/Field/Field';
+import NumberField from '../../atoms/NumberField/NumberField';
 
 export default class QuestionField extends Component {
   render() {
@@ -21,8 +20,7 @@ export default class QuestionField extends Component {
               isRequired={this.props.isRequired}
               onChange={(e) => this.props.actions.inputQuestionText(e.target.value)} />
             <p>parent_id</p>
-            <Field
-              type="number"
+            <NumberField
               value={this.props.temp.parent_id}
               onChange={(e) => this.props.actions.inputQuestionParentId(e.target.value)} />
           </div>

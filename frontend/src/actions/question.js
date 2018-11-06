@@ -13,9 +13,9 @@ export function setQuestion(id, text, parent_id) {
   return {
     type: SET_QUESTION,
     payload:{
-      id,
-      text,
-      parent_id
+      id: parseInt(id),
+      text: text,
+      parent_id: parseInt(parent_id)
     }
   }
 }
@@ -24,7 +24,7 @@ export function inputQuestionText(text) {
   return {
     type:INPUT_QUESTION_TEXT,
     payload:{
-      text
+      text: text
     }
   }
 }
@@ -33,7 +33,7 @@ export function inputQuestionParentId(parent_id) {
   return {
     type:INPUT_QUESTION_PARENT_ID,
     payload:{
-      parent_id
+      parent_id: parseInt(parent_id)
     }
   }
 }
@@ -42,7 +42,7 @@ export function createQuestion(data) {
   return {
     type:CREATE_QUESTION,
     payload:{
-      data
+      data: data
     }
   }
 }
@@ -56,7 +56,7 @@ export function fetchQuestionError(error) {
   return {
     type: FETCH_ERROR_QUESTION,
     payload:{
-      error
+      error: error
     }
   }
 }

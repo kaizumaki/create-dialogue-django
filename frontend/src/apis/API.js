@@ -1,3 +1,8 @@
+import axios from 'axios';
+
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
 export function read(repository) {
   return access(`/api/v1/${repository}/`,'GET')
 }
@@ -58,20 +63,17 @@ function data_access(url,method,data) {
       'content-type': 'application/json',
       // 'Authorization' : " Basic " + btoa("webstaff:staffnws"),
     },
-    body:JSON.stringify(data)
+    data:JSON.stringify(data)
   });
 }
 
 function _access(url,config) {
   console.log("---send---");
   console.log(config);
-  return fetch(url,config)
-    .then( result => {
-      console.log('result : ', result);
-      return result.json();
-    })
-    .then( json => {
-      return { payload:json }
+  return axios(url,config)
+    .then( response => {
+      console.log('response : ', response);
+      return { payload: response }
     })
     .catch( error => {
       console.log('error : ', error);

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './Field.scss';
+import styles from './NumberField.scss';
 
-class Field extends Component {
+class NumberField extends Component {
   render() {
     return (
       <input
-        type={this.props.type || 'text'}
+        type="number"
         name={this.props.name}
         id={this.props.label}
         placeholder={this.props.placeholder}
-        value={this.props.value || ''}
+        value={this.props.value}
         required={this.props.isRequired}
         autoComplete={this.props.autocomplete || 'off'}
         maxLength={this.props.maxLength}
@@ -20,16 +20,15 @@ class Field extends Component {
   }
 }
 
-Field.propTypes = {
-  type: PropTypes.string,
+NumberField.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.number,
   isRequired: PropTypes.bool,
   autocomplete: PropTypes.string,
   maxLength: PropTypes.number,
   onChange: PropTypes.func
 };
 
-export default Field;
+export default NumberField;

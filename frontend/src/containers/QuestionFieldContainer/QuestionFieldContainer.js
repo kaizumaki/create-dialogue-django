@@ -9,6 +9,7 @@ function mapStateToProps(state) {
     title        : q.title,
     question_id  : q.question_id,
     question_text: q.question_text,
+    parent_id    : q.parent_id,
     isRequired   : q.isRequired,
     isValid      : q.isValid,
     isShowError  : q.isShowError,
