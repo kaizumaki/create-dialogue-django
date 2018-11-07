@@ -6,7 +6,7 @@ import { Japanese } from 'flatpickr/dist/l10n/ja';
 import koyomi from 'koyomi';
 import Marks from '../../atoms/Marks/Marks.js';
 import Label from '../../atoms/Label/Label.js';
-import Btn from '../../atoms/btn/btn.jsx';
+import Btn from '../../atoms/Btn/Btn.js';
 import ValidateIcon from '../../atoms/ValidateIcon/ValidateIcon.js';
 import Attention from '../../atoms/Attention/Attention.js';
 

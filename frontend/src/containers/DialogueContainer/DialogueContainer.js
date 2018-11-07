@@ -1,14 +1,18 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as questionActionCreators from '../../actions/question';
+import * as dialogueActionCreators from '../../actions/dialogue';
 import Dialogue from '../../components/organisms/Dialogue/Dialogue';
 
 function mapStateToProps(state) {
-  const q = state.question;
+  const q = state.dialogue;
   return {
     title        : q.title,
     question_id  : q.question_id,
     question_text: q.question_text,
+    parent_id    : q.parent_id,
+    answer_list  : q.answer_list,
+    isAddAnswerEnable: q.isAddAnswerEnable,
+    isAddKeywordEnable: q.isAddKeywordEnable,
     isRequired   : q.isRequired,
     isValid      : q.isValid,
     isShowError  : q.isShowError,
@@ -21,7 +25,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, questionActionCreators), dispatch)
+    actions: bindActionCreators(Object.assign({}, dialogueActionCreators), dispatch)
   };
 }
 

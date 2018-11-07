@@ -1,5 +1,5 @@
 import { take, call, put, select } from 'redux-saga/effects'
-import * as questionActions from '../actions/question'
+import * as dialogueActions from '../actions/dialogue'
 // import { getSearchWord } from 'selectors/admin/search'
 import * as API from '../apis/API'
 
@@ -19,12 +19,13 @@ import * as API from '../apis/API'
 //   }
 // }
 
-export function* createQuestion() {
+export function* createDialogue() {
   while (true) {
-    const action = yield take(questionActions.CREATE_QUESTION);
-    yield call(API.create,'questions',action.payload.data);
-    const { payload, error } = yield call(API.read,'questions');
-    yield call(_setQuestion,payload,error);
+    const action = yield take(dialogueActions.CREATE_DIALOGUE_TEMP);
+    const { payload, error } = yield call(dialogueActions.createDialogue(action.payload.data));
+    yield call(API.create,'questions',payload);
+    // const { payload, error } = yield call(API.read,'questions');
+    // yield call(_setQuestion,payload,error);
   }
 }
 
@@ -59,10 +60,10 @@ export function* createQuestion() {
 
 function* _setQuestion(payload,error) {
   if (payload && !error) {
-    yield put(questionActions.setQuestion(payload))
+    yield put(dialogueActions.setQuestion(payload))
   }
   else {
-    yield put(questionActions.fetchQuestionError(error))
+    yield put(dialogueActions.fetchQuestionError(error))
   }
 }
 

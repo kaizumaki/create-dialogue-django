@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from drf_writable_nested import WritableNestedModelSerializer
 from .models import Question, Answer, Keyword
 
 
@@ -22,7 +23,7 @@ class KeywordSerializer(serializers.ModelSerializer):
         fields = ('keyword_id', 'word', 'weight')
 
 
-class AnswerCreateSerializer(serializers.ModelSerializer):
+class AnswerCreateSerializer(WritableNestedModelSerializer):
     keywords = KeywordSerializer(many=True, required=False, allow_null=True)
 
     class Meta:
@@ -38,7 +39,7 @@ class AnswerCreateSerializer(serializers.ModelSerializer):
         return instance
 
 
-class AnswerSerializer(serializers.ModelSerializer):
+class AnswerSerializer(WritableNestedModelSerializer):
     keywords = KeywordSerializer(many=True, required=False, allow_null=True)
 
     class Meta:
@@ -46,7 +47,7 @@ class AnswerSerializer(serializers.ModelSerializer):
         fields = ('answer_id', 'answer_text', 'keywords')
 
 
-class QuestionCreateSerializer(serializers.ModelSerializer):
+class QuestionCreateSerializer(WritableNestedModelSerializer):
     answers = AnswerSerializer(many=True, required=False, allow_null=True)
 
     class Meta:
@@ -62,7 +63,7 @@ class QuestionCreateSerializer(serializers.ModelSerializer):
         return instance
 
 
-class QuestionSerializer(serializers.ModelSerializer):
+class QuestionSerializer(WritableNestedModelSerializer):
     answers = AnswerSerializer(many=True, required=False, allow_null=True)
 
     class Meta:
