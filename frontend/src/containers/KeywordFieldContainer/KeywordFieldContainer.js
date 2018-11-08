@@ -4,22 +4,23 @@ import * as dialogueActionCreators from '../../actions/dialogue';
 import KeywordField from '../../components/molecules/KeywordField/KeywordField';
 
 function mapStateToProps(state) {
-  const q = state.dialogue;
+  const d = state.dialogue;
   return {
-    title        : q.title,
-    question_id  : q.question_id,
-    question_text: q.question_text,
-    parent_id    : q.parent_id,
-    answer_list  : q.answer_list,
-    isAddAnswerEnable: q.isAddAnswerEnable,
-    isAddKeywordEnable: q.isAddKeywordEnable,
-    isRequired   : q.isRequired,
-    isValid      : q.isValid,
-    isShowError  : q.isShowError,
-    errorCode    : q.errorCode,
-    errorMsg     : q.errorMsg,
-    temp         : q.temp,
-    label        : encodeURI(q.title)
+    title        : d.title,
+    question_id  : d.question_id,
+    question_text: d.question_text,
+    parent_id    : d.parent_id,
+    answer_list  : d.answer_list,
+    keyword_list : d.keyword_list,
+    isAddAnswerEnable : d.isAddAnswerEnable,
+    isAddKeywordEnable: d.isAddKeywordEnable,
+    isRequired   : d.isRequired,
+    isValid      : d.isValid,
+    isShowError  : d.isShowError,
+    errorCode    : d.errorCode,
+    errorMsg     : d.errorMsg,
+    temp         : d.temp,
+    label        : encodeURI(d.title)
   };
 }
 
@@ -29,4 +30,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(KeywordField);
+export default connect(mapStateToProps)(KeywordField);

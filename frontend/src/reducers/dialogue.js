@@ -11,16 +11,17 @@ const initialState = {
   answer_list:[
     {
       answer_text: '',
-      isValid:'',
-      errorCode:'',
-      keywords:[
-        {
-          word: '',
-          weight: 0,
-          isValid:'',
-          errorCode:''
-        }
-      ],
+      isValid: true,
+      errorCode: '',
+      keywords:[],
+    }
+  ],
+  keyword_list:[
+    {
+      word: '',
+      weight: 0,
+      isValid: true,
+      errorCode: ''
     }
   ],
   isAddAnswerEnable:true,
@@ -48,15 +49,18 @@ const initialState = {
  */
 export default function (state = initialState,action) {
   const makeKeywordState = (state,index,answer_index,newState) => {
-    const new_list_item = Object.assign({}, state.answer_list[answer_index].keywords[index], newState);
+    const new_list_item = Object.assign({}, state.keyword_list[index], newState);
     const new_list = [
-      ...state.answer_list[answer_index].keywords.slice(0, index),
-      Object.assign({},new_list_item,{isValid:'valid', errorCode:''}),
-      ...state.answer_list[answer_index].keywords.slice(index + 1)
+      ...state.keyword_list.slice(0, index),
+      Object.assign({},new_list_item,{isValid: true, errorCode: ''}),
+      ...state.keyword_list.slice(index + 1)
     ];
-    return Object.assign({},state,{
-      keywords: new_list
-    })
+    const new_keyword_list = Object.assign({},state,{
+      keyword_list: new_list
+    });
+    console.log(new_keyword_list);
+    const new_answer_keywords = Object.assign({}, state.answer_list[answer_index], {keywords: new_keyword_list});
+    return Object.assign({}, state, {answer_list: new_answer_keywords});
   };
 
   switch (action.type){
@@ -77,7 +81,7 @@ export default function (state = initialState,action) {
         const new_list_item = Object.assign({}, state.answer_list[index], newState);
         const new_list = [
           ...state.answer_list.slice(0, index),
-          Object.assign({},new_list_item,{isValid:'valid', errorCode:''}),
+          Object.assign({},new_list_item,{isValid: true, errorCode: ''}),
           ...state.answer_list.slice(index + 1)
         ];
         return Object.assign({},state,{
@@ -90,31 +94,44 @@ export default function (state = initialState,action) {
     case actionTypes.INPUT_WEIGHT:
       return makeKeywordState(state,action.payload.idx,action.payload.answer_idx,{weight: action.payload.weight});
     case actionTypes.ADD_KEYWORD:
-      return  Object.assign({},state.answer_list,{
-        keywords:[
-          ...state.keywords,
-          {word: '', weight: 0, isValid: '', errorCode: ''}
-        ]
-      });
+      const makeAddKeywordState = (state,answer_index) => {
+        const obj = state.answer_list;
+        const list = Object.keys(obj).map(key => obj[key]);
+        Object.assign({},state,{keyword_list: list[answer_index].keywords});
+        return Object.assign({},state,{
+          keyword_list:[
+            ...state.keyword_list,
+            {word: '', weight: 0, isValid: true, errorCode: ''}
+          ]
+        });
+      };
+      return makeAddKeywordState(state,action.payload.answer_idx);
     case actionTypes.DELETE_KEYWORD:
-      const newKeywordList = state.answer_list.keywords.length > 1 ? Object.assign({},state.answer_list,{
-        keywords:[
-            ...state.answer_list.keywords.slice(0,action.payload.idx),
-            ...state.answer_list.keywords.slice(action.payload.idx + 1),
-          ],
-          isAddKeywordEnable: true
-        })
-      : Object.assign({},state.answer_list,{
-        keywords:[
-          { word: '', weight: 0, isValid: '', errorCode: '' }
-        ]
-      });
-      return Object.assign({},state,{answer_list: {answer_text: [], isValid:'', errorCode:'', keywords: newKeywordList}});
+       const makeDeleteKeywordState = (state,index,answer_index) => {
+         const obj = state.answer_list;
+         const list = Object.keys(obj).map(key => obj[key]);
+         console.log(list);
+         Object.assign({},state,{keyword_list: list.keywords[index]});
+         const newKeywordList = state.keyword_list.length > 1 ? Object.assign({}, state, {
+             keyword_list: [
+               ...state.keyword_list.slice(0, index),
+               ...state.keyword_list.slice(index + 1),
+             ],
+             isAddKeywordEnable: true
+           })
+           : Object.assign({}, state, {
+             keyword_list: [
+               {word: '', weight: 0, isValid: true, errorCode: ''}
+             ]
+           });
+         return Object.assign({},state.answer_list[answer_index],{keywords: newKeywordList});
+        };
+      return makeDeleteKeywordState(state,action.payload.idx,action.payload.answer_idx);
     case actionTypes.ADD_ANSWER:
       return  Object.assign({},state,{
         answer_list:[
           ...state.answer_list,
-          {answer_text: '', isValid: '', errorCode: '', keywords: {word: '', weight: 0, isValid:'', errorCode:''}}
+          {answer_text: '', isValid: '', errorCode: '', keywords: []}
         ]
       });
     case actionTypes.DELETE_ANSWER:
@@ -127,7 +144,7 @@ export default function (state = initialState,action) {
         })
       : Object.assign({},state,{
         answer_list:[
-          {answer_text: '', isValid: '', errorCode: '', keywords: {word: '', weight: 0, isValid:'', errorCode:''}}
+          {answer_text: '', isValid: '', errorCode: '', keywords: []}
         ]
       });
     case actionTypes.CREATE_DIALOGUE_TEMP:

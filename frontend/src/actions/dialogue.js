@@ -51,7 +51,7 @@ export function inputAnswerText(texts, idx) {
     type: INPUT_ANSWER_TEXT,
     payload:{
       texts: texts,
-      idx: idx
+      idx: parseInt(idx)
     }
   }
 }
@@ -61,8 +61,8 @@ export function inputWord(word, idx, answer_idx) {
     type: INPUT_WORD,
     payload:{
       word: word,
-      idx: idx,
-      answer_idx: answer_idx
+      idx: parseInt(idx),
+      answer_idx: parseInt(answer_idx)
     }
   }
 }
@@ -72,23 +72,27 @@ export function inputWeight(weight, idx, answer_idx) {
     type: INPUT_WEIGHT,
     payload:{
       weight: parseInt(weight),
-      idx: idx,
-      answer_idx: answer_idx
+      idx: parseInt(idx),
+      answer_idx: parseInt(answer_idx)
     }
   }
 }
 
-export function addKeyword() {
+export function addKeyword(answer_idx) {
   return {
-    type: ADD_KEYWORD
+    type: ADD_KEYWORD,
+    payload:{
+      answer_idx: parseInt(answer_idx)
+    }
   }
 }
 
-export function deleteKeyword(idx) {
+export function deleteKeyword(idx, answer_idx) {
   return {
     type: DELETE_KEYWORD,
     payload:{
-      idx: idx
+      idx: parseInt(idx),
+      answer_idx: parseInt(answer_idx)
     }
   }
 }
@@ -103,18 +107,18 @@ export function deleteAnswer(idx) {
   return {
     type: DELETE_ANSWER,
     payload:{
-      idx: idx
+      idx: parseInt(idx)
     }
   }
 }
 
-export function createDialogueTemp(question_text, parent_id, ansewrs) {
+export function createDialogueTemp(question_text, parent_id, answers) {
   return {
     type: CREATE_DIALOGUE_TEMP,
     payload:{
       question_text: question_text,
       parent_id: parseInt(parent_id),
-      ansewrs: ansewrs
+      answers: answers
     }
   }
 }
