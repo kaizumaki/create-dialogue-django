@@ -15,7 +15,7 @@ export default class KeywordField extends Component {
             <Field
               type="text"
               label={this.props.label}
-              value={this.props.keywords.word}
+              value={this.props.keyword.word}
               onChange={(e) => this.props.actions.inputWord(e.target.value, this.props.idx, this.props.answer_idx)}
               isRequired={this.props.isRequired} />
           </div>
@@ -23,7 +23,7 @@ export default class KeywordField extends Component {
             <p>weight</p>
             <NumberField
               label={this.props.label}
-              value={this.props.keywords.weight}
+              value={this.props.keyword.weight}
               onChange={(e) => this.props.actions.inputWeight(e.target.value, this.props.idx, this.props.answer_idx)}
               isRequired={this.props.isRequired} />
           </div>

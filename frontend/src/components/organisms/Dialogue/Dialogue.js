@@ -40,7 +40,7 @@ export default class Dialogue extends Component {
           </FormField>
         </div>
         {/*<SubmitFormBtnContainer />*/}
-        <button type="button" onClick={() => this.props.actions.createDialogueTemp(this.props.temp.question_text,this.props.temp.parent_id,this.props.answer_list)}>button</button>
+        <button type="button" onClick={() => this.props.actions.createDialogueTemp(this.props.temp.question_text,this.props.temp.parent_id,this.props.answer_list,this.props.keyword_list)}>button</button>
       </div>
     );
   }

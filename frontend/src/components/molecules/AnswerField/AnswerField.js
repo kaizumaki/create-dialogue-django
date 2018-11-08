@@ -12,7 +12,7 @@ export default class AnswerField extends Component {
     const obj = this.props.keyword_list;
     const keywordList = Object.keys(obj).map((key, index) =>
       <div key={index}>
-        <KeywordFieldContainer idx={index} answer_idx={this.props.idx} keywords={obj[key]} actions={this.props.actions} />
+        {this.props.idx === obj[key].answer_id && <KeywordFieldContainer idx={index} answer_idx={this.props.idx} keyword={obj[key]} actions={this.props.actions} />}
       </div>
     );
 
