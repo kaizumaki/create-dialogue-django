@@ -158,8 +158,7 @@ export default function (state = initialState,action) {
       : Object.assign({},state,{
         answer_list:[
           {answer_temp_id: action.payload.idx, answer_text: '', isValid: '', errorCode: '', keywords: [{answer_temp_id: action.payload.idx, word: '', weight: 0, isValid: true, errorCode: ''}]}
-        ],
-        // keyword_list: Object.assign({},...keywordNotDependsAnswer,{keyword_list: [{answer_temp_id: action.payload.idx, word: '', weight: 0, isValid: true, errorCode: ''}]})
+        ]
       });
     case actionTypes.CREATE_DIALOGUE_TEMP:
       let answerWithKeyword = [];
