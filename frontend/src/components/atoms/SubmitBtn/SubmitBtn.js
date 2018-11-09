@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './submitBtn.scss';
+import styles from './SubmitBtn.scss';
 
 class SubmitBtn extends Component {
   render() {

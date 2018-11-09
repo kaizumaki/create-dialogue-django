@@ -71,7 +71,7 @@ export function inputWeight(weight, idx, answer_idx) {
   return {
     type: INPUT_WEIGHT,
     payload:{
-      weight: parseInt(weight),
+      weight: parseFloat(weight),
       idx: parseInt(idx),
       answer_idx: parseInt(answer_idx)
     }

@@ -6,7 +6,11 @@ import Dialogue from '../../components/organisms/Dialogue/Dialogue';
 function mapStateToProps(state) {
   const d = state.dialogue;
   return {
-    title        : d.title,
+    title_question: d.title_question,
+    title_parent_id: d.title_parent_id,
+    title_answer: d.title_answer,
+    title_word: d.title_word,
+    title_weight: d.title_weight,
     question_id  : d.question_id,
     question_text: d.question_text,
     parent_id    : d.parent_id,
@@ -19,8 +23,7 @@ function mapStateToProps(state) {
     isShowError  : d.isShowError,
     errorCode    : d.errorCode,
     errorMsg     : d.errorMsg,
-    temp         : d.temp,
-    label        : encodeURI(d.title)
+    temp         : d.temp
   };
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SubmitBtn from '../../atoms/submitBtn/submitBtn.jsx';
+import SubmitBtn from '../../atoms/SubmitBtn/SubmitBtn.js';
 
 export default class SubmitFormBtn extends Component {
   render() {

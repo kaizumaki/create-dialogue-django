@@ -4,7 +4,6 @@ import ValidateIcon from '../../atoms/ValidateIcon/ValidateIcon';
 import Attention from '../../atoms/Attention/Attention';
 import Textarea from '../../atoms/Textarea/Textarea';
 import KeywordFieldContainer from '../../../containers/KeywordFieldContainer/KeywordFieldContainer';
-// import KeywordField from '../../molecules/KeywordField/KeywordField';
 import Btn from "../../atoms/Btn/Btn";
 
 export default class AnswerField extends Component {
@@ -12,23 +11,23 @@ export default class AnswerField extends Component {
     const obj = this.props.keyword_list;
     const keywordList = Object.keys(obj).map((key, index) =>
       <div key={index}>
-        {this.props.idx === obj[key].answer_id && <KeywordFieldContainer idx={index} answer_idx={this.props.idx} keyword={obj[key]} actions={this.props.actions} />}
+        {this.props.answer.answer_temp_id === obj[key].answer_temp_id && <KeywordFieldContainer answer_idx={this.props.answer.answer_temp_id} keyword={obj[key]} actions={this.props.actions} />}
       </div>
     );
 
     return (
       <FormItem
-        label={this.props.label}
-        titleText={this.props.title}
+        label={"answer" + this.props.answer.answer_temp_id}
+        titleText={this.props.title_answer + parseInt(this.props.answer.answer_temp_id + 1)}
         isRequired={this.props.isRequired}>
         <div data-gridlex="grid-noGutter">
           <div data-gridlex="col">
             <Textarea
-              label={this.props.label}
-              value={this.props.answers.answer_text}
+              label={"answer" + this.props.answer.answer_temp_id}
+              value={this.props.answer.answer_text}
               isRequired={this.props.isRequired}
-              onChange={(e) => this.props.actions.inputAnswerText(e.target.value, this.props.idx)} />
-            <div data-gridlex="grid-noGutter-middle">
+              onChange={(e) => this.props.actions.inputAnswerText(e.target.value, this.props.answer.answer_temp_id)} />
+            <div data-gridlex="grid-noGutter">
               <div data-gridlex="col">
                 {keywordList}
               </div>
@@ -36,7 +35,7 @@ export default class AnswerField extends Component {
                 <Btn
                   text="追加"
                   tone="dark"
-                  onClick={() => this.props.actions.addKeyword(this.props.idx)} />
+                  onClick={() => this.props.actions.addKeyword(this.props.answer.answer_temp_id)} />
               </div>
             </div>
           </div>
@@ -45,7 +44,7 @@ export default class AnswerField extends Component {
             <Btn
               text="削除"
               tone="light"
-              onClick={() => this.props.actions.deleteAnswer(this.props.idx)} />
+              onClick={() => this.props.actions.deleteAnswer(this.props.answer.answer_temp_id)} />
           </div>
         </div>
         {(this.props.isRequired && !this.props.isValid && this.props.isShowError) && <Attention text={this.props.errorMsg[this.props.errorCode]} />}

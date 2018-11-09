@@ -1,29 +1,28 @@
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as questionActionCreators from '../../actions/dialogue';
-import QuestionField from '../../components/molecules/QuestionField/QuestionField'
+import QuestionField from '../../components/molecules/QuestionField/QuestionField';
 
 function mapStateToProps(state) {
-  const q = state.question;
+  const d = state.dialogue;
   return {
-    title        : q.title,
-    question_id  : q.question_id,
-    question_text: q.question_text,
-    parent_id    : q.parent_id,
-    isRequired   : q.isRequired,
-    isValid      : q.isValid,
-    isShowError  : q.isShowError,
-    errorCode    : q.errorCode,
-    errorMsg     : q.errorMsg,
-    temp         : q.temp,
-    label        : encodeURI(q.title)
+    title_question: d.title_question,
+    title_parent_id: d.title_parent_id,
+    title_answer: d.title_answer,
+    title_word: d.title_word,
+    title_weight: d.title_weight,
+    question_id  : d.question_id,
+    question_text: d.question_text,
+    parent_id    : d.parent_id,
+    answer_list  : d.answer_list,
+    keyword_list : d.keyword_list,
+    isAddAnswerEnable : d.isAddAnswerEnable,
+    isAddKeywordEnable: d.isAddKeywordEnable,
+    isRequired   : d.isRequired,
+    isValid      : d.isValid,
+    isShowError  : d.isShowError,
+    errorCode    : d.errorCode,
+    errorMsg     : d.errorMsg,
+    temp         : d.temp
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(questionActionCreators, dispatch)
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(QuestionField);
+export default connect(mapStateToProps)(QuestionField);
