@@ -112,13 +112,14 @@ export function deleteAnswer(idx) {
   }
 }
 
-export function createDialogueTemp(question_text, parent_id, answers) {
+export function createDialogueTemp(question_text, parent_id, answers, keywords) {
   return {
     type: CREATE_DIALOGUE_TEMP,
     payload:{
       question_text: question_text,
       parent_id: parseInt(parent_id),
-      answers: answers
+      answers: answers,
+      keywords: keywords
     }
   }
 }

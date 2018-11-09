@@ -30,6 +30,24 @@ const initialState = {
       ],
     }
   ],
+  answer_temp:[
+    {
+      answer_temp_id: 0,
+      answer_text: '',
+      isValid: true,
+      errorCode: '',
+      keywords:[
+        {
+          answer_temp_id: 0,
+          keyword_temp_id: 0,
+          word: '',
+          weight: 0.0,
+          isValid: true,
+          errorCode: ''
+        }
+      ],
+    }
+  ],
   keyword_list:[
     {
       answer_temp_id: 0,
@@ -163,10 +181,10 @@ export default function (state = initialState,action) {
     case actionTypes.CREATE_DIALOGUE_TEMP:
       let answerWithKeyword = [];
       let answers = [];
-      const answerObj = state.answer_list;
+      const answerObj = action.payload.answers;
       Object.keys(answerObj).forEach((key) => {
-        let keywordRelatedAnswer = state.keyword_list.filter((value, i) => {return value.answer_temp_id === answerObj[key].answer_temp_id});
-        answerWithKeyword[key] = Object.assign({}, state.answer_list[key], {keywords: keywordRelatedAnswer});
+        let keywordRelatedAnswer = action.payload.keywords.filter((value, i) => {return value.answer_temp_id === answerObj[key].answer_temp_id});
+        answerWithKeyword[key] = Object.assign({}, state.answer_temp[key], {keywords: keywordRelatedAnswer});
         answers.push(answerWithKeyword[key]);
       });
 

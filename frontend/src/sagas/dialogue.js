@@ -23,7 +23,7 @@ export function* createDialogue() {
   while (true) {
     const action = yield take(dialogueActions.CREATE_DIALOGUE_TEMP);
     // const { payload, error } = yield call(dialogueActions.createDialogue(action.payload.data));
-    console.log(action.payload);
+    console.log(action);
     yield call(API.create,'questions',action.payload);
     // const { payload, error } = yield call(API.read,'questions');
     // yield call(_setQuestion,payload,error);
