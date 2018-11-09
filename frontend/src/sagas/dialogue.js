@@ -1,7 +1,7 @@
-import { take, call, put, select } from 'redux-saga/effects'
-import * as dialogueActions from '../actions/dialogue'
-// import { getSearchWord } from 'selectors/admin/search'
-import * as API from '../apis/API'
+import { take, call, put, select } from 'redux-saga/effects';
+import * as dialogueActions from '../actions/dialogue';
+import { setDialogueAnswerTemp, getDialogueState } from '../selectors/dialogue';
+import * as API from '../apis/API';
 
 // export function* initQuestion() {
 //   while (true) {
@@ -22,9 +22,9 @@ import * as API from '../apis/API'
 export function* createDialogue() {
   while (true) {
     const action = yield take(dialogueActions.CREATE_DIALOGUE_TEMP);
-    // const { payload, error } = yield call(dialogueActions.createDialogue(action.payload.data));
-    console.log(action);
-    yield call(API.create,'questions',action.payload);
+    const answers = yield select(setDialogueAnswerTemp,action.payload);
+    const state = yield select(getDialogueState,action.payload,answers);
+    yield call(API.create,'questions',state.temp);
     // const { payload, error } = yield call(API.read,'questions');
     // yield call(_setQuestion,payload,error);
   }

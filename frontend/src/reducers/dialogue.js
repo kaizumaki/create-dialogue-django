@@ -178,24 +178,6 @@ export default function (state = initialState,action) {
           {answer_temp_id: action.payload.idx, answer_text: '', isValid: '', errorCode: '', keywords: [{answer_temp_id: action.payload.idx, word: '', weight: 0, isValid: true, errorCode: ''}]}
         ]
       });
-    case actionTypes.CREATE_DIALOGUE_TEMP:
-      let answerWithKeyword = [];
-      let answers = [];
-      const answerObj = action.payload.answers;
-      Object.keys(answerObj).forEach((key) => {
-        let keywordRelatedAnswer = action.payload.keywords.filter((value, i) => {return value.answer_temp_id === answerObj[key].answer_temp_id});
-        answerWithKeyword[key] = Object.assign({}, state.answer_temp[key], {keywords: keywordRelatedAnswer});
-        answers.push(answerWithKeyword[key]);
-      });
-
-console.log(answers);
-      return  Object.assign({},state,{
-        temp:{
-          question_text: action.payload.question_text,
-          parent_id: action.payload.parent_id,
-          answers: answers
-        }
-      });
     case actionTypes.FETCH_ERROR_QUESTION:
       return Object.assign({},state,{errorMsg: action.payload.error});
     case SHOW_ERROR:
