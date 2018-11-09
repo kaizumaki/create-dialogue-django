@@ -10,7 +10,7 @@ class NumberField extends Component {
         name={this.props.name}
         id={this.props.label}
         placeholder={this.props.placeholder}
-        value={this.props.value}
+        value={this.props.value || 0}
         step={this.props.step || 1}
         required={this.props.isRequired}
         autoComplete={this.props.autocomplete || 'off'}
@@ -25,7 +25,6 @@ NumberField.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
-  value: PropTypes.number,
   isRequired: PropTypes.bool,
   autocomplete: PropTypes.string,
   maxLength: PropTypes.number,
