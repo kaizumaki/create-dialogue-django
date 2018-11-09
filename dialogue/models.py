@@ -1,4 +1,5 @@
 from django.db import models
+from django_mysql.models import ListTextField
 
 
 class Question(models.Model):
@@ -21,16 +22,9 @@ class Answer(models.Model):
 
     answer_id = models.AutoField(db_column='ANSWER ID', primary_key=True)
     question_id = models.ForeignKey(Question, related_name='answers', on_delete=models.CASCADE)
-    answer_texts = models.TextField(null=True, blank=True)
+    answer_text = ListTextField(base_field=models.CharField(max_length=255), size=255)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
-
-    def answer_text(self):
-        if self.answer_texts is not None:
-            if self.answer_texts.find(',') != -1:
-                return self.answer_texts.split(',')
-            else:
-                return self.answer_texts
 
     def __str__(self):
         return str(self.answer_id)

@@ -2,6 +2,7 @@ Django~=2.1
 PyMySQL
 djangorestframework
 django-filter
+django-mysql
 drf-nested-routers
 drf-writable-nested
 django-silk

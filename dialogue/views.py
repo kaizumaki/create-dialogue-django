@@ -1,12 +1,7 @@
 from rest_framework import viewsets, filters, generics
 from rest_framework.response import Response
 from .models import Question, Answer, Keyword
-from .serializer import QuestionCreateSerializer, \
-                        QuestionSerializer, \
-                        AnswerCreateSerializer, \
-                        AnswerSerializer, \
-                        KeywordCreateSerializer, \
-                        KeywordSerializer
+from .serializer import QuestionSerializer, AnswerSerializer, KeywordSerializer
 
 
 class QuestionViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
@@ -24,22 +19,6 @@ class QuestionViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.Ret
         serializer = QuestionSerializer(question)
         return Response(serializer.data)
 
-    def create(self, request, pk=None):
-        write_serializer = QuestionCreateSerializer(data=request.data)
-        write_serializer.is_valid(raise_exception=True)
-        instance = self.perform_create(write_serializer)
-        read_serializer = QuestionSerializer(instance)
-        return Response(read_serializer.data)
-
-    def update(self, request, pk=None, *args, **kwargs):
-        queryset = Question.objects.filter(pk=pk)
-        question = generics.get_object_or_404(queryset)
-        write_serializer = QuestionCreateSerializer(question, data=request.data)
-        write_serializer.is_valid(raise_exception=True)
-        instance = self.perform_update(write_serializer, *args, **kwargs)
-        read_serializer = QuestionSerializer(instance)
-        return Response(read_serializer.data)
-
 
 class AnswerViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
     queryset = Answer.objects.all()
@@ -56,30 +35,6 @@ class AnswerViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.Retri
         serializer = AnswerSerializer(question)
         return Response(serializer.data)
 
-    def create(self, request, question_pk=None):
-        _mutable = request.data._mutable
-        request.data._mutable = True
-        request.data['question_id'] = question_pk
-        request.data._mutable = _mutable
-        write_serializer = AnswerCreateSerializer(data=request.data)
-        write_serializer.is_valid(raise_exception=True)
-        instance = self.perform_create(write_serializer)
-        read_serializer = AnswerSerializer(instance)
-        return Response(read_serializer.data)
-
-    def update(self, request, pk=None, question_pk=None, *args, **kwargs):
-        queryset = Answer.objects.filter(pk=pk, question_id=question_pk)
-        question = generics.get_object_or_404(queryset)
-        _mutable = request.data._mutable
-        request.data._mutable = True
-        request.data['question_id'] = question_pk
-        request.data._mutable = _mutable
-        write_serializer = AnswerCreateSerializer(question, data=request.data)
-        write_serializer.is_valid(raise_exception=True)
-        instance = self.perform_update(write_serializer, *args, **kwargs)
-        read_serializer = AnswerSerializer(instance)
-        return Response(read_serializer.data)
-
 
 class KeywordViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
     queryset = Keyword.objects.all()
@@ -95,27 +50,3 @@ class KeywordViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.Retr
         answer = generics.get_object_or_404(queryset, pk=pk)
         serializer = KeywordSerializer(answer)
         return Response(serializer.data)
-
-    def create(self, request, question_pk=None, answer_pk=None):
-        _mutable = request.data._mutable
-        request.data._mutable = True
-        request.data['answer_id'] = answer_pk
-        request.data._mutable = _mutable
-        write_serializer = KeywordCreateSerializer(data=request.data)
-        write_serializer.is_valid(raise_exception=True)
-        instance = self.perform_create(write_serializer)
-        read_serializer = KeywordSerializer(instance)
-        return Response(read_serializer.data)
-
-    def update(self, request, pk=None, question_pk=None, answer_pk=None, *args, **kwargs):
-        queryset = Keyword.objects.filter(pk=pk, answer_id__question_id=question_pk, answer_id=answer_pk)
-        answer = generics.get_object_or_404(queryset)
-        _mutable = request.data._mutable
-        request.data._mutable = True
-        request.data['answer_id'] = answer_pk
-        request.data._mutable = _mutable
-        write_serializer = KeywordCreateSerializer(answer, data=request.data)
-        write_serializer.is_valid(raise_exception=True)
-        instance = self.perform_update(write_serializer, *args, **kwargs)
-        read_serializer = KeywordSerializer(instance)
-        return Response(read_serializer.data)

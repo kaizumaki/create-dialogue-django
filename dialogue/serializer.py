@@ -3,64 +3,19 @@ from drf_writable_nested import WritableNestedModelSerializer
 from .models import Question, Answer, Keyword
 
 
-class KeywordCreateSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Keyword
-        fields = ('keyword_id', 'answer_id', 'word', 'weight')
-
-    def create(self, validated_data):
-        instance = Keyword.objects.create(**validated_data)
-        return instance
-
-    def update(self, instance, validated_data):
-        instance = Keyword.objects.filter(keyword_id=instance.keyword_id).update(**validated_data)
-        return instance
-
-
 class KeywordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Keyword
         fields = ('keyword_id', 'word', 'weight')
 
 
-class AnswerCreateSerializer(WritableNestedModelSerializer):
-    keywords = KeywordSerializer(many=True, required=False, allow_null=True)
-
-    class Meta:
-        model = Answer
-        fields = ('answer_id', 'question_id', 'answer_text', 'keywords')
-
-    def create(self, validated_data):
-        instance = Answer.objects.create(**validated_data)
-        return instance
-
-    def update(self, instance, validated_data):
-        instance = Answer.objects.filter(answer_id=instance.answer_id).update(**validated_data)
-        return instance
-
-
 class AnswerSerializer(WritableNestedModelSerializer):
     keywords = KeywordSerializer(many=True, required=False, allow_null=True)
+    # answer_text = serializers.JSONField(True)
 
     class Meta:
         model = Answer
         fields = ('answer_id', 'answer_text', 'keywords')
-
-
-class QuestionCreateSerializer(WritableNestedModelSerializer):
-    answers = AnswerSerializer(many=True, required=False, allow_null=True)
-
-    class Meta:
-        model = Question
-        fields = ('question_id', 'question_text', 'parent_id', 'answers')
-
-    def create(self, validated_data):
-        instance = Question.objects.create(**validated_data)
-        return instance
-
-    def update(self, instance, validated_data):
-        instance = Question.objects.filter(question_id=instance.question_id).update(**validated_data)
-        return instance
 
 
 class QuestionSerializer(WritableNestedModelSerializer):
