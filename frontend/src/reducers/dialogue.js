@@ -30,24 +30,6 @@ const initialState = {
       ],
     }
   ],
-  answer_temp:[
-    {
-      answer_temp_id: 0,
-      answer_text: '',
-      isValid: true,
-      errorCode: '',
-      keywords:[
-        {
-          answer_temp_id: 0,
-          keyword_temp_id: 0,
-          word: '',
-          weight: 0.0,
-          isValid: true,
-          errorCode: ''
-        }
-      ],
-    }
-  ],
   keyword_list:[
     {
       answer_temp_id: 0,
