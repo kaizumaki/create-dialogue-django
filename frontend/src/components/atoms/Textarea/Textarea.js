@@ -8,7 +8,7 @@ class Textarea extends Component {
       <textarea
         name={this.props.name}
         id={this.props.label}
-        value={this.props.value || ''}
+        value={this.props.value}
         rows={this.props.rows || 5}
         placeholder={this.props.placeholder}
         required={this.props.isRequired}
@@ -25,7 +25,7 @@ Textarea.propTypes = {
   placeholder: PropTypes.string,
   isRequired: PropTypes.bool,
   onChange: PropTypes.func,
-  value: PropTypes.string
+  value: PropTypes.any
 };
 
 export default Textarea;

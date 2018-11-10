@@ -24,7 +24,7 @@ export default class AnswerField extends Component {
           <div data-gridlex="col">
             <Textarea
               label={"answer" + this.props.idx}
-              value={this.props.answer.answer_text}
+              value={this.props.answer.answer_texts}
               isRequired={this.props.isRequired}
               onChange={(e) => this.props.actions.inputAnswerText(e.target.value, this.props.idx)} />
             <div data-gridlex="grid-noGutter">

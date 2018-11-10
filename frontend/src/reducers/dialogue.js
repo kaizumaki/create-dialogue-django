@@ -16,7 +16,7 @@ const initialState = {
   answer_list:[
     {
       answer_temp_id: 0,
-      answer_text: '',
+      answer_texts: '',
       isValid: true,
       errorCode: '',
       keywords:[
@@ -103,7 +103,7 @@ export default function (state = initialState,action) {
           answer_list: new_list
         })
       };
-      return makeAnswerState(state,action.payload.idx,{answer_text: action.payload.texts});
+      return makeAnswerState(state,action.payload.idx,{answer_texts: action.payload.texts});
     case actionTypes.INPUT_WORD:
       return makeKeywordState(state,action.payload.idx,action.payload.answer_idx,{word: action.payload.word});
     case actionTypes.INPUT_WEIGHT:
@@ -142,7 +142,7 @@ export default function (state = initialState,action) {
       return Object.assign({},state,{
         answer_list:[
           ...state.answer_list,
-          {answer_temp_id: answer_index, answer_text: '', isValid: '', errorCode: '', keywords: [{answer_temp_id: answer_index, keyword_temp_id: keyword_index, word: '', weight: 0, isValid: true, errorCode: ''}]}
+          {answer_temp_id: answer_index, answer_texts: '', isValid: '', errorCode: '', keywords: [{answer_temp_id: answer_index, keyword_temp_id: keyword_index, word: '', weight: 0, isValid: true, errorCode: ''}]}
         ],
         keyword_list:[
           ...state.keyword_list,
@@ -159,7 +159,7 @@ export default function (state = initialState,action) {
         })
       : Object.assign({},state,{
         answer_list:[
-          {answer_temp_id: action.payload.idx, answer_text: '', isValid: '', errorCode: '', keywords: [{answer_temp_id: action.payload.idx, word: '', weight: 0, isValid: true, errorCode: ''}]}
+          {answer_temp_id: action.payload.idx, answer_texts: '', isValid: '', errorCode: '', keywords: [{answer_temp_id: action.payload.idx, word: '', weight: 0, isValid: true, errorCode: ''}]}
         ]
       });
     case actionTypes.FETCH_ERROR_QUESTION:

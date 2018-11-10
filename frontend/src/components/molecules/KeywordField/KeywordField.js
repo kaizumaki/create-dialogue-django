@@ -26,11 +26,10 @@ export default class KeywordField extends Component {
               label={"weight" + this.props.idx}
               text={this.props.title_weight} />
             <Field
-              type="number"
+              type="text"
               label={"weight" + this.props.idx}
-              value={this.props.keyword.weight}
-              step="0.1"
-              pattern="[0-9]+([,\.][0-9]+)?"
+              value={this.props.keyword.weight || 0}
+              pattern="[0-9]+(\.[0-9]{0,2})?"
               onChange={(e) => this.props.actions.inputWeight(e.target.value, this.props.idx, this.props.answer_idx)}
               isRequired={this.props.isRequired} />
           </div>

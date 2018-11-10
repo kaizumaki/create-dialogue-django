@@ -43,9 +43,6 @@ export function* updateDialogue() {
     const answers = yield select(setDialogueAnswerTemp,action.payload);
     const state = yield select(getDialogueState,action.payload,answers);
     yield call(API.update,'questions',action.payload.question_id,state.temp);
-    // const answers = yield select(setDialogueAnswerTemp,action.payload);
-    // const state = yield select(getDialogueState,action.payload,answers);
-    // yield call(API.create,'questions',state.temp);
   }
 }
 

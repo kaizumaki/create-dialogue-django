@@ -11,11 +11,10 @@ class KeywordSerializer(serializers.ModelSerializer):
 
 class AnswerSerializer(WritableNestedModelSerializer):
     keywords = KeywordSerializer(many=True, required=False, allow_null=True)
-    # answer_text = serializers.JSONField(True)
 
     class Meta:
         model = Answer
-        fields = ('answer_id', 'answer_temp_id', 'answer_text', 'keywords')
+        fields = ('answer_id', 'answer_temp_id', 'answer_texts', 'keywords')
 
 
 class QuestionSerializer(WritableNestedModelSerializer):

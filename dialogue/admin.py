@@ -7,7 +7,7 @@ class QuestionAdmin(admin.ModelAdmin):
 
 
 class AnswerAdmin(admin.ModelAdmin):
-    list_display = ('answer_id', 'question_id', 'answer_text', 'created_date', 'modified_date')
+    list_display = ('answer_id', 'question_id', 'answer_texts', 'created_date', 'modified_date')
 
 
 class KeywordAdmin(admin.ModelAdmin):

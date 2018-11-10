@@ -14,7 +14,7 @@ export default class QuestionIdField extends Component {
             <Field
               text="text"
               label="question_id"
-              value={this.props.id}
+              value={this.props.id || 0}
               pattern="\d+(,\d{2})?"
               onChange={(e) => this.props.actions.inputQuestionId(e.target.value)} />
           </div>
