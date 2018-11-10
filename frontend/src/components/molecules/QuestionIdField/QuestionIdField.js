@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FormItem from '../FormItem/FormItem';
-import NumberField from '../../atoms/NumberField/NumberField';
+import Field from '../../atoms/Field/Field';
 import Btn from "../../atoms/Btn/Btn";
 
 export default class QuestionIdField extends Component {
@@ -11,9 +11,11 @@ export default class QuestionIdField extends Component {
         titleText={this.props.title}>
         <div data-gridlex="grid-noGutter">
           <div data-gridlex="col">
-            <NumberField
+            <Field
+              text="text"
               label="question_id"
               value={this.props.id}
+              pattern="\d+(,\d{2})?"
               onChange={(e) => this.props.actions.inputQuestionId(e.target.value)} />
           </div>
           <div data-gridlex="col">

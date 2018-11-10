@@ -3,7 +3,7 @@ import FormItem from '../FormItem/FormItem';
 import ValidateIcon from '../../atoms/ValidateIcon/ValidateIcon';
 import Attention from '../../atoms/Attention/Attention';
 import Textarea from '../../atoms/Textarea/Textarea';
-import NumberField from '../../atoms/NumberField/NumberField';
+import Field from '../../atoms/Field/Field';
 import Label from '../../atoms/Label/Label';
 
 export default class QuestionField extends Component {
@@ -23,9 +23,11 @@ export default class QuestionField extends Component {
             <Label
               label="parent_id"
               text={this.props.title_parent_id} />
-            <NumberField
+            <Field
+              type="text"
               label="parent_id"
               value={this.props.parent_id}
+              pattern="^[+-]?\d+(,\d{2})?"
               onChange={(e) => this.props.actions.inputQuestionParentId(e.target.value)} />
           </div>
           {this.props.isRequired && <div className="align-center" data-gridlex="col-1"><ValidateIcon isValid={this.props.isValid} /></div>}

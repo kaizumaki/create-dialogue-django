@@ -13,7 +13,6 @@ export function setDialogueAnswerTemp(state, payload) {
 export function getDialogueState(state, payload, answers) {
   return Object.assign({},state,{
     temp:{
-      question_id: payload.question_id || null,
       question_text: payload.question_text,
       parent_id: payload.parent_id,
       answers: answers

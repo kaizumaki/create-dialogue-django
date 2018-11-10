@@ -52,7 +52,6 @@ const initialState = {
     question_too_long_error: '入力文字数が多すぎます'
   },
   temp:{
-    question_id: 0,
     question_text: '',
     parent_id: -1,
     answers: [],

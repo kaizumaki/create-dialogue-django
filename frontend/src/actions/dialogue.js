@@ -157,11 +157,15 @@ export function setDialogue(question_text, parent_id, answers, keywords) {
   }
 }
 
-export function updateDialogue(question_id) {
+export function updateDialogue(question_id, question_text, parent_id, answers, keywords) {
   return {
     type: UPDATE_DIALOGUE,
     payload:{
-      question_id: parseInt(question_id)
+      question_id: parseInt(question_id),
+      question_text: question_text,
+      parent_id: parseInt(parent_id),
+      answers: answers,
+      keywords: keywords
     }
   }
 }

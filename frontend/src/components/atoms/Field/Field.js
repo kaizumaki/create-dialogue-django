@@ -10,7 +10,10 @@ class Field extends Component {
         name={this.props.name}
         id={this.props.label}
         placeholder={this.props.placeholder}
-        value={this.props.value || ''}
+        value={this.props.value}
+        min={this.props.min}
+        step={this.props.step}
+        pattern={this.props.pattern}
         required={this.props.isRequired}
         autoComplete={this.props.autocomplete || 'off'}
         maxLength={this.props.maxLength}
@@ -25,7 +28,7 @@ Field.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.any,
   isRequired: PropTypes.bool,
   autocomplete: PropTypes.string,
   maxLength: PropTypes.number,

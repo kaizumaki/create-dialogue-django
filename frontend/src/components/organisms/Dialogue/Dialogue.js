@@ -53,6 +53,12 @@ export default class Dialogue extends Component {
               tone="color"
               onClick={() => this.props.actions.createDialogue(this.props.question_text,this.props.parent_id,this.props.answer_list,this.props.keyword_list)} />
           </div>
+          <div data-gridlex="col-12_xs-4_sm-3">
+            <SubmitBtn
+              text="update"
+              tone="color"
+              onClick={() => this.props.actions.updateDialogue(this.props.question_id,this.props.question_text,this.props.parent_id,this.props.answer_list,this.props.keyword_list)} />
+          </div>
         </div>
       </div>
     );

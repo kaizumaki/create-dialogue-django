@@ -32,7 +32,7 @@ export function create(repository,data) {
 }
 
 export function update(repository,id,data) {
-  return data_access(`/api/v1/${repository}/${id}`,'PATCH',data)
+  return data_access(`/api/v1/${repository}/${id}/`,'PATCH',data)
 }
 
 export function destroy(repository,id) {
