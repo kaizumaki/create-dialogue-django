@@ -17,7 +17,7 @@ export default class QuestionField extends Component {
           <div data-gridlex="col">
             <Textarea
               label="question"
-              value={this.props.temp.question_text}
+              value={this.props.question_text}
               isRequired={this.props.isRequired}
               onChange={(e) => this.props.actions.inputQuestionText(e.target.value)} />
             <Label
@@ -25,7 +25,7 @@ export default class QuestionField extends Component {
               text={this.props.title_parent_id} />
             <NumberField
               label="parent_id"
-              value={this.props.temp.parent_id}
+              value={this.props.parent_id}
               onChange={(e) => this.props.actions.inputQuestionParentId(e.target.value)} />
           </div>
           {this.props.isRequired && <div className="align-center" data-gridlex="col-1"><ValidateIcon isValid={this.props.isValid} /></div>}

@@ -19,3 +19,19 @@ export function getDialogueState(state, payload, answers) {
     }
   });
 }
+
+export function setDialogueTemp(state, payload) {
+  let keywordIncludedAnswer = [];
+  let keywords = [];
+  const answerObj = payload.answers;
+  Object.keys(answerObj).forEach((value, index) => {
+    keywordIncludedAnswer[index] = answerObj[index].keywords;
+    keywords.push(answerObj[index].keywords);
+  });
+  return Object.assign({}, state, {
+    question_text: payload.question_text,
+    parent_id: payload.parent_id,
+    answer_list: payload.answers,
+    keyword_list: keywords[0]
+  });
+}

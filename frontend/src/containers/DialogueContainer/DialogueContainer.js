@@ -7,10 +7,11 @@ function mapStateToProps(state) {
   const d = state.dialogue;
   return {
     title_question: d.title_question,
+    title_question_id: d.title_question_id,
     title_parent_id: d.title_parent_id,
-    title_answer: d.title_answer,
-    title_word: d.title_word,
-    title_weight: d.title_weight,
+    title_answer : d.title_answer,
+    title_word   : d.title_word,
+    title_weight : d.title_weight,
     question_id  : d.question_id,
     question_text: d.question_text,
     parent_id    : d.parent_id,

@@ -23,6 +23,10 @@ export function search(repository,word) {
   return access(`/api/v1/${repository}?word=${word}`,'GET')
 }
 
+export function set(repository,id) {
+  return data_access(`/api/v1/${repository}/${id}`,'GET')
+}
+
 export function create(repository,data) {
   return data_access(`/api/v1/${repository}/`,'POST',data)
 }

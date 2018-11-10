@@ -5,6 +5,7 @@ import {
 
 const initialState = {
   title_question: 'Question',
+  title_question_id: 'question_id',
   title_parent_id: 'parent_id',
   title_answer: 'Answer',
   title_word: 'keyword',
@@ -42,7 +43,7 @@ const initialState = {
   ],
   isAddAnswerEnable:true,
   isAddKeywordEnable:true,
-  isRequired: true,
+  isRequired: false,
   isValid: true,
   isShowError: false,
   errorCode: '',
@@ -77,18 +78,19 @@ export default function (state = initialState,action) {
   };
 
   switch (action.type){
-    case actionTypes.SET_QUESTION:
+    case actionTypes.SET_DIALOGUE:
       return Object.assign({},state,{
-        question_id: action.payload.id,
-        question_text: action.payload.text,
-        parent_id: action.payload.parent_id
+        question_text: action.payload.question_text,
+        parent_id: action.payload.parent_id,
+        answer_list: action.payload.answers,
+        keyword_list: action.payload.keywords
       });
+    case actionTypes.INPUT_QUESTION_ID:
+      return Object.assign({},state,{question_id: action.payload.question_id});
     case actionTypes.INPUT_QUESTION_TEXT:
-      const newTextTemp = Object.assign({},state.temp,{question_text: action.payload.text});
-      return Object.assign({},state,{temp: newTextTemp});
+      return Object.assign({},state,{question_text: action.payload.text});
     case actionTypes.INPUT_QUESTION_PARENT_ID:
-      const newParentIdTemp = Object.assign({},state.temp,{parent_id: action.payload.parent_id});
-      return Object.assign({},state,{temp: newParentIdTemp});
+      return Object.assign({},state,{parent_id: action.payload.parent_id});
     case actionTypes.INPUT_ANSWER_TEXT:
       const makeAnswerState = (state,index,newState) => {
         const new_list_item = Object.assign({}, state.answer_list[index], newState);
@@ -165,5 +167,6 @@ export default function (state = initialState,action) {
     case SHOW_ERROR:
       return Object.assign({},state,{isShowError: true});
   }
+  console.log('state:',state);
   return state;
 }

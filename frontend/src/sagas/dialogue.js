@@ -1,6 +1,6 @@
 import { take, call, put, select } from 'redux-saga/effects';
 import * as dialogueActions from '../actions/dialogue';
-import { setDialogueAnswerTemp, getDialogueState } from '../selectors/dialogue';
+import { setDialogueAnswerTemp, getDialogueState, setDialogueTemp } from '../selectors/dialogue';
 import * as API from '../apis/API';
 
 // export function* initQuestion() {
@@ -21,14 +21,32 @@ import * as API from '../apis/API';
 
 export function* createDialogue() {
   while (true) {
-    const action = yield take(dialogueActions.CREATE_DIALOGUE_TEMP);
+    const action = yield take(dialogueActions.CREATE_DIALOGUE);
     const answers = yield select(setDialogueAnswerTemp,action.payload);
     const state = yield select(getDialogueState,action.payload,answers);
     yield call(API.create,'questions',state.temp);
-    // const { payload, error } = yield call(API.read,'questions');
-    // yield call(_setQuestion,payload,error);
   }
 }
+
+export function* setDialogue() {
+  while (true) {
+    const action = yield take(dialogueActions.SET_DIALOGUE_STATE);
+    const { payload, error } = yield call(API.set,'questions',action.payload.question_id);
+    const data = yield select(setDialogueTemp,payload);
+    console.log('data:',data);
+    yield put(dialogueActions.setDialogue(data.question_text, data.question_id, data.answer_list, data.keyword_list));
+  }
+}
+
+export function* updateDialogue() {
+  while (true) {
+    const action = yield take(dialogueActions.UPDATE_DIALOGUE);
+    // const answers = yield select(setDialogueAnswerTemp,action.payload);
+    // const state = yield select(getDialogueState,action.payload,answers);
+    // yield call(API.create,'questions',state.temp);
+  }
+}
+
 
 // export function* updateQuestion() {
 //   while (true) {

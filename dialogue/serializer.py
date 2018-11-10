@@ -6,7 +6,7 @@ from .models import Question, Answer, Keyword
 class KeywordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Keyword
-        fields = ('keyword_id', 'word', 'weight')
+        fields = ('keyword_id', 'answer_temp_id', 'keyword_temp_id', 'word', 'weight')
 
 
 class AnswerSerializer(WritableNestedModelSerializer):
@@ -15,7 +15,7 @@ class AnswerSerializer(WritableNestedModelSerializer):
 
     class Meta:
         model = Answer
-        fields = ('answer_id', 'answer_text', 'keywords')
+        fields = ('answer_id', 'answer_temp_id', 'answer_text', 'keywords')
 
 
 class QuestionSerializer(WritableNestedModelSerializer):
