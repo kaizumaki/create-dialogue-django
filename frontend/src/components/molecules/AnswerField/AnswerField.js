@@ -17,16 +17,16 @@ export default class AnswerField extends Component {
 
     return (
       <FormItem
-        label={"answer" + this.props.answer.answer_temp_id}
-        titleText={this.props.title_answer + parseInt(this.props.answer.answer_temp_id + 1)}
+        label={"answer" + this.props.idx}
+        titleText={this.props.title_answer + parseInt(this.props.idx + 1)}
         isRequired={this.props.isRequired}>
         <div data-gridlex="grid-noGutter">
           <div data-gridlex="col">
             <Textarea
-              label={"answer" + this.props.answer.answer_temp_id}
+              label={"answer" + this.props.idx}
               value={this.props.answer.answer_text}
               isRequired={this.props.isRequired}
-              onChange={(e) => this.props.actions.inputAnswerText(e.target.value, this.props.answer.answer_temp_id)} />
+              onChange={(e) => this.props.actions.inputAnswerText(e.target.value, this.props.idx)} />
             <div data-gridlex="grid-noGutter">
               <div data-gridlex="col">
                 {keywordList}
@@ -44,7 +44,7 @@ export default class AnswerField extends Component {
             <Btn
               text="削除"
               tone="light"
-              onClick={() => this.props.actions.deleteAnswer(this.props.answer.answer_temp_id)} />
+              onClick={() => this.props.actions.deleteAnswer(this.props.idx)} />
           </div>
         </div>
         {(this.props.isRequired && !this.props.isValid && this.props.isShowError) && <Attention text={this.props.errorMsg[this.props.errorCode]} />}

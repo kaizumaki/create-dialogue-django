@@ -16,7 +16,7 @@ export default class Dialogue extends Component {
     const obj = this.props.answer_list;
     const answerList = Object.keys(obj).map((key, index) =>
       <div key={index}>
-        <AnswerFieldContainer answer={obj[key]} actions={this.props.actions} />
+        <AnswerFieldContainer idx={index} answer={obj[key]} actions={this.props.actions} />
       </div>
     );
 
@@ -51,7 +51,7 @@ export default class Dialogue extends Component {
             <SubmitBtn
               text="create"
               tone="color"
-              onClick={() => this.props.actions.createDialogue(this.props.temp.question_text,this.props.temp.parent_id,this.props.answer_list,this.props.keyword_list)} />
+              onClick={() => this.props.actions.createDialogue(this.props.question_text,this.props.parent_id,this.props.answer_list,this.props.keyword_list)} />
           </div>
         </div>
       </div>
