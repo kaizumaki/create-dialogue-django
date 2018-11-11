@@ -109,52 +109,28 @@ export default function (state = initialState,action) {
     case actionTypes.INPUT_WEIGHT:
       return makeKeywordState(state,action.payload.idx,action.payload.answer_idx,{weight: action.payload.weight});
     case actionTypes.ADD_KEYWORD:
-      const makeAddKeywordState = (state,index,answer_index) => {
-        let keyword_array = [];
-        state.keyword_list.forEach((value, index) => {
-          keyword_array.push(value.length);
-        });
-        const keyword_length = keyword_array.reduce((prev, current, i, arr) => {
-          return prev + current;
-        });
-        const new_keyword_item = Object.assign(state.keyword_list[index],
-          [
-            ...state.keyword_list[index],
-            {answer_temp_id: answer_index, keyword_temp_id: keyword_length + 1, word: '', weight: 0, isValid: true, errorCode: ''}
-          ]
-        );
-        const new_keyword_list = [
-          ...state.keyword_list.slice(0, index),
-          new_keyword_item,
-          ...state.keyword_list.slice(index + 1)
-        ];
-        console.log(new_keyword_list);
+      const makeAddKeywordState = (state,answer_index) => {
+        const keyword_index = Object.keys(state.keyword_list).length;
         return Object.assign({},state,{
-          keyword_list: new_keyword_list
+          keyword_list:[
+            ...state.keyword_list,
+            {answer_temp_id: answer_index, keyword_temp_id: keyword_index, word: '', weight: 0, isValid: true, errorCode: ''}
+          ]
         });
       };
-      return makeAddKeywordState(state,action.payload.idx,action.payload.answer_idx);
+      return makeAddKeywordState(state,action.payload.answer_idx);
     case actionTypes.DELETE_KEYWORD:
        const makeDeleteKeywordState = (state,index,answer_index) => {
-         let deletedKeywordList =[];
-         let otherKeywordRelatedAnswerList = [];
-         state.keyword_list.forEach((value, index) => {
-           let deletedKeyword = value.filter((v, i) => {return v.answer_temp_id !== answer_index || v.keyword_temp_id !== index});
-           console.log(deletedKeyword);
-           deletedKeywordList.push(deletedKeyword[index]);
-           let otherKeywordRelatedAnswer = value.filter((v, i) => {return v.answer_temp_id !== answer_index});
-           otherKeywordRelatedAnswerList.push(otherKeywordRelatedAnswer[index]);
-         });
-         console.log(deletedKeywordList);
-         console.log(otherKeywordRelatedAnswerList);
-         return deletedKeywordList.length > 0 ? Object.assign({}, state, {
-             keyword_list: [...deletedKeywordList, ...otherKeywordRelatedAnswerList],
+         const deletedKeyword = state.keyword_list.filter((value, i) => {return value.answer_temp_id === answer_index && value.keyword_temp_id !== index});
+         const otherKeywordRelatedAnswer = state.keyword_list.filter((value, i) => {return value.answer_temp_id !== answer_index});
+         return deletedKeyword.length > 0 ? Object.assign({}, state, {
+             keyword_list: [...deletedKeyword, ...otherKeywordRelatedAnswer],
              isAddKeywordEnable: true
            })
            : Object.assign({}, state, {
              keyword_list: [
-               ...deletedKeywordList,
-               ...otherKeywordRelatedAnswerList,
+               ...deletedKeyword,
+               ...otherKeywordRelatedAnswer,
                {answer_temp_id: answer_index, keyword_temp_id: index, word: '', weight: 0, isValid: true, errorCode: ''}
              ]
            });
@@ -162,39 +138,29 @@ export default function (state = initialState,action) {
       return makeDeleteKeywordState(state,action.payload.idx,action.payload.answer_idx);
     case actionTypes.ADD_ANSWER:
       const answer_index = Object.keys(state.answer_list).length;
-      let keyword_array = [];
-      state.keyword_list.forEach((value, index) => {
-        keyword_array.push(value.length);
-      });
-      const keyword_length = keyword_array.reduce((prev, current, i, arr) => {
-        return prev + current;
-      });
-      const new_keyword_item = Object.assign({}, state.keyword_list, [{answer_temp_id: answer_index, keyword_temp_id: keyword_length + 1, word: '', weight: 0, isValid: true, errorCode: ''}]);
+      const keyword_index = Object.keys(state.keyword_list).length;
       return Object.assign({},state,{
         answer_list:[
           ...state.answer_list,
-          {answer_temp_id: answer_index, answer_texts: '', isValid: '', errorCode: '', keywords: [{answer_temp_id: answer_index, keyword_temp_id: keyword_length + 1, word: '', weight: 0, isValid: true, errorCode: ''}]}
+          {answer_temp_id: answer_index, answer_texts: '', isValid: '', errorCode: '', keywords: [{answer_temp_id: answer_index, keyword_temp_id: keyword_index, word: '', weight: 0, isValid: true, errorCode: ''}]}
         ],
         keyword_list:[
           ...state.keyword_list,
-          new_keyword_item
+          {answer_temp_id: answer_index, keyword_temp_id: keyword_index, word: '', weight: 0, isValid: true, errorCode: ''}
         ]
       });
     case actionTypes.DELETE_ANSWER:
-      const deletedKeyword = state.keyword_list.filter((value, index) => {return index !== action.payload.idx});
       return state.answer_list.length > 1 ? Object.assign({},state,{
         answer_list:[
           ...state.answer_list.slice(0,action.payload.idx),
           ...state.answer_list.slice(action.payload.idx + 1),
         ],
-        keyword_list: deletedKeyword,
         isAddAnswerEnable: true
         })
       : Object.assign({},state,{
         answer_list:[
-          {answer_temp_id: action.payload.answer_idx, answer_texts: '', isValid: '', errorCode: '', keywords: [{answer_temp_id: action.payload.answer_idx, word: '', weight: 0, isValid: true, errorCode: ''}]}
-        ],
-        keyword_list: [{answer_temp_id: action.payload.answer_idx, word: '', weight: 0, isValid: true, errorCode: ''}]
+          {answer_temp_id: action.payload.idx, answer_texts: '', isValid: '', errorCode: '', keywords: [{answer_temp_id: action.payload.idx, word: '', weight: 0, isValid: true, errorCode: ''}]}
+        ]
       });
     case actionTypes.FETCH_ERROR_QUESTION:
       return Object.assign({},state,{errorMsg: action.payload.error});

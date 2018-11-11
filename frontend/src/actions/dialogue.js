@@ -90,11 +90,10 @@ export function inputWeight(weight, idx, answer_idx) {
   }
 }
 
-export function addKeyword(idx, answer_idx) {
+export function addKeyword(answer_idx) {
   return {
     type: ADD_KEYWORD,
     payload:{
-      idx: parseInt(idx),
       answer_idx: parseInt(answer_idx)
     }
   }
@@ -116,12 +115,11 @@ export function addAnswer() {
   }
 }
 
-export function deleteAnswer(idx, answer_idx) {
+export function deleteAnswer(idx) {
   return {
     type: DELETE_ANSWER,
     payload:{
-      idx: parseInt(idx),
-      answer_idx: parseInt(answer_idx)
+      idx: parseInt(idx)
     }
   }
 }
