@@ -8,10 +8,12 @@ import Btn from "../../atoms/Btn/Btn";
 
 export default class AnswerField extends Component {
   render() {
-    const obj = this.props.keyword_list;
-    const keywordList = Object.keys(obj).map((key, index) =>
+    const obj = this.props.keywords;
+    const keywords = Object.keys(obj).map((key, index) =>
       <div key={index}>
-        {this.props.answer.answer_temp_id === obj[key].answer_temp_id && <KeywordFieldContainer idx={index} answer_idx={this.props.answer.answer_temp_id} keyword={obj[key]} actions={this.props.actions} />}
+        {this.props.answer.answer_temp_id === obj[key].answer_temp_id &&
+        <KeywordFieldContainer idx={index} answer_idx={this.props.answer.answer_temp_id} keyword={obj[key]}
+                               actions={this.props.actions} />}
       </div>
     );
 
@@ -29,13 +31,13 @@ export default class AnswerField extends Component {
               onChange={(e) => this.props.actions.inputAnswerText(e.target.value, this.props.idx)} />
             <div data-gridlex="grid-noBottom">
               <div data-gridlex="col">
-                {keywordList}
+                {keywords}
               </div>
               <div data-gridlex="col-2">
                 <Btn
                   text="add"
                   tone="dark"
-                  onClick={() => this.props.actions.addKeyword(this.props.answer.answer_temp_id)} />
+                  onClick={() => this.props.actions.addKeyword(this.props.idx, this.props.answer.answer_temp_id)} />
               </div>
             </div>
           </div>
@@ -44,7 +46,7 @@ export default class AnswerField extends Component {
             <Btn
               text="del"
               tone="light"
-              onClick={() => this.props.actions.deleteAnswer(this.props.idx)} />
+              onClick={() => this.props.actions.deleteAnswer(this.props.idx, this.props.answer.answer_temp_id)} />
           </div>
         </div>
         {(this.props.isRequired && !this.props.isValid && this.props.isShowError) && <Attention text={this.props.errorMsg[this.props.errorCode]} />}

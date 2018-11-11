@@ -36,6 +36,6 @@ export function setDialogueTemp(state, payload) {
     question_text: payload.question_text,
     parent_id: payload.parent_id,
     answer_list: answers,
-    keyword_list: keywords[0]
+    keyword_list: keywords
   });
 }

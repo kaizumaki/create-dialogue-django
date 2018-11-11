@@ -13,10 +13,15 @@ export default class Dialogue extends Component {
   componentDidMount() {}
 
   render() {
-    const obj = this.props.answer_list;
-    const answerList = Object.keys(obj).map((key, index) =>
+    let keywordList = [];
+    const keywordObj = this.props.keyword_list;
+    Object.keys(keywordObj).forEach((value, index) => {
+      keywordList.push(keywordObj[index]);
+    });
+    const answerObj = this.props.answer_list;
+    const answerList = Object.keys(answerObj).map((key, index) =>
       <div key={index}>
-        <AnswerFieldContainer idx={index} answer={obj[key]} actions={this.props.actions} />
+        <AnswerFieldContainer idx={index} answer={answerObj[key]} keywords={keywordList[index]} actions={this.props.actions} />
       </div>
     );
 
