@@ -20,20 +20,20 @@ export default class AnswerField extends Component {
         label={"answer" + this.props.idx}
         titleText={this.props.title_answer + parseInt(this.props.idx + 1)}
         isRequired={this.props.isRequired}>
-        <div data-gridlex="grid-noGutter">
+        <div data-gridlex="grid-noBottom">
           <div data-gridlex="col">
             <Textarea
               label={"answer" + this.props.idx}
               value={this.props.answer.answer_texts}
               isRequired={this.props.isRequired}
               onChange={(e) => this.props.actions.inputAnswerText(e.target.value, this.props.idx)} />
-            <div data-gridlex="grid-noGutter">
+            <div data-gridlex="grid-noBottom">
               <div data-gridlex="col">
                 {keywordList}
               </div>
               <div data-gridlex="col-2">
                 <Btn
-                  text="追加"
+                  text="add"
                   tone="dark"
                   onClick={() => this.props.actions.addKeyword(this.props.answer.answer_temp_id)} />
               </div>
@@ -42,7 +42,7 @@ export default class AnswerField extends Component {
           {this.props.isRequired && <div className="align-center" data-gridlex="col-1"><ValidateIcon isValid={this.props.isValid} /></div>}
           <div data-gridlex="col-2">
             <Btn
-              text="削除"
+              text="del"
               tone="light"
               onClick={() => this.props.actions.deleteAnswer(this.props.idx)} />
           </div>

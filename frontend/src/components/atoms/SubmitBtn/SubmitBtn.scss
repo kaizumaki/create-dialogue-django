@@ -31,7 +31,7 @@
   }
 }
 
-.color {
+.color1 {
   composes: submitBtn;
   color: #fff;
   background-color: $color-sub1;
@@ -42,6 +42,20 @@
   }
   &:active {
     box-shadow: 0 1px 0 0 darken($color-sub1, 16%);
+  }
+}
+
+.color2 {
+  composes: submitBtn;
+  color: #fff;
+  background-color: $color-sub2;
+  border: 1px solid darken($color-sub2, 2%);
+  box-shadow: 0 8px 0 0 darken($color-sub2, 4%);
+  &:hover {
+    box-shadow: 0 5px 0 0 darken($color-sub2, 10%);
+  }
+  &:active {
+    box-shadow: 0 1px 0 0 darken($color-sub2, 16%);
   }
 }
 

@@ -38,7 +38,7 @@ export default class Dialogue extends Component {
               </div>
               <div data-gridlex="col-2">
                 <Btn
-                  text="追加"
+                  text="add"
                   tone="dark"
                   onClick={() => this.props.actions.addAnswer()} />
               </div>
@@ -50,13 +50,13 @@ export default class Dialogue extends Component {
           <div data-gridlex="col-12_xs-4_sm-3">
             <SubmitBtn
               text="create"
-              tone="color"
+              tone="color1"
               onClick={() => this.props.actions.createDialogue(this.props.question_text,this.props.parent_id,this.props.answer_list,this.props.keyword_list)} />
           </div>
           <div data-gridlex="col-12_xs-4_sm-3">
             <SubmitBtn
               text="update"
-              tone="color"
+              tone="color2"
               onClick={() => this.props.actions.updateDialogue(this.props.question_id,this.props.question_text,this.props.parent_id,this.props.answer_list,this.props.keyword_list)} />
           </div>
         </div>

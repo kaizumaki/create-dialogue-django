@@ -9,7 +9,7 @@ export default class QuestionIdField extends Component {
       <FormItem
         label="question_id"
         titleText={this.props.title}>
-        <div data-gridlex="grid-noGutter">
+        <div data-gridlex="grid-noBottom-middle">
           <div data-gridlex="col">
             <Field
               text="text"

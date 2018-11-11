@@ -9,7 +9,7 @@ export default class KeywordField extends Component {
   render() {
     return (
       <div>
-        <div data-gridlex="grid-noGutter-middle">
+        <div data-gridlex="grid-noBottom-middle">
           <div data-gridlex="col">
             <Label
               label={"keyword" + this.props.idx}
@@ -36,9 +36,9 @@ export default class KeywordField extends Component {
           {this.props.isRequired && <div className="align-center" data-gridlex="col-1"><ValidateIcon isValid={this.props.isValid} /></div>}
           <div data-gridlex="col-2">
             <Btn
-              text="削除"
+              text="del"
               tone="light"
-              onClick={() => this.props.actions.deleteKeyword(this.props.idx, this.props.answer_idx)} />
+              onClick={() => this.props.actions.deleteKeyword(this.props.keyword.keyword_temp_id, this.props.answer_idx)} />
           </div>
         </div>
         {(this.props.isRequired && !this.props.isValid && this.props.isShowError) && <Attention text={this.props.errorMsg[this.props.errorCode]} />}
