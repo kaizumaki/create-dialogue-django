@@ -1,6 +1,6 @@
 from rest_framework import viewsets, filters, generics
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from .models import Question, Answer, Keyword
 from .serializer import QuestionSerializer, AnswerSerializer, KeywordSerializer
@@ -8,7 +8,7 @@ from .serializer import QuestionSerializer, AnswerSerializer, KeywordSerializer
 
 class QuestionViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = (SessionAuthentication, BasicAuthentication)
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
 
@@ -26,7 +26,7 @@ class QuestionViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.Ret
 
 class AnswerViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = (SessionAuthentication, BasicAuthentication)
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
 
@@ -44,7 +44,7 @@ class AnswerViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.Retri
 
 class KeywordViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = (SessionAuthentication, BasicAuthentication)
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Keyword.objects.all()
     serializer_class = KeywordSerializer
 
