@@ -24,7 +24,8 @@ export function* createDialogue() {
     const action = yield take(dialogueActions.CREATE_DIALOGUE);
     const answers = yield select(setDialogueAnswerTemp,action.payload);
     const state = yield select(getDialogueState,action.payload,answers);
-    yield call(API.create,'questions',state.temp);
+    const { payload, error } = yield call(API.create,'questions',state.temp);
+    yield call(_clearDialogue,payload,error);
   }
 }
 
@@ -42,7 +43,8 @@ export function* updateDialogue() {
     const action = yield take(dialogueActions.UPDATE_DIALOGUE);
     const answers = yield select(setDialogueAnswerTemp,action.payload);
     const state = yield select(getDialogueState,action.payload,answers);
-    yield call(API.update,'questions',action.payload.question_id,state.temp);
+    const { payload, error } = yield call(API.update,'questions',action.payload.question_id,state.temp);
+    yield call(_clearDialogue,payload,error);
   }
 }
 
@@ -76,12 +78,12 @@ export function* updateDialogue() {
 //   }
 // }
 
-function* _setQuestion(payload,error) {
+function* _clearDialogue(payload,error) {
   if (payload && !error) {
-    yield put(dialogueActions.setQuestion(payload))
+    yield put(dialogueActions.clearDialogue());
   }
   else {
-    yield put(dialogueActions.fetchQuestionError(error))
+    yield put(dialogueActions.fetchDialogueError(error.response.data.detail));
   }
 }
 

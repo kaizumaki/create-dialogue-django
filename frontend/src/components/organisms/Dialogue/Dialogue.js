@@ -60,6 +60,7 @@ export default class Dialogue extends Component {
               onClick={() => this.props.actions.updateDialogue(this.props.question_id,this.props.question_text,this.props.parent_id,this.props.answer_list,this.props.keyword_list)} />
           </div>
         </div>
+        <p>{this.props.apiErrorMsg}</p>
       </div>
     );
   }

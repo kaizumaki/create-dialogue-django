@@ -51,6 +51,7 @@ const initialState = {
     question_empty_error: '入力してください',
     question_too_long_error: '入力文字数が多すぎます'
   },
+  apiErrorMsg: '',
   temp:{
     question_text: '',
     parent_id: -1,
@@ -165,8 +166,47 @@ export default function (state = initialState,action) {
         ],
         keyword_list: keywordRelatedAnswer
       });
-    case actionTypes.FETCH_ERROR_QUESTION:
-      return Object.assign({},state,{errorMsg: action.payload.error});
+    case actionTypes.CLEAR_DIALOGUE:
+      return Object.assign({},state,{
+        question_text: '',
+        parent_id: -1,
+        answer_list:[
+          {
+            answer_temp_id: 0,
+            answer_texts: '',
+            isValid: true,
+            errorCode: '',
+            keywords:[
+              {
+                answer_temp_id: 0,
+                keyword_temp_id: 0,
+                word: '',
+                weight: 0.0,
+                isValid: true,
+                errorCode: ''
+              }
+            ],
+          }
+        ],
+        keyword_list:[
+          {
+            answer_temp_id: 0,
+            keyword_temp_id: 0,
+            word: '',
+            weight: 0.0,
+            isValid: true,
+            errorCode: ''
+          }
+        ],
+        apiErrorMsg: '',
+        temp:{
+          question_text: '',
+          parent_id: -1,
+          answers: [],
+        }
+      });
+    case actionTypes.FETCH_ERROR_DIALOGUE:
+      return Object.assign({},state,{apiErrorMsg: action.payload.error});
     case SHOW_ERROR:
       return Object.assign({},state,{isShowError: true});
   }

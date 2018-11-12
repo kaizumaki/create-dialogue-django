@@ -24,6 +24,7 @@ function mapStateToProps(state) {
     isShowError      : d.isShowError,
     errorCode        : d.errorCode,
     errorMsg         : d.errorMsg,
+    apiErrorMsg      : d.apiErrorMsg,
     temp             : d.temp
   };
 }

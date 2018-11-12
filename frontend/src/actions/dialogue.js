@@ -1,4 +1,3 @@
-export const SET_QUESTION = 'SET_QUESTION';
 export const INPUT_QUESTION_ID = 'INPUT_QUESTION_ID';
 export const INPUT_QUESTION_TEXT = 'INPUT_QUESTION_TEXT';
 export const INPUT_QUESTION_PARENT_ID = 'INPUT_QUESTION_PARENT_ID';
@@ -13,23 +12,8 @@ export const CREATE_DIALOGUE = 'CREATE_DIALOGUE';
 export const SET_DIALOGUE_STATE = 'SET_DIALOGUE_STATE';
 export const SET_DIALOGUE = 'SET_DIALOGUE';
 export const UPDATE_DIALOGUE = 'UPDATE_DIALOGUE';
-export const FETCH_ERROR_QUESTION    = 'FETCH_ERROR_QUESTION';
-
-/**
- * サーバから受信したデータをstoreに適用する
- * @param data
- * @returns {{type: string, payload: *}}
- */
-export function setQuestion(id, text, parent_id) {
-  return {
-    type: SET_QUESTION,
-    payload:{
-      id: parseInt(id),
-      text: text,
-      parent_id: parseInt(parent_id)
-    }
-  }
-}
+export const CLEAR_DIALOGUE = 'CLEAR_DIALOGUE';
+export const FETCH_ERROR_DIALOGUE    = 'FETCH_ERROR_DIALOGUE';
 
 export function inputQuestionId(question_id) {
   return {
@@ -170,14 +154,20 @@ export function updateDialogue(question_id, question_text, parent_id, answers, k
   }
 }
 
+export function clearDialogue() {
+  return {
+    type: CLEAR_DIALOGUE
+  }
+}
+
 /**
  * fetchに失敗したとき
  * @param error
  * @returns {{type: string, payload: {error: *}}}
  */
-export function fetchQuestionError(error) {
+export function fetchDialogueError(error) {
   return {
-    type: FETCH_ERROR_QUESTION,
+    type: FETCH_ERROR_DIALOGUE,
     payload:{
       error: error
     }
