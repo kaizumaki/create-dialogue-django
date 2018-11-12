@@ -30,12 +30,15 @@ export function setDialogueTemp(state, payload) {
     let joinAnswerTexts = answerObj[index].answer_texts.join(',');
     answerItem[index] = Object.assign({}, answerObj[index], {answer_texts: joinAnswerTexts});
     answers.push(answerItem[index]);
-    keywords.push(answerObj[index].keywords);
+    let keywordsObj = answerObj[index].keywords;
+    Object.keys(keywordsObj).forEach((v, i) => {
+      keywords.push(keywordsObj[i]);
+    });
   });
   return Object.assign({}, state, {
     question_text: payload.question_text,
     parent_id: payload.parent_id,
     answer_list: answers,
-    keyword_list: keywords[0]
+    keyword_list: keywords
   });
 }

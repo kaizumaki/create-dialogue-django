@@ -150,17 +150,20 @@ export default function (state = initialState,action) {
         ]
       });
     case actionTypes.DELETE_ANSWER:
+      const keywordRelatedAnswer = state.keyword_list.filter((value, i) => {return value.answer_temp_id !== action.payload.idx});
       return state.answer_list.length > 1 ? Object.assign({},state,{
         answer_list:[
           ...state.answer_list.slice(0,action.payload.idx),
           ...state.answer_list.slice(action.payload.idx + 1),
         ],
+        keyword_list: keywordRelatedAnswer,
         isAddAnswerEnable: true
         })
       : Object.assign({},state,{
         answer_list:[
           {answer_temp_id: action.payload.idx, answer_texts: '', isValid: '', errorCode: '', keywords: [{answer_temp_id: action.payload.idx, word: '', weight: 0, isValid: true, errorCode: ''}]}
-        ]
+        ],
+        keyword_list: keywordRelatedAnswer
       });
     case actionTypes.FETCH_ERROR_QUESTION:
       return Object.assign({},state,{errorMsg: action.payload.error});
