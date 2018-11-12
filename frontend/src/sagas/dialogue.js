@@ -33,8 +33,13 @@ export function* setDialogue() {
   while (true) {
     const action = yield take(dialogueActions.SET_DIALOGUE_STATE);
     const { payload, error } = yield call(API.set,'questions',action.payload.question_id);
-    const data = yield select(setDialogueTemp,payload);
-    yield put(dialogueActions.setDialogue(data.question_text, data.parent_id, data.answer_list, data.keyword_list));
+    if (payload && !error) {
+      const data = yield select(setDialogueTemp,payload);
+      yield put(dialogueActions.setDialogue(data.question_text, data.parent_id, data.answer_list, data.keyword_list));
+    }
+    else {
+      yield put(dialogueActions.fetchDialogueError(error.response.data.detail));
+    }
   }
 }
 
