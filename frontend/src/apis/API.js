@@ -55,7 +55,6 @@ function access(url,method) {
   return _access(url,{
     method:method,
     headers: {
-      // 'Authorization' : " Basic " + btoa("webstaff:staffnws"),
     },
   });
 }
@@ -65,7 +64,6 @@ function data_access(url,method,data) {
     method:method,
     headers: {
       'content-type': 'application/json',
-      // 'Authorization' : " Basic " + btoa("webstaff:staffnws"),
     },
     data:JSON.stringify(data)
   });

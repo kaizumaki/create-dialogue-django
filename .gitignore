@@ -16,3 +16,5 @@ yarn-error.log*
 
 /frontend/static/frontend/*bundle*
 /frontend/static/frontend/*css*
+
+/env

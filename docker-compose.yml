@@ -5,9 +5,8 @@ services:
   db:
     image: mysql:8.0
     command: mysqld --user=mysql --innodb-use-native-aio=0
-    environment:
-      - MYSQL_ROOT_PASSWORD=P@ssw0rd
-      - MYSQL_ROOT_HOST=%
+    env_file:
+      - ./env/development/.env
     volumes:
       - ./db-datadir:/var/lib/mysql
       - ./sql:/docker-entrypoint-initdb.d
@@ -16,7 +15,9 @@ services:
     tty: true
 
   web:
-    build: .
+    build:
+      context: ./
+      dockerfile: Dockerfile-development
     command: sh -c "./wait-for-it.sh db:3306; python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/code
