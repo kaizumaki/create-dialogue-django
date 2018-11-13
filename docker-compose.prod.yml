@@ -19,8 +19,8 @@ services:
       context: ./
       dockerfile: Dockerfile-production
     command: sh -c "./wait-for-it.sh db:3306; python manage.py runserver 0.0.0.0:8000"
-#    env_file:
-#      - ./env/production/.env
+    env_file:
+      - ./env/production/.env
     volumes:
       - .:/code
     ports:
