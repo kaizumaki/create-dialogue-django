@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  db:
+    image: mysql:8.0
+    command: mysqld --user=mysql --innodb-use-native-aio=0
+    env_file:
+      - ./env/production/.env
+    volumes:
+      - ./db-datadir:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    tty: true
+
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile-production
+    command: sh -c "./wait-for-it.sh db:3306; python manage.py runserver 0.0.0.0:8000"
+    env_file:
+      - ./env/production/.env
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
