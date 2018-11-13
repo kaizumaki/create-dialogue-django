@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Label from '../../atoms/Label/Label';
-import Require from '../../atoms/require/Require';
+import Require from '../../atoms/Require/Require';
 
 class Title extends Component {
   render() {

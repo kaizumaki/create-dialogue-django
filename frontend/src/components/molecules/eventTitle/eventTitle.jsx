@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from './eventTitle.scss';
 import ValidateIcon from '../../atoms/ValidateIcon/ValidateIcon.js';
 import Attention from '../../atoms/Attention/Attention.js';
-import Require from '../../atoms/require/Require.js';
+import Require from '../../atoms/Require/Require.js';
 import FormTitle from '../../atoms/formTitle/formTitle.jsx';
 
 export default class EventTitle extends Component {
