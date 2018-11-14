@@ -31,7 +31,7 @@ services:
 
   nginx:
     restart: always
-    image: nginx
+    image: nginx:1.15
     ports:
       - "80:80"
     volumes:
