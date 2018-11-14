@@ -18,7 +18,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile-production
-    command: gunicorn config.wsgi -b 0.0.0.0:8000
+    command: gunicorn config.wsgi
     env_file:
       - ./env/production/.env
     volumes:
