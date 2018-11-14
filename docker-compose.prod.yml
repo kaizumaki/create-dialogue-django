@@ -25,7 +25,6 @@ services:
     volumes:
       - .:/code
       - /var/www/html/static:/static
-      - gunicorn-run:/var/sock/gunicorn
     ports:
       - "8000:8000"
     depends_on:
