@@ -35,7 +35,7 @@ services:
       - "8000:8000"
     volumes:
       - ./nginx/conf:/etc/nginx/conf.d
-      - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
+#      - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
       - ./static:/static
     depends_on:
       - web
