@@ -19,12 +19,13 @@ services:
       context: ./
       dockerfile: Dockerfile-production
 #    command: sh -c "./wait-for-it.sh db:3306; python manage.py runserver 0.0.0.0:8000"
-    command: sh -c "gunicorn config.wsgi"
+    command: gunicorn config.wsgi
     env_file:
       - ./env/production/.env
     volumes:
       - .:/code
       - /var/www/html/static:/static
+      - gunicorn-run:/var/sock/gunicorn
     ports:
       - "8000:8000"
     depends_on:
