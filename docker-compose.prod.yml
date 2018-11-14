@@ -23,7 +23,7 @@ services:
       - ./env/production/.env
     volumes:
       - .:/code
-      - ./static:/static
+      - /var/www/html/static:/static
     expose:
       - "8000"
     depends_on:
@@ -36,6 +36,6 @@ services:
       - "80:80"
     volumes:
       - ./nginx:/etc/nginx
-      - /static
+      - /var/www/html/static:/static
     depends_on:
       - web
