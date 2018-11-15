@@ -1,0 +1,25 @@
+[Unit]
+Description=docker-compose c4c service
+Requires=docker.service
+
+[Service]
+User=core
+Type=simple
+
+Environment=COMPOSE_FILE=/home/kaizumaki/create-dialogue-django/docker-compose.prod.yml
+
+ExecStartPre=-/usr/bin/docker-compose -f ${COMPOSE_FILE} kill
+ExecStartPre=-/usr/bin/docker-compose -f ${COMPOSE_FILE} rm -v -f
+ExecStartPre=-/usr/bin/docker-compose -f ${COMPOSE_FILE} down
+
+ExecStart=/usr/bin/docker-compose -f ${COMPOSE_FILE} up --force-recreate --abort-on-container-exit
+
+ExecStop=/usr/bin/docker-compose -f ${COMPOSE_FILE} stop
+ExecStopPost=-/usr/bin/docker-compose -f ${COMPOSE_FILE} rm -v -f
+ExecStopPost=-/usr/bin/docker-compose -f ${COMPOSE_FILE} down
+
+Restart=always
+RestartSec=180s
+
+[Install]
+WantedBy=multi-user.target
