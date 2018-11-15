@@ -1,7 +1,7 @@
 [Unit]
 Description=docker-compose c4c service
 Requires=docker.service
-#After=docker.service
+After=docker.service
 
 [Service]
 Type=simple
@@ -12,9 +12,9 @@ ExecStartPre=-/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/
 
 ExecStart=/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml up -d --force-recreate
 
-ExecStop=/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml stop
-ExecStopPost=-/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml rm -v -f
-ExecStopPost=-/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml down
+#ExecStop=/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml stop
+#ExecStopPost=-/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml rm -v -f
+#ExecStopPost=-/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml down
 
 Restart=always
 RestartSec=180s
