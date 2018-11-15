@@ -13,7 +13,7 @@ ExecStartPre=-/usr/bin/docker-compose -f ${COMPOSE_FILE} kill
 ExecStartPre=-/usr/bin/docker-compose -f ${COMPOSE_FILE} rm -v -f
 ExecStartPre=-/usr/bin/docker-compose -f ${COMPOSE_FILE} down
 
-ExecStart=/usr/bin/docker-compose -f ${COMPOSE_FILE} up --force-recreate --abort-on-container-exit
+ExecStart=/usr/bin/docker-compose -f ${COMPOSE_FILE} up -d --force-recreate
 
 ExecStop=/usr/bin/docker-compose -f ${COMPOSE_FILE} stop
 ExecStopPost=-/usr/bin/docker-compose -f ${COMPOSE_FILE} rm -v -f
