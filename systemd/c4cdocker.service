@@ -6,6 +6,7 @@ Requires=docker.service
 User=core
 Type=simple
 
+EnvironmentFile=-/home/kaizumaki/create-dialogue-django/env/production/docker.env
 Environment=COMPOSE_FILE=/home/kaizumaki/create-dialogue-django/docker-compose.prod.yml
 
 ExecStartPre=-/usr/bin/docker-compose -f ${COMPOSE_FILE} kill
