@@ -1,24 +1,20 @@
 [Unit]
 Description=docker-compose c4c service
 Requires=docker.service
+#After=docker.service
 
 [Service]
-User=core
 Type=simple
 
-#EnvironmentFile=-/home/kaizumaki/create-dialogue-django/env/production/docker.env
-#Environment=COMPOSE_FILE=/home/kaizumaki/create-dialogue-django/docker-compose.prod.yml
+ExecStartPre=-/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml kill
+ExecStartPre=-/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml rm -v -f
+ExecStartPre=-/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml down
 
-ExecStartPre=-export COMPOSE_FILE=/home/kaizumaki/create-dialogue-django/docker-compose.prod.yml
-ExecStartPre=-/usr/bin/docker-compose -f ${COMPOSE_FILE} kill
-ExecStartPre=-/usr/bin/docker-compose -f ${COMPOSE_FILE} rm -v -f
-ExecStartPre=-/usr/bin/docker-compose -f ${COMPOSE_FILE} down
+ExecStart=/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml up -d --force-recreate
 
-ExecStart=/usr/bin/docker-compose -f ${COMPOSE_FILE} up -d --force-recreate
-
-ExecStop=/usr/bin/docker-compose -f ${COMPOSE_FILE} stop
-ExecStopPost=-/usr/bin/docker-compose -f ${COMPOSE_FILE} rm -v -f
-ExecStopPost=-/usr/bin/docker-compose -f ${COMPOSE_FILE} down
+ExecStop=/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml stop
+ExecStopPost=-/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml rm -v -f
+ExecStopPost=-/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml down
 
 Restart=always
 RestartSec=180s
