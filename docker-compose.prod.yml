@@ -29,13 +29,24 @@ services:
     depends_on:
       - db
 
-  nginx:
-    restart: always
-    image: nginx:1.15
+  https-portal:
+    image: steveltn/https-portal:1
     ports:
-      - "80:80"
-    volumes:
-      - ./nginx:/etc/nginx
-      - ./static:/var/www/html/static
+      - '80:80'
+      - '443:443'
     depends_on:
       - web
+    restart: always
+    environment:
+      DOMAINS: 'kaizumaki.net'
+
+#  nginx:
+#    restart: always
+#    image: nginx:1.15
+#    ports:
+#      - "80:80"
+#    volumes:
+#      - ./nginx:/etc/nginx
+#      - ./static:/var/www/html/static
+#    depends_on:
+#      - web
