@@ -42,7 +42,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./ssl-certs:/var/lib/https-portal
-      - ./static:/var/www/vhosts
+      - ./static:/var/www/vhosts/kaizumaki.net
     depends_on:
       - web
 
