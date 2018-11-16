@@ -37,7 +37,7 @@ services:
     restart: always
     environment:
       DOMAINS: 'kaizumaki.net'
-      STAGE: 'production'
+#      STAGE: 'production'
       FORCE_RENEW: 'true'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
