@@ -6,3 +6,4 @@ django-mysql
 drf-nested-routers
 drf-writable-nested
 django-environ
+line-bot-sdk
