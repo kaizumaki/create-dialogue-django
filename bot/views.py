@@ -35,7 +35,7 @@ def handle_follow(event):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
-    r = requests.get('http://tk2-405-43846.vs.sakura.ne.jp/api/v1/questions/1/answers/1/')
+    r = requests.get('https://kaizumaki.com/api/v1/questions/1/answers/1/')
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=r.answer_texts[1])
