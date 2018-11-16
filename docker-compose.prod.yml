@@ -57,6 +57,6 @@ services:
 #    depends_on:
 #      - web
 
-  volumes:
-    ssl-certs:
-    static:
+volumes:
+  ssl-certs:
+  static:
