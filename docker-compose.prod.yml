@@ -18,7 +18,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile-production
-    command: python manage.py collectstatic --noinput | gunicorn config.wsgi -b 0.0.0.0:8080
+    command: bash -c "python manage.py collectstatic --noinput && gunicorn config.wsgi -b 0.0.0.0:8080"
     env_file:
       - ./env/production/.env
     volumes:
