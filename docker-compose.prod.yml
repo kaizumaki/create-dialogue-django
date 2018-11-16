@@ -36,7 +36,7 @@ services:
       - '443:443'
     restart: always
     environment:
-      DOMAINS: 'kaizumaki.net -> http://0.0.0.0:8080'
+      DOMAINS: 'kaizumaki.net'
 #      STAGE: 'production'
 #      FORCE_RENEW: 'true'
     volumes:
