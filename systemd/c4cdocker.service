@@ -4,17 +4,17 @@ Requires=docker.service
 After=docker.service
 
 [Service]
-Type=simple
+WorkingDirectory=/home/kaizumaki/create-dialogue-django
 
-ExecStartPre=-/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml kill
-ExecStartPre=-/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml rm -v -f
-ExecStartPre=-/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml down
+ExecStartPre=-/usr/bin/docker-compose -f docker-compose.prod.yml kill
+ExecStartPre=-/usr/bin/docker-compose -f docker-compose.prod.yml rm -v -f
+ExecStartPre=-/usr/bin/docker-compose -f docker-compose.prod.yml down
 
-ExecStart=/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml up -d --force-recreate
+ExecStart=/usr/bin/docker-compose -f docker-compose.prod.yml up -d --force-recreate
 
-#ExecStop=/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml stop
-#ExecStopPost=-/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml rm -v -f
-#ExecStopPost=-/usr/bin/docker-compose -f /home/kaizumaki/create-dialogue-django/docker-compose.prod.yml down
+#ExecStop=/usr/bin/docker-compose -f docker-compose.prod.yml stop
+#ExecStopPost=-/usr/bin/docker-compose -f docker-compose.prod.yml rm -v -f
+#ExecStopPost=-/usr/bin/docker-compose -f docker-compose.prod.yml down
 
 Restart=always
 RestartSec=180s
