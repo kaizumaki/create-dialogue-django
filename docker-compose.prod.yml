@@ -38,8 +38,12 @@ services:
       - web
     restart: always
     environment:
-      DOMAINS: 'kaizumaki.net'
+      DOMAINS: kaizumaki.net -> http://0.0.0.0:8000
       STAGE: 'production'
+    volumes:
+    # - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./ssl-certs:/var/lib/https-portal
+      - ./vhosts:/var/www/vhosts
 
 #  nginx:
 #    restart: always
