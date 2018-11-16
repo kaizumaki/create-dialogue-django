@@ -12,6 +12,8 @@ SECRET_KEY = env('SECRET_KEY')
 
 ALLOWED_HOSTS = ['kaizumaki.net']
 
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # Application definition
 
 INSTALLED_APPS = [
