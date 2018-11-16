@@ -34,9 +34,7 @@ services:
     ports:
       - '80:80'
       - '443:443'
-    depends_on:
-      - web
-    restart: always
+#    restart: always
     environment:
       DOMAINS: kaizumaki.net -> http://0.0.0.0:8000
       STAGE: 'production'
@@ -45,6 +43,8 @@ services:
       - ./ssl-certs:/var/lib/https-portal
       - ./nginx:/etc/nginx
       - ./static:/var/www/vhosts
+    depends_on:
+      - web
 
 #  nginx:
 #    restart: always
