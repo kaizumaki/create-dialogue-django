@@ -21,7 +21,6 @@ services:
     command: gunicorn config.wsgi -b 0.0.0.0:8080
     env_file:
       - ./env/production/.env
-    VIRTUAL_HOST: web
     volumes:
       - .:/code
       - ./static:/code/static
@@ -37,7 +36,7 @@ services:
       - '443:443'
     restart: always
     environment:
-      DOMAINS: 'kaizumaki.net -> http://web:8080'
+      DOMAINS: 'kaizumaki.net -> http://0.0.0.0:8080'
 #      STAGE: 'production'
 #      FORCE_RENEW: 'true'
     volumes:
