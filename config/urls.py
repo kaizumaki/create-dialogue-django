@@ -16,12 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('dialogue.urls')),
     path('', include('frontend.urls')),
     path('bot/', include('bot.urls')),
+    staticfiles_urlpatterns(),
 ]
 
 if settings.DEBUG:
