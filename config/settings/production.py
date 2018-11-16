@@ -60,5 +60,5 @@ DATABASES = {
 STATIC_URL = 'https://kaizumaki.net/'
 STATIC_ROOT = os.path.join(BASE_DIR, '../../static')
 STATICFILES_DIRS = [
-    "/home/kaizumaki/create-dialogue-django/static",
+    "/var/www/html/static",
 ]
