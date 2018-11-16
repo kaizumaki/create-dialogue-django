@@ -23,7 +23,7 @@ services:
       - ./env/production/.env
     volumes:
       - .:/code
-      - ./static:/code/static
+      - /data/https-portal/vhosts/static:/code/static
     expose:
       - "80"
     depends_on:
@@ -42,7 +42,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./ssl-certs:/var/lib/https-portal
-      - ./static:/var/www/vhosts/kaizumaki.net
+      - /data/https-portal/vhosts:/var/www/vhosts
     depends_on:
       - web
 
