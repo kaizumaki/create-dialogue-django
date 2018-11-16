@@ -18,7 +18,7 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile-production
-    command: gunicorn config.wsgi -b 0.0.0.0:8080
+    command: python manage.py collectstatic | gunicorn config.wsgi -b 0.0.0.0:8080
     env_file:
       - ./env/production/.env
     volumes:
@@ -40,7 +40,7 @@ services:
 #      STAGE: 'production'
 #      FORCE_RENEW: 'true'
     volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./ssl-certs:/var/lib/https-portal
       - ./static:/var/www/vhosts/kaizumaki.net/static
     depends_on:
