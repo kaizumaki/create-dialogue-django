@@ -44,7 +44,7 @@ services:
       - ./ssl-certs:/var/lib/https-portal
       - ./static:/var/www/vhosts/kaizumaki.net/static
       - ./nginx/ssl:/var/lib/nginx-conf/kaizumaki.net.ssl.conf.erb:ro
-      - ./nginx/etc_nginx:/etc/nginx
+#      - ./nginx/etc_nginx:/etc/nginx
     depends_on:
       - web
 
