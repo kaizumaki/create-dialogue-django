@@ -26,6 +26,7 @@ services:
       - ./static:/code/static
     expose:
       - "80"
+      - "443"
     depends_on:
       - db
 
