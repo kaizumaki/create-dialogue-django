@@ -21,10 +21,13 @@ services:
     command: gunicorn config.wsgi -b 0.0.0.0:8080
     env_file:
       - ./env/production/.env
+    VIRTUAL_HOST: web
+    VIRTUAL_PORT: '8080'
     volumes:
       - .:/code
       - ./static:/code/static
     expose:
+      - "80"
       - "8080"
     depends_on:
       - db
