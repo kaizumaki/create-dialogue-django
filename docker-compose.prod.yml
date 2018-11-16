@@ -18,14 +18,14 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile-production
-    command: gunicorn config.wsgi -b 0.0.0.0:8080
+    command: gunicorn config.wsgi -b 0.0.0.0:80
     env_file:
       - ./env/production/.env
     volumes:
       - .:/code
       - ./static:/code/static
     expose:
-      - "8080"
+      - "80"
     depends_on:
       - db
 
@@ -36,7 +36,7 @@ services:
       - '443:443'
     restart: always
     environment:
-      DOMAINS: 'kaizumaki.net'
+      DOMAINS: 'kaizumaki.net -> http://web:80'
 #      STAGE: 'production'
 #      FORCE_RENEW: 'true'
     volumes:
