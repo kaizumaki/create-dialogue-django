@@ -39,6 +39,7 @@ services:
     restart: always
     environment:
       DOMAINS: 'kaizumaki.net'
+      STAGE: 'production'
 
 #  nginx:
 #    restart: always
