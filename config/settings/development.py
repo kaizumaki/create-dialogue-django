@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'frontend.apps.FrontendConfig',
     'silk',
+    'bot.apps.BotConfig',
 ]
 
 MIDDLEWARE = [

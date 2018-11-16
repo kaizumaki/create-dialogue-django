@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'dialogue.apps.DialogueConfig',
     'rest_framework',
     'frontend.apps.FrontendConfig',
+    'bot.apps.BotConfig',
 ]
 
 MIDDLEWARE = [
