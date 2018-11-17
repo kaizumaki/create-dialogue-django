@@ -37,14 +37,13 @@ services:
     restart: always
     environment:
       DOMAINS: 'kaizumaki.net -> http://web:8080'
-#      STAGE: 'production'
-#      FORCE_RENEW: 'true'
+      STAGE: 'production'
+      FORCE_RENEW: 'true'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./ssl-certs:/var/lib/https-portal
       - ./static:/var/www/vhosts/kaizumaki.net/static
       - ./nginx/ssl/ssl.conf:/var/lib/nginx-conf/kaizumaki.net.ssl.conf.erb
-#      - ./nginx/etc_nginx:/etc/nginx
     depends_on:
       - web
 
@@ -58,7 +57,3 @@ services:
 #      - ./static:/var/www/html/static
 #    depends_on:
 #      - web
-
-#volumes:
-#  ssl-certs:
-#  static:
