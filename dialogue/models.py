@@ -8,7 +8,7 @@ class Question(models.Model):
 
     question_id = models.AutoField(db_column='QUESTION ID', primary_key=True)
     question_text = models.TextField()
-    parent_id = models.IntegerField(null=True, blank=True)
+    parent_answer_id = models.IntegerField(null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
 

@@ -6,13 +6,13 @@ import {
 const initialState = {
   title_question: 'Question',
   title_question_id: 'question_id',
-  title_parent_id: 'parent_id',
+  title_parent_answer_id: 'parent_answer_id',
   title_answer: 'Answer',
   title_word: 'keyword',
   title_weight: 'weight',
   question_id: 0,
   question_text: '',
-  parent_id: -1,
+  parent_answer_id: -1,
   answer_list:[
     {
       answer_temp_id: 0,
@@ -54,7 +54,7 @@ const initialState = {
   apiErrorMsg: '',
   temp:{
     question_text: '',
-    parent_id: -1,
+    parent_answer_id: -1,
     answers: [],
   }
 };
@@ -82,7 +82,7 @@ export default function (state = initialState,action) {
     case actionTypes.SET_DIALOGUE:
       return Object.assign({},state,{
         question_text: action.payload.question_text,
-        parent_id: action.payload.parent_id,
+        parent_answer_id: action.payload.parent_answer_id,
         answer_list: action.payload.answers,
         keyword_list: action.payload.keywords
       });
@@ -91,7 +91,7 @@ export default function (state = initialState,action) {
     case actionTypes.INPUT_QUESTION_TEXT:
       return Object.assign({},state,{question_text: action.payload.text});
     case actionTypes.INPUT_QUESTION_PARENT_ID:
-      return Object.assign({},state,{parent_id: action.payload.parent_id});
+      return Object.assign({},state,{parent_answer_id: action.payload.parent_answer_id});
     case actionTypes.INPUT_ANSWER_TEXT:
       const makeAnswerState = (state,index,newState) => {
         const new_list_item = Object.assign({}, state.answer_list[index], newState);
@@ -169,7 +169,7 @@ export default function (state = initialState,action) {
     case actionTypes.CLEAR_DIALOGUE:
       return Object.assign({},state,{
         question_text: '',
-        parent_id: -1,
+        parent_answer_id: -1,
         answer_list:[
           {
             answer_temp_id: 0,
@@ -201,7 +201,7 @@ export default function (state = initialState,action) {
         apiErrorMsg: '',
         temp:{
           question_text: '',
-          parent_id: -1,
+          parent_answer_id: -1,
           answers: [],
         }
       });

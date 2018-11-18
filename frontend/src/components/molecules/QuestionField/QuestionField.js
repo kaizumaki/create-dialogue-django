@@ -21,12 +21,12 @@ export default class QuestionField extends Component {
               isRequired={this.props.isRequired}
               onChange={(e) => this.props.actions.inputQuestionText(e.target.value)} />
             <Label
-              label="parent_id"
-              text={this.props.title_parent_id} />
+              label="parent_answer_id"
+              text={this.props.title_parent_answer_id} />
             <Field
               type="text"
-              label="parent_id"
-              value={this.props.parent_id}
+              label="parent_answer_id"
+              value={this.props.parent_answer_id}
               pattern="^[+-]?\d+(,\d{2})?"
               onChange={(e) => this.props.actions.inputQuestionParentId(e.target.value)} />
           </div>

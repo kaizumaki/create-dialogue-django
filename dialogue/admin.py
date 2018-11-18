@@ -3,7 +3,7 @@ from .models import Question, Answer, Keyword
 
 
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('question_id', 'question_text', 'parent_id', 'created_date', 'modified_date')
+    list_display = ('question_id', 'question_text', 'parent_answer_id', 'created_date', 'modified_date')
     search_fields = ['question_text']
 
 

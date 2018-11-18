@@ -33,11 +33,11 @@ export function inputQuestionText(text) {
   }
 }
 
-export function inputQuestionParentId(parent_id) {
+export function inputQuestionParentId(parent_answer_id) {
   return {
     type: INPUT_QUESTION_PARENT_ID,
     payload:{
-      parent_id: parseInt(parent_id)
+      parent_answer_id: parseInt(parent_answer_id)
     }
   }
 }
@@ -108,12 +108,12 @@ export function deleteAnswer(idx) {
   }
 }
 
-export function createDialogue(question_text, parent_id, answers, keywords) {
+export function createDialogue(question_text, parent_answer_id, answers, keywords) {
   return {
     type: CREATE_DIALOGUE,
     payload:{
       question_text: question_text,
-      parent_id: parseInt(parent_id),
+      parent_answer_id: parseInt(parent_answer_id),
       answers: answers,
       keywords: keywords
     }
@@ -129,25 +129,25 @@ export function setDialogueState(question_id) {
   }
 }
 
-export function setDialogue(question_text, parent_id, answers, keywords) {
+export function setDialogue(question_text, parent_answer_id, answers, keywords) {
   return {
     type: SET_DIALOGUE,
     payload:{
       question_text: question_text,
-      parent_id: parseInt(parent_id),
+      parent_answer_id: parseInt(parent_answer_id),
       answers: answers,
       keywords: keywords
     }
   }
 }
 
-export function updateDialogue(question_id, question_text, parent_id, answers, keywords) {
+export function updateDialogue(question_id, question_text, parent_answer_id, answers, keywords) {
   return {
     type: UPDATE_DIALOGUE,
     payload:{
       question_id: parseInt(question_id),
       question_text: question_text,
-      parent_id: parseInt(parent_id),
+      parent_answer_id: parseInt(parent_answer_id),
       answers: answers,
       keywords: keywords
     }

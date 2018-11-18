@@ -15,7 +15,7 @@ export function getDialogueState(state, payload, answers) {
   return Object.assign({},state,{
     temp:{
       question_text: payload.question_text,
-      parent_id: payload.parent_id,
+      parent_answer_id: payload.parent_answer_id,
       answers: answers
     }
   });
@@ -37,7 +37,7 @@ export function setDialogueTemp(state, payload) {
   });
   return Object.assign({}, state, {
     question_text: payload.question_text,
-    parent_id: payload.parent_id,
+    parent_answer_id: payload.parent_answer_id,
     answer_list: answers,
     keyword_list: keywords
   });
