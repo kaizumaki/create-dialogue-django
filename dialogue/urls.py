@@ -1,6 +1,6 @@
 from rest_framework_nested import routers
 from django.urls import path, include
-from .views import QuestionViewSet, AnswerViewSet, KeywordViewSet, AnswerDisplayViewSet, KeywordDisplayViewSet
+from .views import QuestionViewSet, AnswerViewSet, KeywordViewSet, AnswerDisplayViewSet, KeywordDisplayViewSet, KeywordRelatedAnswerViewSet
 
 
 router = routers.DefaultRouter()
@@ -14,8 +14,12 @@ questions_router.register(r'answers', AnswerViewSet, base_name='answers')
 answers_router = routers.NestedSimpleRouter(questions_router, r'answers', lookup='answer')
 answers_router.register(r'keywords', KeywordViewSet, base_name='keywords')
 
+answers_keyword_router = routers.NestedSimpleRouter(router, r'answers', lookup='answer')
+answers_keyword_router.register(r'keywords', KeywordRelatedAnswerViewSet, base_name='keywords')
+
 urlpatterns = [
     path('', include(router.urls)),
     path('', include(questions_router.urls)),
     path('', include(answers_router.urls)),
+    path('', include(answers_keyword_router.urls)),
 ]

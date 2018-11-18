@@ -37,8 +37,8 @@ class AnswerViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.Retri
 
     def retrieve(self, request, pk=None, question_pk=None):
         queryset = Answer.objects.filter(pk=pk, question_id=question_pk)
-        question = generics.get_object_or_404(queryset, pk=pk)
-        serializer = AnswerSerializer(question)
+        answer = generics.get_object_or_404(queryset, pk=pk)
+        serializer = AnswerSerializer(answer)
         return Response(serializer.data)
 
 
@@ -55,8 +55,8 @@ class KeywordViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.Retr
 
     def retrieve(self, request, pk=None, question_pk=None, answer_pk=None):
         queryset = Keyword.objects.filter(pk=pk, answer_id__question_id=question_pk, answer_id=answer_pk)
-        answer = generics.get_object_or_404(queryset, pk=pk)
-        serializer = KeywordSerializer(answer)
+        keyword = generics.get_object_or_404(queryset, pk=pk)
+        serializer = KeywordSerializer(keyword)
         return Response(serializer.data)
 
 
@@ -89,8 +89,26 @@ class KeywordDisplayViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generi
         serializer = KeywordDisplaySerializer(queryset, many=True)
         return Response(serializer.data)
 
-    def retrieve(self, request, pk=None):
-        queryset = Keyword.objects.filter(pk=pk)
+    def retrieve(self, request, pk=None, answer_pk=None):
+        queryset = Keyword.objects.filter(pk=pk, answer_id=answer_pk)
         keyword = generics.get_object_or_404(queryset, pk=pk)
-        serializer = KeywordDisplaySerializer(keyword)
+        serializer = KeywordSerializer(keyword)
+        return Response(serializer.data)
+
+
+class KeywordRelatedAnswerViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = (SessionAuthentication, BasicAuthentication)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    queryset = Keyword.objects.all()
+    serializer_class = KeywordDisplaySerializer
+
+    def list(self, request, answer_pk=None):
+        queryset = Keyword.objects.filter(answer_id=answer_pk)
+        serializer = KeywordDisplaySerializer(queryset, many=True)
+        return Response(serializer.data)
+
+    def retrieve(self, request, pk=None, answer_pk=None):
+        queryset = Keyword.objects.filter(pk=pk, answer_id=answer_pk)
+        keyword = generics.get_object_or_404(queryset, pk=pk)
+        serializer = KeywordSerializer(keyword)
         return Response(serializer.data)
