@@ -22,6 +22,8 @@ urlpatterns = [
     path('api/v1/', include('dialogue.urls')),
     path('', include('frontend.urls')),
     path('bot/', include('bot.urls')),
+    path('accounts/', include('allauth.urls')),
+    path('invitations/', include('invitations.urls')),
 ]
 
 if settings.DEBUG:
