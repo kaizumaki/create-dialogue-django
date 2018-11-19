@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfCookieName = 'XSRF-TOKEN'
 axios.defaults.xsrfHeaderName = 'X-CSRFToken'
 
 export function read(repository) {

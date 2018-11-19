@@ -7,5 +7,3 @@ ADD ./requirements/production.txt /code/
 RUN pip install --upgrade pip
 RUN pip install -r production.txt
 ADD . /code/
-COPY ./wait-for-it.sh /wait-for-it.sh
-RUN chmod +x /wait-for-it.sh

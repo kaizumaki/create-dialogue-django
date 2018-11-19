@@ -50,19 +50,17 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
     'dialogue.apps.DialogueConfig',
     'rest_framework',
     'frontend.apps.FrontendConfig',
     'bot.apps.BotConfig',
-    'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'invitations',
 ]
-
-SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -110,10 +108,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+CSRF_COOKIE_NAME = 'XSRF-TOKEN'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+SITE_ID = 1
+
 ACCOUNT_ADAPTER = 'invitations.models.InvitationsAdapter'
+
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
