@@ -3,11 +3,13 @@ import FormItem from '../FormItem/FormItem';
 import ValidateIcon from '../../atoms/ValidateIcon/ValidateIcon';
 import Attention from '../../atoms/Attention/Attention';
 import Textarea from '../../atoms/Textarea/Textarea';
-import Field from '../../atoms/Field/Field';
-import Label from '../../atoms/Label/Label';
 
 export default class QuestionField extends Component {
   render() {
+    const optionList = this.props.exists_answers.map((item, index) =>
+      <option key={index} value={item.answer_id}>{item.answer_texts.join(',')}</option>
+    );
+
     return (
       <FormItem
         label="question"
@@ -20,15 +22,13 @@ export default class QuestionField extends Component {
               value={this.props.question_text}
               isRequired={this.props.isRequired}
               onChange={(e) => this.props.actions.inputQuestionText(e.target.value)} />
-            <Label
-              label="parent_answer_id"
-              text={this.props.title_parent_answer_id} />
-            <Field
-              type="text"
-              label="parent_answer_id"
+            <span className="font-bold">{this.props.title_parent_answer_id} : </span>
+            <select
               value={this.props.parent_answer_id}
-              pattern="^[+-]?\d+(,\d{2})?"
-              onChange={(e) => this.props.actions.inputQuestionParentId(e.target.value)} />
+              onChange={(e) => this.props.actions.inputParentAnswerId(e.target.value)}>
+              <option value="-1">なし</option>
+              {optionList}
+            </select>
           </div>
           {this.props.isRequired && <div className="align-center" data-gridlex="col-1"><ValidateIcon isValid={this.props.isValid} /></div>}
         </div>

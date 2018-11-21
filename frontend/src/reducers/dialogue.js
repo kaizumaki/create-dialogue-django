@@ -6,13 +6,14 @@ import {
 const initialState = {
   title_question: 'Question',
   title_question_id: 'question_id',
-  title_parent_answer_id: 'parent_answer_id',
+  title_parent_answer_id: 'parent_answer',
   title_answer: 'Answer',
   title_word: 'keyword',
   title_weight: 'weight',
   question_id: 0,
   question_text: '',
   parent_answer_id: -1,
+  exists_answers: [],
   answer_list:[
     {
       answer_temp_id: 0,
@@ -86,11 +87,13 @@ export default function (state = initialState,action) {
         answer_list: action.payload.answers,
         keyword_list: action.payload.keywords
       });
+    case actionTypes.SET_ANSWERS:
+      return Object.assign({},state,{exists_answers: action.payload.exists_answers});
     case actionTypes.INPUT_QUESTION_ID:
       return Object.assign({},state,{question_id: action.payload.question_id});
     case actionTypes.INPUT_QUESTION_TEXT:
       return Object.assign({},state,{question_text: action.payload.text});
-    case actionTypes.INPUT_QUESTION_PARENT_ID:
+    case actionTypes.INPUT_PARENT_ANSWER_ID:
       return Object.assign({},state,{parent_answer_id: action.payload.parent_answer_id});
     case actionTypes.INPUT_ANSWER_TEXT:
       const makeAnswerState = (state,index,newState) => {
@@ -168,6 +171,7 @@ export default function (state = initialState,action) {
       });
     case actionTypes.CLEAR_DIALOGUE:
       return Object.assign({},state,{
+        question_id: 0,
         question_text: '',
         parent_answer_id: -1,
         answer_list:[

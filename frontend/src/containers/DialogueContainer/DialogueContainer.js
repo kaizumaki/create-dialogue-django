@@ -15,6 +15,7 @@ function mapStateToProps(state) {
     question_id      : d.question_id,
     question_text    : d.question_text,
     parent_answer_id : d.parent_answer_id,
+    exists_answers   : d.exists_answers,
     answer_list      : d.answer_list,
     keyword_list     : d.keyword_list,
     isAddAnswerEnable: d.isAddAnswerEnable,

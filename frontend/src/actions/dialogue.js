@@ -1,6 +1,8 @@
+export const FETCH_ANSWERS = 'FETCH_ANSWERS';
+export const SET_ANSWERS = 'SET_ANSWERS';
 export const INPUT_QUESTION_ID = 'INPUT_QUESTION_ID';
 export const INPUT_QUESTION_TEXT = 'INPUT_QUESTION_TEXT';
-export const INPUT_QUESTION_PARENT_ID = 'INPUT_QUESTION_PARENT_ID';
+export const INPUT_PARENT_ANSWER_ID = 'INPUT_PARENT_ANSWER_ID';
 export const INPUT_ANSWER_TEXT = 'INPUT_ANSWER_TEXT';
 export const INPUT_WORD = 'INPUT_WORD';
 export const INPUT_WEIGHT = 'INPUT_WEIGHT';
@@ -14,6 +16,21 @@ export const SET_DIALOGUE = 'SET_DIALOGUE';
 export const UPDATE_DIALOGUE = 'UPDATE_DIALOGUE';
 export const CLEAR_DIALOGUE = 'CLEAR_DIALOGUE';
 export const FETCH_ERROR_DIALOGUE    = 'FETCH_ERROR_DIALOGUE';
+
+export function fetchAnswers() {
+  return {
+    type: FETCH_ANSWERS
+  }
+}
+
+export function setAnswers(answers) {
+  return {
+    type: SET_ANSWERS,
+    payload:{
+      exists_answers: answers
+    }
+  }
+}
 
 export function inputQuestionId(question_id) {
   return {
@@ -33,9 +50,9 @@ export function inputQuestionText(text) {
   }
 }
 
-export function inputQuestionParentId(parent_answer_id) {
+export function inputParentAnswerId(parent_answer_id) {
   return {
-    type: INPUT_QUESTION_PARENT_ID,
+    type: INPUT_PARENT_ANSWER_ID,
     payload:{
       parent_answer_id: parseInt(parent_answer_id)
     }

@@ -19,6 +19,14 @@ import * as API from '../apis/API';
 //   }
 // }
 
+export function* fetchAnswers() {
+  while (true) {
+    yield take(dialogueActions.FETCH_ANSWERS);
+    const { payload, error } = yield call(API.read,'answers');
+    yield put(dialogueActions.setAnswers(payload));
+  }
+}
+
 export function* createDialogue() {
   while (true) {
     const action = yield take(dialogueActions.CREATE_DIALOGUE);

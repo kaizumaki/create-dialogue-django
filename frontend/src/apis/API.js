@@ -24,7 +24,7 @@ export function search(repository,word) {
 }
 
 export function set(repository,id) {
-  return data_access(`/api/v1/${repository}/${id}`,'GET')
+  return data_access(`/api/v1/${repository}/${id}/`,'GET')
 }
 
 export function create(repository,data) {

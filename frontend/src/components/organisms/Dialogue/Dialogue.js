@@ -10,7 +10,9 @@ import SubmitBtn from '../../atoms/SubmitBtn/SubmitBtn';
 // import SubmitFormBtnContainer from "../../molecules/submitFormBtn/SubmitFormBtnContainer.jsx";
 
 export default class Dialogue extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.actions.fetchAnswers();
+  }
 
   render() {
     const obj = this.props.answer_list;
