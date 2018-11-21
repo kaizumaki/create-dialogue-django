@@ -119,5 +119,6 @@ SITE_ID = 1
 
 ACCOUNT_ADAPTER = 'invitations.models.InvitationsAdapter'
 
+LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
