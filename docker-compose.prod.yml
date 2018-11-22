@@ -45,7 +45,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./ssl-certs:/var/lib/https-portal
       - ./static:/var/www/vhosts/kaizumaki.net/static
-      - ./nginx/ssl/ssl.conf:/var/lib/nginx-conf/kaizumaki.net.ssl.conf.erb
+      - ./nginx/ssl/ssl.conf:/var/lib/nginx-conf/kaizumaki.net.ssl.conf.erb:ro
     depends_on:
       - web
 
@@ -60,7 +60,8 @@ services:
       - ./env/production/.env
     volumes:
       - ./ssl-certs:/etc/letsencrypt
-      - ./postfix/main.cf:/etc/postfix/main.cf
+      - ./postfix/main.cf:/etc/postfix/main.cf:ro
+    user: root
 
 #  nginx:
 #    restart: always
