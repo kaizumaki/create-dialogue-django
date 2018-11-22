@@ -83,6 +83,8 @@ smtp_sasl_auth_enable=yes
 smtp_sasl_password_maps=hash:/etc/postfix/sasl_passwd
 smtp_sasl_security_options=noanonymous
 
+inet_interfaces = all
+
 smtpd_tls_cert_file = /etc/letsencrypt/mail.kaizumaki.net/staging/signed.crt
 smtpd_tls_key_file = /etc/letsencrypt/mail.kaizumaki.net/staging/domain.key
 

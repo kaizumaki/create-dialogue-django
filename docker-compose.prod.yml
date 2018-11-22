@@ -58,10 +58,10 @@ services:
       - '25'
     env_file:
       - ./env/production/.env
+    user: root
     volumes:
       - ./ssl-certs:/etc/letsencrypt
       - ./postfix/main.cf:/etc/postfix/main.cf:ro
-    user: root
 
 #  nginx:
 #    restart: always
