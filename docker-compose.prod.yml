@@ -52,10 +52,10 @@ services:
   postfix:
     image: juanluisbaptiste/postfix
     restart: always
-#    ports:
-#      - '25:25'
-    expose:
-      - '25'
+    ports:
+      - '25:25'
+#    expose:
+#      - '25'
     env_file:
       - ./env/production/.env
     volumes:
