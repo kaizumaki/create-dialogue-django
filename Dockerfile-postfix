@@ -1,0 +1,6 @@
+FROM juanluisbaptiste/postfix
+ADD ./postfix/ /etc/postfix/
+RUN chown root:root /etc/postfix/main.cf
+RUN chmod 644 /etc/postfix/main.cf
+RUN chown root:root /etc/postfix/master.cf
+RUN chmod 644 /etc/postfix/master.cf

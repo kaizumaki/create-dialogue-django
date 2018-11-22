@@ -50,18 +50,16 @@ services:
       - web
 
   postfix:
-    image: juanluisbaptiste/postfix
+    build:
+      context: ./
+      dockerfile: Dockerfile-postfix
     restart: always
     ports:
       - '25:25'
-#    expose:
-#      - '25'
     env_file:
       - ./env/production/.env
     volumes:
       - ./ssl-certs:/etc/letsencrypt
-      - ./postfix/main.cf:/etc/postfix/main.cf:ro
-      - ./postfix/master.cf:/etc/postfix/master.cf:ro
 
 #  nginx:
 #    restart: always
