@@ -74,7 +74,7 @@ mail_owner = postfix
 #
 myhostname = kaizumaki.net
 #myhostname = virtual.domain.tld
-mydomain=net
+mydomain=kaizumaki.net
 mydestination=$myhostname
 myorigin=$mydomain
 relayhost=[mail.kaizumaki.net]:587
