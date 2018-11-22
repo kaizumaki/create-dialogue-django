@@ -25,7 +25,7 @@ services:
       - .:/code
       - ./static:/code/static
     expose:
-      - "8080"
+      - '8080'
     depends_on:
       - db
 
@@ -36,7 +36,9 @@ services:
       - '443:443'
     restart: always
     environment:
-      DOMAINS: 'kaizumaki.net -> http://web:8080'
+      DOMAINS: >-
+        kaizumaki.net -> http://web:8080,
+        mail.kaizumaki.net
 #      STAGE: 'production'
 #      FORCE_RENEW: 'true'
     volumes:
@@ -47,11 +49,18 @@ services:
     depends_on:
       - web
 
-  smtp:
-    image: namshi/smtp
+  postfix:
+    image: juanluisbaptiste/postfix
     restart: always
-    ports:
-      - "25:25"
+#    ports:
+#      - '25:25'
+    expose:
+      - '25'
+    env_file:
+      - ./env/production/.env
+    volumes:
+      - ./ssl-certs:/etc/letsencrypt
+      - ./postfix/main.cf:/etc/postfix/main.cf
 
 #  nginx:
 #    restart: always
