@@ -47,6 +47,12 @@ services:
     depends_on:
       - web
 
+  smtp:
+    image: namshi/smtp
+    restart: always
+    ports:
+      - "25:25"
+
 #  nginx:
 #    restart: always
 #    image: nginx:1.15
