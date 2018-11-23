@@ -19,3 +19,6 @@ yarn-error.log*
 
 /env
 /ssl-certs
+/maildata
+/mailstate
+/mailconfig

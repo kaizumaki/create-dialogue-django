@@ -11,7 +11,7 @@ services:
       - ./db-datadir:/var/lib/mysql
       - ./sql:/docker-entrypoint-initdb.d
     ports:
-      - "3306:3306"
+      - '3306:3306'
     tty: true
 
   web:
@@ -39,7 +39,7 @@ services:
       DOMAINS: >-
         kaizumaki.net -> http://web:8080,
         mail.kaizumaki.net
-#      STAGE: 'production'
+      STAGE: 'production'
 #      FORCE_RENEW: 'true'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -49,27 +49,28 @@ services:
     depends_on:
       - web
 
-  postfix:
-    image: tozd/postfix
-#    build:
-#      context: ./
-#      dockerfile: Dockerfile-postfix
-    restart: always
+  mail:
+    image: tvial/docker-mailserver:latest
+    hostname: mail
+    domainname: kaizumaki.net
     ports:
       - '25:25'
-    env_file:
-      - ./env/production/.env
+      - '143:143'
+      - '587:587'
+      - '993:993'
     volumes:
-      - ./ssl-certs:/etc/letsencrypt
-    privileged: true
-
-#  nginx:
-#    restart: always
-#    image: nginx:1.15
-#    ports:
-#      - "80:80"
-#    volumes:
-#      - ./nginx:/etc/nginx
-#      - ./static:/var/www/html/static
-#    depends_on:
-#      - web
+      - ./maildata:/var/mail
+      - ./mailstate:/var/mail-state
+      - ./mailconfig/:/tmp/docker-mailserver/
+      - ./ssl-certs:/etc/letsencrypt:ro
+    environment:
+      - ENABLE_SPAMASSASSIN=1
+      - ENABLE_CLAMAV=1
+      - ENABLE_FAIL2BAN=1
+      - ENABLE_POSTGREY=1
+      - ONE_DIR=1
+      - SSL_TYPE=letsencrypt
+      - PERMIT_DOCKER=network
+    cap_add:
+      - NET_ADMIN
+      - SYS_PTRACE
