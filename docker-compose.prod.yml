@@ -50,9 +50,10 @@ services:
       - web
 
   postfix:
-    build:
-      context: ./
-      dockerfile: Dockerfile-postfix
+    image: tozd/postfix
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile-postfix
     restart: always
     ports:
       - '25:25'
