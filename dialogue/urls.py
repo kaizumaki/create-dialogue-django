@@ -17,6 +17,7 @@ answers_router.register(r'keywords', KeywordViewSet, base_name='keywords')
 answers_keyword_router = routers.NestedSimpleRouter(router, r'answers', lookup='answer')
 answers_keyword_router.register(r'keywords', KeywordRelatedAnswerViewSet, base_name='keywords')
 
+app_name = 'dialogue'
 urlpatterns = [
     path('', include(router.urls)),
     path('', include(questions_router.urls)),

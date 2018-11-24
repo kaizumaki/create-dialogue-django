@@ -44,3 +44,40 @@ EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+###########
+# Logging #
+###########
+
+PROJECT_NAME = os.path.basename(BASE_DIR)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'production': {
+            'format': '%(asctime)s [%(levelname)s] %(process)d %(thread)d '
+                      '%(pathname)s:%(lineno)d %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': './log/app.log'.format(PROJECT_NAME),
+            'formatter': 'production',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
