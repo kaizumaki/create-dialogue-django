@@ -7,8 +7,10 @@ from linebot.models import (
 from linebot import LineBotApi, WebhookHandler
 import environ
 import requests
+import os
 
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 env = environ.Env(DEBUG=(bool, False))
 environ.Env.read_env(os.path.join(BASE_DIR, '../env/production/.env'))
 
