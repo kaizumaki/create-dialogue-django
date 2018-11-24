@@ -9,7 +9,7 @@ from linebot import LineBotApi, WebhookHandler
 import environ
 import os
 from rest_framework.test import APIClient
-from django.urls import reverse
+from django.urls import reverse_lazy
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,7 +19,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '../env/production/.env'))
 line_bot_api = LineBotApi(channel_access_token=env('CHANNEL_ACCESS_TOKEN'))
 handler = WebhookHandler(channel_secret=env('LINE_ACCESS_SECRET'))
 
-reverse('dialogue')
+reverse_lazy('dialogue:route')
 client = APIClient()
 response = client.get('/api/v1/questions/1/answers/1/')
 answer = response.json()
