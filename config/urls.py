@@ -19,7 +19,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('dialogue.urls')),
+    path('api/v1/', include('dialogue.urls')),
     path('', include('frontend.urls')),
     path('bot/', include('bot.urls')),
     path('accounts/', include('allauth.urls')),

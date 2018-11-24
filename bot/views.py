@@ -23,7 +23,7 @@ handler = WebhookHandler(channel_secret=env('LINE_ACCESS_SECRET'))
 # reverse_lazy('dialogue')
 # client = APIClient()
 client = Client()
-response = client.get('/api/questions/1/answers/1/')
+response = client.get('/api/v1/questions/1/answers/1/')
 answer = response.json()
 
 
