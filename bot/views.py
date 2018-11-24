@@ -15,8 +15,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 env = environ.Env(DEBUG=(bool, False))
 environ.Env.read_env(os.path.join(BASE_DIR, '../env/production/.env'))
 
-line_bot_api = LineBotApi(channel_access_token=env('CHANNEL_ACCESS_TOKEN'))
-handler = WebhookHandler(channel_secret=env('LINE_ACCESS_SECRET'))
+line_bot_api = LineBotApi(env('CHANNEL_ACCESS_TOKEN'))
+handler = WebhookHandler(env('LINE_ACCESS_SECRET'))
 
 
 @csrf_exempt
