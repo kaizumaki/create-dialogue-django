@@ -21,7 +21,7 @@ handler = WebhookHandler(channel_secret=env('LINE_ACCESS_SECRET'))
 
 @csrf_exempt
 def callback(request):
-    signature = request.META['HTTP_X_LINE_SIGNATURE']
+    signature = request.headers['X-Line-Signature']
     body = request.body.decode('utf-8')
     try:
         handler.handle(body, signature)
