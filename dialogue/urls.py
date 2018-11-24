@@ -19,7 +19,7 @@ answers_keyword_router.register(r'keywords', KeywordRelatedAnswerViewSet, base_n
 
 app_name = 'dialogue'
 urlpatterns = [
-    path('', include(router.urls, namespace='route')),
+    path('', include(router.urls)),
     path('', include(questions_router.urls)),
     path('', include(answers_router.urls)),
     path('', include(answers_keyword_router.urls)),

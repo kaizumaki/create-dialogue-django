@@ -19,7 +19,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '../env/production/.env'))
 line_bot_api = LineBotApi(channel_access_token=env('CHANNEL_ACCESS_TOKEN'))
 handler = WebhookHandler(channel_secret=env('LINE_ACCESS_SECRET'))
 
-reverse_lazy('dialogue:route')
+reverse_lazy('dialogue')
 client = APIClient()
 response = client.get('/api/v1/questions/1/answers/1/')
 answer = response.json()
