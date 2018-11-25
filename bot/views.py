@@ -19,9 +19,6 @@ environ.Env.read_env(os.path.join(BASE_DIR, '../env/production/.env'))
 line_bot_api = LineBotApi(channel_access_token=env('CHANNEL_ACCESS_TOKEN'))
 handler = WebhookHandler(channel_secret=env('LINE_ACCESS_SECRET'))
 
-responses = requests.get('https://kaizumaki.net/api/v1/answers/1/')
-json_lines = [json.loads(s) for s in responses if s != ""]
-
 
 @csrf_exempt
 def callback(request):
@@ -45,7 +42,10 @@ def handle_follow(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
     # r = requests.get('https://kaizumaki.net/api/v1/questions/1/answers/1/')
+    responses = requests.get('https://kaizumaki.net/api/v1/answers/1/')
+    answer = responses.json()
+
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=json_lines['answer_texts'][0])
+        TextSendMessage(text=answer['answer_texts'][0])
     )
