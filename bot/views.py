@@ -6,8 +6,7 @@ from linebot.models import (
     TextSendMessage, ImageMessage, AudioMessage
 )
 from linebot import LineBotApi, WebhookHandler
-import requests
-import json
+from rest_framework.test import APIClient
 import environ
 import os
 
@@ -41,11 +40,16 @@ def handle_follow(event):
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_text_message(event):
-    # r = requests.get('https://kaizumaki.net/api/v1/questions/1/answers/1/')
-    responses = requests.get('https://kaizumaki.net/api/v1/answers/1/')
-    answer = responses.json()
-
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=answer['answer_texts'][0])
+        TextSendMessage(text=reply_text(event))
     )
+
+
+def reply_text(event):
+    client = APIClient()
+    responses = client.get('/api/v1/answers/2/')
+    answer = responses.json()
+    answer_text = str(answer['answer_texts'][0])
+    # answer_text = event.message.text
+    return answer_text
