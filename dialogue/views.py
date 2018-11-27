@@ -3,8 +3,17 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from django_filters import rest_framework as filters
+from django_mysql.models import JSONField
 from .models import Question, Answer, Keyword
 from .serializer import QuestionSerializer, AnswerSerializer, AnswerDisplaySerializer, KeywordSerializer, KeywordDisplaySerializer
+
+
+class QuestionFilter(filters.FilterSet):
+    text = filters.CharFilter(field_name="question_text", lookup_expr='contains')
+
+    class Meta:
+        model = Question
+        fields = ['text']
 
 
 class QuestionViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
@@ -12,10 +21,12 @@ class QuestionViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.Ret
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
+    filterset_class = QuestionFilter
 
     def list(self, request):
-        queryset = Question.objects.filter()
-        serializer = QuestionSerializer(queryset, many=True)
+        queryset = Question.objects.all()
+        qs = self.filter_queryset(queryset)
+        serializer = QuestionSerializer(qs, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
@@ -61,15 +72,31 @@ class KeywordViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.Retr
         return Response(serializer.data)
 
 
+class AnswerFilter(filters.FilterSet):
+    class Meta:
+        model = Answer
+        fields = ['answer_texts']
+        filter_overrides = {
+            JSONField: {
+                'filter_class': filters.CharFilter,
+                'extra': lambda f: {
+                    'lookup_expr': 'contains',
+                },
+            },
+        }
+
+
 class AnswerDisplayViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Answer.objects.all()
     serializer_class = AnswerDisplaySerializer
+    filterset_class = AnswerFilter
 
     def list(self, request):
         queryset = Answer.objects.all()
-        serializer = AnswerDisplaySerializer(queryset, many=True)
+        qs = self.filter_queryset(queryset)
+        serializer = AnswerDisplaySerializer(qs, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
@@ -80,7 +107,7 @@ class AnswerDisplayViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generic
 
 
 class KeywordFilter(filters.FilterSet):
-    word = filters.CharFilter(field_name="word", lookup_expr='exact')
+    word = filters.CharFilter(field_name="word", lookup_expr='contains')
 
     class Meta:
         model = Keyword
@@ -92,12 +119,12 @@ class KeywordDisplayViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generi
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Keyword.objects.all()
     serializer_class = KeywordDisplaySerializer
-    filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = KeywordFilter
 
     def list(self, request):
         queryset = Keyword.objects.all()
-        serializer = KeywordDisplaySerializer(queryset, many=True)
+        qs = self.filter_queryset(queryset)
+        serializer = KeywordDisplaySerializer(qs, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None, answer_pk=None):
