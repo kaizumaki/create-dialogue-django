@@ -7,16 +7,10 @@ from linebot.models import (
 )
 from linebot import LineBotApi, WebhookHandler
 from rest_framework.test import APIClient
-import environ
-import os
+from django.conf import settings
 
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-env = environ.Env(DEBUG=(bool, False))
-environ.Env.read_env(os.path.join(BASE_DIR, '../env/production/.env'))
-
-line_bot_api = LineBotApi(channel_access_token=env('CHANNEL_ACCESS_TOKEN'))
-handler = WebhookHandler(channel_secret=env('LINE_ACCESS_SECRET'))
+line_bot_api = LineBotApi(channel_access_token=settings.CHANNEL_ACCESS_TOKEN)
+handler = WebhookHandler(channel_secret=settings.LINE_ACCESS_SECRET)
 
 
 @csrf_exempt

@@ -45,9 +45,12 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-###########
-# Logging #
-###########
+# LINE
+
+CHANNEL_ACCESS_TOKEN = env('CHANNEL_ACCESS_TOKEN')
+LINE_ACCESS_SECRET = env('LINE_ACCESS_SECRET')
+
+# Logging
 
 PROJECT_NAME = os.path.basename(BASE_DIR)
 
