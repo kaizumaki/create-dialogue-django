@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dialogue.apps.DialogueConfig',
     'rest_framework',
+    'django_filters',
     'frontend.apps.FrontendConfig',
     'bot.apps.BotConfig',
     'allauth',

@@ -1,7 +1,8 @@
-from rest_framework import viewsets, filters, generics
+from rest_framework import viewsets, generics
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
+from django_filters import rest_framework as filters
 from .models import Question, Answer, Keyword
 from .serializer import QuestionSerializer, AnswerSerializer, AnswerDisplaySerializer, KeywordSerializer, KeywordDisplaySerializer
 
@@ -78,11 +79,21 @@ class AnswerDisplayViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generic
         return Response(serializer.data)
 
 
+class KeywordFilter(filters.FilterSet):
+    word = filters.CharFilter(field_name="word", lookup_expr='exact')
+
+    class Meta:
+        model = Keyword
+        fields = ['word']
+
+
 class KeywordDisplayViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Keyword.objects.all()
     serializer_class = KeywordDisplaySerializer
+    filter_backends = (filters.DjangoFilterBackend,)
+    filterset_class = KeywordFilter
 
     def list(self, request):
         queryset = Keyword.objects.all()
