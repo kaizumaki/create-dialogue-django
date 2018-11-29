@@ -1,27 +1,27 @@
 import axios from 'axios';
 
-axios.defaults.xsrfCookieName = 'XSRF-TOKEN'
-axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+axios.defaults.xsrfCookieName = 'XSRF-TOKEN';
+axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
 export function read(repository) {
   return access(`/api/v1/${repository}/`,'GET')
 }
 
-export function readPage(repository,page = 1) {
-  return access(`/api/v1/${repository}?page=${page}`,'GET')
-}
-
-export function readWord(repository,word,page = 1) {
-  return access(`/api/v1/${repository}?word=${word}&page=${page}`,'GET')
-}
-
-export function readAll(repository) {
-  return access(`/api/v1/${repository}/all`,'GET')
-}
-
-export function search(repository,word) {
-  return access(`/api/v1/${repository}?word=${word}`,'GET')
-}
+// export function readPage(repository,page = 1) {
+//   return access(`/api/v1/${repository}?page=${page}`,'GET')
+// }
+//
+// export function readWord(repository,word,page = 1) {
+//   return access(`/api/v1/${repository}?word=${word}&page=${page}`,'GET')
+// }
+//
+// export function readAll(repository) {
+//   return access(`/api/v1/${repository}/all`,'GET')
+// }
+//
+// export function search(repository,word) {
+//   return access(`/api/v1/${repository}?word=${word}`,'GET')
+// }
 
 export function set(repository,id) {
   return data_access(`/api/v1/${repository}/${id}/`,'GET')
@@ -35,21 +35,21 @@ export function update(repository,id,data) {
   return data_access(`/api/v1/${repository}/${id}/`,'PATCH',data)
 }
 
-export function destroy(repository,id) {
-  return access(`/api/v1/${repository}/${id}`,'DELETE')
-}
-
-export function restore(repository,id) {
-  return access(`/api/v1/${repository}/${id}`,'PUT')
-}
-
-export function fetchUrl(url) {
-  return access(url,'GET')
-}
-
-export function toggle(repository,id,section) {
-  return data_access(`/api/v1/${repository}/${id}/${section}`,'PATCH')
-}
+// export function destroy(repository,id) {
+//   return access(`/api/v1/${repository}/${id}`,'DELETE')
+// }
+//
+// export function restore(repository,id) {
+//   return access(`/api/v1/${repository}/${id}`,'PUT')
+// }
+//
+// export function fetchUrl(url) {
+//   return access(url,'GET')
+// }
+//
+// export function toggle(repository,id,section) {
+//   return data_access(`/api/v1/${repository}/${id}/${section}`,'PATCH')
+// }
 
 function access(url,method) {
   return _access(url,{
