@@ -1,5 +1,4 @@
 from rest_framework import viewsets, generics
-from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from django_filters import rest_framework as filters
