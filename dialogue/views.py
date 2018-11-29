@@ -17,7 +17,6 @@ class QuestionFilter(filters.FilterSet):
 
 
 class QuestionViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
-    authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
@@ -37,7 +36,6 @@ class QuestionViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.Ret
 
 
 class AnswerViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
-    authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Answer.objects.all()
     serializer_class = AnswerSerializer
@@ -55,7 +53,6 @@ class AnswerViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.Retri
 
 
 class KeywordViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
-    authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Keyword.objects.all()
     serializer_class = KeywordSerializer
@@ -87,7 +84,6 @@ class AnswerFilter(filters.FilterSet):
 
 
 class AnswerDisplayViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
-    authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Answer.objects.all()
     serializer_class = AnswerDisplaySerializer
@@ -115,7 +111,6 @@ class KeywordFilter(filters.FilterSet):
 
 
 class KeywordDisplayViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
-    authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Keyword.objects.all()
     serializer_class = KeywordDisplaySerializer
@@ -135,7 +130,6 @@ class KeywordDisplayViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generi
 
 
 class KeywordRelatedAnswerViewSet(viewsets.ViewSet, generics.ListCreateAPIView, generics.RetrieveUpdateDestroyAPIView):
-    authentication_classes = (SessionAuthentication, BasicAuthentication)
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Keyword.objects.all()
     serializer_class = KeywordDisplaySerializer
