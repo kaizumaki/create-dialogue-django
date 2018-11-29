@@ -5,11 +5,11 @@ import {
 
 const initialState = {
   title_question: 'Question',
-  title_question_id: 'question_id',
-  title_parent_answer_id: 'parent_answer',
+  title_question_id: 'Question ID',
+  title_parent_answer_id: 'Parent Answer',
   title_answer: 'Answer',
-  title_word: 'keyword',
-  title_weight: 'weight',
+  title_word: 'Keyword',
+  title_weight: 'Weight',
   question_id: 0,
   question_text: '',
   parent_answer_id: -1,
@@ -20,16 +20,7 @@ const initialState = {
       answer_texts: '',
       isValid: true,
       errorCode: '',
-      keywords:[
-        {
-          answer_temp_id: 0,
-          keyword_temp_id: 0,
-          word: '',
-          weight: 0.0,
-          isValid: true,
-          errorCode: ''
-        }
-      ],
+      keywords:[],
     }
   ],
   keyword_list:[
@@ -42,6 +33,7 @@ const initialState = {
       errorCode: ''
     }
   ],
+  isUpdateStateEnable: false,
   isAddAnswerEnable:true,
   isAddKeywordEnable:true,
   isRequired: false,
@@ -80,6 +72,8 @@ export default function (state = initialState,action) {
   };
 
   switch (action.type){
+    case actionTypes.SET_DIALOGUE_STATE:
+      return Object.assign({},state,{isUpdateStateEnable: true});
     case actionTypes.SET_DIALOGUE:
       return Object.assign({},state,{
         question_text: action.payload.question_text,
@@ -180,16 +174,7 @@ export default function (state = initialState,action) {
             answer_texts: '',
             isValid: true,
             errorCode: '',
-            keywords:[
-              {
-                answer_temp_id: 0,
-                keyword_temp_id: 0,
-                word: '',
-                weight: 0.0,
-                isValid: true,
-                errorCode: ''
-              }
-            ],
+            keywords:[],
           }
         ],
         keyword_list:[
@@ -202,6 +187,7 @@ export default function (state = initialState,action) {
             errorCode: ''
           }
         ],
+        isUpdateStateEnable: false,
         apiErrorMsg: '',
         temp:{
           question_text: '',
