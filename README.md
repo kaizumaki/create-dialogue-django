@@ -1,3 +1,5 @@
 # create-dialogue-django
 
-![database](https://user-images.githubusercontent.com/14883063/49208229-88f60c00-f3fa-11e8-8e1a-674cd7e5b7a9.png)
+詳細はWikiに書いています。
+* [ディレクトリ構成](https://github.com/kaizumaki/create-dialogue-django/wiki/directory)
+* [テーブル構造](https://github.com/kaizumaki/create-dialogue-django/wiki/databese)
