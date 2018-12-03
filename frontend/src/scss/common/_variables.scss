@@ -33,22 +33,7 @@ $font-size-h1: ($font-size-base * 1.8);
 $font-size-h2: ($font-size-base * 1.5);
 $font-size-h3: ($font-size-base * 1.2);
 
-@font-face {
-  font-family: "MyYuGothic";
-  font-weight: normal;
-  src: local("YuGothic-Medium"), /* Postscript name */
-       local("Yu Gothic Medium"), /* for Chrome */
-       local("YuGothic-Regular"); /* Mediumがない場合 */
-}
-@font-face {
-  font-family: "MyYuGothic";
-  font-weight: bold;
-  src: local("YuGothic-Bold"), /* Postscript name */
-       local("Yu Gothic Bold"); /* for Chrome */
-}
-
 $font-family-sans-serif: Avenir, "Helvetica Neue", Helvetica, Arial, Verdana, Roboto, MyYuGothic, YuGothic, -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-
 $font-family-serif: Garamond, "Times New Roman", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "MS PMincho", serif;
 
 // -----------------------------------------------------------------

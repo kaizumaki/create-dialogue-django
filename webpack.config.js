@@ -62,14 +62,14 @@ module.exports = (env, argv) => {
             {
               loader: 'css-loader',
               options: {
-                sourceMap: true,
+                sourceMap: argv.mode === 'development' ? true : false,
                 importLoaders: 1
               }
             },
             {
               loader: 'postcss-loader',
               options: {
-                sourceMap: true,
+                sourceMap: argv.mode === 'development' ? true : false,
                 config: {
                   path: './postcss.config.js'
                 }
@@ -78,7 +78,7 @@ module.exports = (env, argv) => {
             {
               loader: 'sass-loader',
               options: {
-                sourceMap: true
+                sourceMap: argv.mode === 'development' ? true : false
               }
             }
           ]
