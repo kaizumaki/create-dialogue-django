@@ -19,7 +19,7 @@ export default class KeywordField extends Component {
               label={"keyword" + this.props.idx}
               value={this.props.keyword.word}
               onChange={(e) => this.props.actions.inputWord(e.target.value, this.props.idx, this.props.answer_idx)}
-              isRequired={this.props.isRequired} />
+              isRequired={this.props.keyword.isRequired} />
           </div>
           <div data-gridlex="col">
             <Label
@@ -31,9 +31,9 @@ export default class KeywordField extends Component {
               value={this.props.keyword.weight || 0}
               pattern="[0-9]+(\.[0-9]{0,2})?"
               onChange={(e) => this.props.actions.inputWeight(e.target.value, this.props.idx, this.props.answer_idx)}
-              isRequired={this.props.isRequired} />
+              isRequired={this.props.keyword.isRequired} />
           </div>
-          {this.props.isRequired && <div className="align-center" data-gridlex="col-1"><ValidateIcon isValid={this.props.isValid} /></div>}
+          {this.props.keyword.isRequired && <div className="align-center" data-gridlex="col-1"><ValidateIcon isValid={this.props.keyword.isValid} /></div>}
           <div data-gridlex="col-2">
             <Btn
               text="del"
@@ -41,7 +41,7 @@ export default class KeywordField extends Component {
               onClick={() => this.props.actions.deleteKeyword(this.props.keyword.keyword_temp_id, this.props.answer_idx)} />
           </div>
         </div>
-        {(this.props.isRequired && !this.props.isValid && this.props.isShowError) && <Attention text={this.props.errorMsg[this.props.errorCode]} />}
+        {(this.props.keyword.isRequired && !this.props.keyword.isValid && this.props.isShowError) && <Attention text={this.props.errorMsg[this.props.keyword.errorCode]} />}
       </div>
     );
   }

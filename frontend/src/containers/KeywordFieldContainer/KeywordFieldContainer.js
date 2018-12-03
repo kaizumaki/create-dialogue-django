@@ -16,8 +16,6 @@ function mapStateToProps(state) {
     exists_answers   : d.exists_answers,
     answer_list      : d.answer_list,
     keyword_list     : d.keyword_list,
-    isAddAnswerEnable: d.isAddAnswerEnable,
-    isAddKeywordEnable: d.isAddKeywordEnable,
     isRequired       : d.isRequired,
     isValid          : d.isValid,
     isShowError      : d.isShowError,

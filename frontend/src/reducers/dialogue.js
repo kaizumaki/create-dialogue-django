@@ -18,9 +18,10 @@ const initialState = {
     {
       answer_temp_id: 0,
       answer_texts: '',
-      isValid: true,
-      errorCode: '',
-      keywords:[],
+      isRequired: true,
+      isValid: false,
+      errorCode: 'answer_empty_error',
+      keywords:[]
     }
   ],
   keyword_list:[
@@ -29,26 +30,26 @@ const initialState = {
       keyword_temp_id: 0,
       word: '',
       weight: 0.0,
-      isValid: true,
-      errorCode: ''
+      isRequired: true,
+      isValid: false,
+      errorCode: 'keyword_empty_error'
     }
   ],
   isUpdateStateEnable: false,
-  isAddAnswerEnable:true,
-  isAddKeywordEnable:true,
-  isRequired: false,
-  isValid: true,
+  isRequired: true,
+  isValid: false,
   isShowError: false,
-  errorCode: '',
+  errorCode: 'question_empty_error',
   errorMsg:{
     question_empty_error: '入力してください',
-    question_too_long_error: '入力文字数が多すぎます'
+    answer_empty_error: '入力してください',
+    keyword_empty_error: '入力してください'
   },
   apiErrorMsg: '',
   temp:{
     question_text: '',
     parent_answer_id: -1,
-    answers: [],
+    answers: []
   }
 };
 
@@ -63,7 +64,7 @@ export default function (state = initialState,action) {
     const new_list_item = Object.assign({}, state.keyword_list[index], newState);
     const new_list = [
       ...state.keyword_list.slice(0, index),
-      Object.assign({},new_list_item,{answer_temp_id: answer_index, isValid: true, errorCode: ''}),
+      Object.assign({},new_list_item,{answer_temp_id: answer_index, isValid: true}),
       ...state.keyword_list.slice(index + 1)
     ];
     return Object.assign({},state,{
@@ -86,7 +87,7 @@ export default function (state = initialState,action) {
     case actionTypes.INPUT_QUESTION_ID:
       return Object.assign({},state,{question_id: action.payload.question_id});
     case actionTypes.INPUT_QUESTION_TEXT:
-      return Object.assign({},state,{question_text: action.payload.text});
+      return Object.assign({},state,{question_text: action.payload.text, isValid: true});
     case actionTypes.INPUT_PARENT_ANSWER_ID:
       return Object.assign({},state,{parent_answer_id: action.payload.parent_answer_id});
     case actionTypes.INPUT_ANSWER_TEXT:
@@ -94,7 +95,7 @@ export default function (state = initialState,action) {
         const new_list_item = Object.assign({}, state.answer_list[index], newState);
         const new_list = [
           ...state.answer_list.slice(0, index),
-          Object.assign({},new_list_item,{isValid: true, errorCode: ''}),
+          Object.assign({},new_list_item,{isValid: true}),
           ...state.answer_list.slice(index + 1)
         ];
         return Object.assign({},state,{
@@ -112,7 +113,7 @@ export default function (state = initialState,action) {
         return Object.assign({},state,{
           keyword_list:[
             ...state.keyword_list,
-            {answer_temp_id: answer_index, keyword_temp_id: keyword_index, word: '', weight: 0, isValid: true, errorCode: ''}
+            {answer_temp_id: answer_index, keyword_temp_id: keyword_index, word: '', weight: 0, isRequired: true, isValid: false}
           ]
         });
       };
@@ -122,14 +123,13 @@ export default function (state = initialState,action) {
          const deletedKeyword = state.keyword_list.filter((value, i) => {return value.answer_temp_id === answer_index && value.keyword_temp_id !== index});
          const otherKeywordRelatedAnswer = state.keyword_list.filter((value, i) => {return value.answer_temp_id !== answer_index});
          return deletedKeyword.length > 0 ? Object.assign({}, state, {
-             keyword_list: [...deletedKeyword, ...otherKeywordRelatedAnswer],
-             isAddKeywordEnable: true
+             keyword_list: [...deletedKeyword, ...otherKeywordRelatedAnswer]
            })
            : Object.assign({}, state, {
              keyword_list: [
                ...deletedKeyword,
                ...otherKeywordRelatedAnswer,
-               {answer_temp_id: answer_index, keyword_temp_id: index, word: '', weight: 0, isValid: true, errorCode: ''}
+               {answer_temp_id: answer_index, keyword_temp_id: index, word: '', weight: 0, isRequired: true, isValid: false}
              ]
            });
         };
@@ -140,11 +140,11 @@ export default function (state = initialState,action) {
       return Object.assign({},state,{
         answer_list:[
           ...state.answer_list,
-          {answer_temp_id: answer_index, answer_texts: '', isValid: '', errorCode: '', keywords: [{answer_temp_id: answer_index, keyword_temp_id: keyword_index, word: '', weight: 0, isValid: true, errorCode: ''}]}
+          {answer_temp_id: answer_index, answer_texts: '', isRequired: true, isValid: false, keywords: []}
         ],
         keyword_list:[
           ...state.keyword_list,
-          {answer_temp_id: answer_index, keyword_temp_id: keyword_index, word: '', weight: 0, isValid: true, errorCode: ''}
+          {answer_temp_id: answer_index, keyword_temp_id: keyword_index, word: '', weight: 0, isRequired: true, isValid: false}
         ]
       });
     case actionTypes.DELETE_ANSWER:
@@ -154,12 +154,11 @@ export default function (state = initialState,action) {
           ...state.answer_list.slice(0,action.payload.idx),
           ...state.answer_list.slice(action.payload.idx + 1),
         ],
-        keyword_list: keywordRelatedAnswer,
-        isAddAnswerEnable: true
+        keyword_list: keywordRelatedAnswer
         })
       : Object.assign({},state,{
         answer_list:[
-          {answer_temp_id: action.payload.idx, answer_texts: '', isValid: '', errorCode: '', keywords: [{answer_temp_id: action.payload.idx, word: '', weight: 0, isValid: true, errorCode: ''}]}
+          {answer_temp_id: action.payload.idx, answer_texts: '', isRequired: true, isValid: false, keywords: []}
         ],
         keyword_list: keywordRelatedAnswer
       });
@@ -172,9 +171,9 @@ export default function (state = initialState,action) {
           {
             answer_temp_id: 0,
             answer_texts: '',
+            isRequired: false,
             isValid: true,
-            errorCode: '',
-            keywords:[],
+            keywords:[]
           }
         ],
         keyword_list:[
@@ -183,16 +182,19 @@ export default function (state = initialState,action) {
             keyword_temp_id: 0,
             word: '',
             weight: 0.0,
-            isValid: true,
-            errorCode: ''
+            isRequired: false,
+            isValid: true
           }
         ],
         isUpdateStateEnable: false,
+        isRequired: false,
+        isValid: true,
+        isShowError: false,
         apiErrorMsg: '',
         temp:{
           question_text: '',
           parent_answer_id: -1,
-          answers: [],
+          answers: []
         }
       });
     case actionTypes.FETCH_ERROR_DIALOGUE:

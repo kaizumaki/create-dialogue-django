@@ -19,13 +19,13 @@ export default class AnswerField extends Component {
       <FormItem
         label={"answer" + this.props.idx}
         titleText={this.props.title_answer + parseInt(this.props.idx + 1)}
-        isRequired={this.props.isRequired}>
+        isRequired={this.props.answer.isRequired}>
         <div data-gridlex="grid-noBottom">
           <div data-gridlex="col">
             <Textarea
               label={"answer" + this.props.idx}
               value={this.props.answer.answer_texts}
-              isRequired={this.props.isRequired}
+              isRequired={this.props.answer.isRequired}
               onChange={(e) => this.props.actions.inputAnswerText(e.target.value, this.props.idx)} />
             <div data-gridlex="grid-noBottom">
               <div data-gridlex="col">
@@ -39,7 +39,7 @@ export default class AnswerField extends Component {
               </div>
             </div>
           </div>
-          {this.props.isRequired && <div className="align-center" data-gridlex="col-1"><ValidateIcon isValid={this.props.isValid} /></div>}
+          {this.props.answer.isRequired && <div className="align-center" data-gridlex="col-1"><ValidateIcon isValid={this.props.answer.isValid} /></div>}
           <div data-gridlex="col-2">
             <Btn
               text="del"
@@ -47,7 +47,7 @@ export default class AnswerField extends Component {
               onClick={() => this.props.actions.deleteAnswer(this.props.idx)} />
           </div>
         </div>
-        {(this.props.isRequired && !this.props.isValid && this.props.isShowError) && <Attention text={this.props.errorMsg[this.props.errorCode]} />}
+        {(this.props.answer.isRequired && !this.props.answer.isValid && this.props.isShowError) && <Attention text={this.props.errorMsg[this.props.answer.errorCode]} />}
       </FormItem>
     );
   }
