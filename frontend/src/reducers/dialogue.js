@@ -60,17 +60,8 @@ const initialState = {
  * @returns {*}
  */
 export default function (state = initialState,action) {
-  const makeKeywordState = (state,index,answer_index,newState) => {
-    const new_list_item = Object.assign({}, state.keyword_list[index], newState);
-    const new_list = [
-      ...state.keyword_list.slice(0, index),
-      Object.assign({},new_list_item,{answer_temp_id: answer_index, isValid: true}),
-      ...state.keyword_list.slice(index + 1)
-    ];
-    return Object.assign({},state,{
-      keyword_list: new_list
-    });
-  };
+  const answer_index = Object.keys(state.answer_list).length;
+  const keyword_index = Object.keys(state.keyword_list).length;
 
   switch (action.type){
     case actionTypes.SET_DIALOGUE_STATE:
@@ -80,40 +71,63 @@ export default function (state = initialState,action) {
         question_text: action.payload.question_text,
         parent_answer_id: action.payload.parent_answer_id,
         answer_list: action.payload.answers,
-        keyword_list: action.payload.keywords
+        keyword_list: action.payload.keywords,
+        isValid: action.payload.question_text !== ''
       });
     case actionTypes.SET_ANSWERS:
       return Object.assign({},state,{exists_answers: action.payload.exists_answers});
     case actionTypes.INPUT_QUESTION_ID:
       return Object.assign({},state,{question_id: action.payload.question_id});
     case actionTypes.INPUT_QUESTION_TEXT:
-      return Object.assign({},state,{question_text: action.payload.text, isValid: true});
+      return Object.assign({},state,{question_text: action.payload.text, isValid: action.payload.text !== ''});
     case actionTypes.INPUT_PARENT_ANSWER_ID:
       return Object.assign({},state,{parent_answer_id: action.payload.parent_answer_id});
     case actionTypes.INPUT_ANSWER_TEXT:
-      const makeAnswerState = (state,index,newState) => {
-        const new_list_item = Object.assign({}, state.answer_list[index], newState);
+      const makeAnswerState = (state,index,inputData) => {
+        // const new_list_item = Object.assign({}, state.answer_list[index], {answer_texts: inputData, isValid: inputData !== ''});
         const new_list = [
           ...state.answer_list.slice(0, index),
-          Object.assign({},new_list_item,{isValid: true}),
+          Object.assign({}, state.answer_list[index], {answer_texts: inputData, isValid: inputData !== ''}),
           ...state.answer_list.slice(index + 1)
         ];
         return Object.assign({},state,{
           answer_list: new_list
         })
       };
-      return makeAnswerState(state,action.payload.idx,{answer_texts: action.payload.texts});
+      return makeAnswerState(state,action.payload.idx,action.payload.texts);
     case actionTypes.INPUT_WORD:
-      return makeKeywordState(state,action.payload.idx,action.payload.answer_idx,{word: action.payload.word});
+      const makeKeywordWordState = (state,index,answer_index,inputWord) => {
+        const new_list_item = Object.assign({}, state.keyword_list[index], {word: inputWord, isValid: inputWord !== ''});
+        const new_list = [
+          ...state.keyword_list.slice(0, index),
+          Object.assign({},new_list_item,{answer_temp_id: answer_index}),
+          ...state.keyword_list.slice(index + 1)
+        ];
+        return Object.assign({},state,{
+          keyword_list: new_list
+        });
+      };
+      return makeKeywordWordState(state,action.payload.idx,action.payload.answer_idx,action.payload.word);
     case actionTypes.INPUT_WEIGHT:
-      return makeKeywordState(state,action.payload.idx,action.payload.answer_idx,{weight: action.payload.weight});
+      const makeKeywordWeightState = (state,index,answer_index,inputWeight) => {
+        const new_list_item = Object.assign({}, state.keyword_list[index], {weight: inputWeight});
+        const new_list = [
+          ...state.keyword_list.slice(0, index),
+          Object.assign({},new_list_item,{answer_temp_id: answer_index}),
+          ...state.keyword_list.slice(index + 1)
+        ];
+        return Object.assign({},state,{
+          keyword_list: new_list
+        });
+      };
+      return makeKeywordWeightState(state,action.payload.idx,action.payload.answer_idx,action.payload.weight);
     case actionTypes.ADD_KEYWORD:
       const makeAddKeywordState = (state,answer_index) => {
         const keyword_index = Object.keys(state.keyword_list).length;
         return Object.assign({},state,{
           keyword_list:[
             ...state.keyword_list,
-            {answer_temp_id: answer_index, keyword_temp_id: keyword_index, word: '', weight: 0, isRequired: true, isValid: false}
+            {answer_temp_id: answer_index, keyword_temp_id: keyword_index, word: '', weight: 0, isRequired: true, isValid: false, errorCode: 'keyword_empty_error'}
           ]
         });
       };
@@ -129,22 +143,20 @@ export default function (state = initialState,action) {
              keyword_list: [
                ...deletedKeyword,
                ...otherKeywordRelatedAnswer,
-               {answer_temp_id: answer_index, keyword_temp_id: index, word: '', weight: 0, isRequired: true, isValid: false}
+               {answer_temp_id: answer_index, keyword_temp_id: index, word: '', weight: 0, isRequired: true, isValid: false, errorCode: 'keyword_empty_error'}
              ]
            });
         };
       return makeDeleteKeywordState(state,action.payload.idx,action.payload.answer_idx);
     case actionTypes.ADD_ANSWER:
-      const answer_index = Object.keys(state.answer_list).length;
-      const keyword_index = Object.keys(state.keyword_list).length;
       return Object.assign({},state,{
         answer_list:[
           ...state.answer_list,
-          {answer_temp_id: answer_index, answer_texts: '', isRequired: true, isValid: false, keywords: []}
+          {answer_temp_id: answer_index, answer_texts: '', isRequired: true, isValid: false, errorCode: 'answer_empty_error', keywords: []}
         ],
         keyword_list:[
           ...state.keyword_list,
-          {answer_temp_id: answer_index, keyword_temp_id: keyword_index, word: '', weight: 0, isRequired: true, isValid: false}
+          {answer_temp_id: answer_index, keyword_temp_id: keyword_index, word: '', weight: 0, isRequired: true, isValid: false, errorCode: 'keyword_empty_error'}
         ]
       });
     case actionTypes.DELETE_ANSWER:
@@ -158,9 +170,12 @@ export default function (state = initialState,action) {
         })
       : Object.assign({},state,{
         answer_list:[
-          {answer_temp_id: action.payload.idx, answer_texts: '', isRequired: true, isValid: false, keywords: []}
+          {answer_temp_id: action.payload.idx, answer_texts: '', isRequired: true, isValid: false, errorCode: 'answer_empty_error', keywords: []}
         ],
-        keyword_list: keywordRelatedAnswer
+        keyword_list: [
+          ...keywordRelatedAnswer,
+          {answer_temp_id: action.payload.idx, keyword_temp_id: keyword_index, word: '', weight: 0, isRequired: true, isValid: false, errorCode: 'keyword_empty_error'}
+        ]
       });
     case actionTypes.CLEAR_DIALOGUE:
       return Object.assign({},state,{

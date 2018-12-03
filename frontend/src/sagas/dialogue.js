@@ -1,6 +1,7 @@
 import { take, call, put, select } from 'redux-saga/effects';
 import * as dialogueActions from '../actions/dialogue';
-import { setDialogueAnswerTemp, getDialogueState, setDialogueTemp } from '../selectors/dialogue';
+import { show_error } from '../actions/error';
+import { setDialogueAnswerTemp, getDialogueState, setDialogueTemp, isValidState } from '../selectors/dialogue';
 import * as API from '../apis/API';
 
 // export function* initQuestion() {
@@ -32,8 +33,14 @@ export function* createDialogue() {
     const action = yield take(dialogueActions.CREATE_DIALOGUE);
     const answers = yield select(setDialogueAnswerTemp,action.payload);
     const state = yield select(getDialogueState,action.payload,answers);
-    const { payload, error } = yield call(API.create,'questions',state.temp);
-    yield call(_clearDialogue,payload,error);
+    const isValid  = yield select(isValidState);
+    if (isValid) {
+      const { payload, error } = yield call(API.create,'questions',state.temp);
+      yield call(_clearDialogue,payload,error);
+    }
+    else {
+      yield put(show_error());
+    }
   }
 }
 
@@ -56,8 +63,14 @@ export function* updateDialogue() {
     const action = yield take(dialogueActions.UPDATE_DIALOGUE);
     const answers = yield select(setDialogueAnswerTemp,action.payload);
     const state = yield select(getDialogueState,action.payload,answers);
-    const { payload, error } = yield call(API.update,'questions',action.payload.question_id,state.temp);
-    yield call(_clearDialogue,payload,error);
+    const isValid  = yield select(isValidState);
+    if (isValid) {
+      const { payload, error } = yield call(API.update,'questions',action.payload.question_id,state.temp);
+      yield call(_clearDialogue,payload,error);
+    }
+    else {
+      yield put(show_error());
+    }
   }
 }
 
