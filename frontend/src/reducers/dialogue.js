@@ -183,8 +183,8 @@ export default function (state = initialState,action) {
           {
             answer_temp_id: 0,
             answer_texts: '',
-            isRequired: false,
-            isValid: true,
+            isRequired: true,
+            isValid: false,
             keywords:[]
           }
         ],
@@ -194,13 +194,13 @@ export default function (state = initialState,action) {
             keyword_temp_id: 0,
             word: '',
             weight: 0.0,
-            isRequired: false,
-            isValid: true
+            isRequired: true,
+            isValid: false
           }
         ],
         isUpdateStateEnable: false,
-        isRequired: false,
-        isValid: true,
+        isRequired: true,
+        isValid: false,
         isShowError: false,
         apiErrorMsg: '',
         temp:{
