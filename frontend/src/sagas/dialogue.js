@@ -104,12 +104,14 @@ export function* updateDialogue() {
 //   }
 // }
 
-function* _clearDialogue(payload,error) {
-  if (payload && !error) {
+function* _clearDialogue(api_payload,api_error) {
+  if (api_payload && !api_error) {
     yield put(dialogueActions.clearDialogue());
+    const { payload, error } = yield call(API.read,'answers');
+    yield put(dialogueActions.setAnswers(payload));
   }
   else {
-    yield put(dialogueActions.fetchDialogueError(error.response.data.detail));
+    yield put(dialogueActions.fetchDialogueError(api_error.response.data.detail));
   }
 }
 
