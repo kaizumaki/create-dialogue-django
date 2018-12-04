@@ -7,7 +7,7 @@ class SubmitBtn extends Component {
     return (
       <button
         type="button"
-        className={this.props.tone ? styles[this.props.tone] : styles.color}
+        className={this.props.tone ? styles[this.props.tone] : styles.color1}
         disabled={this.props.isDisabled}
         onClick={this.props.onClick}>
         {this.props.text}
