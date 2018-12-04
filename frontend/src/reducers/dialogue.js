@@ -60,8 +60,8 @@ const initialState = {
  * @returns {*}
  */
 export default function (state = initialState,action) {
-  const answer_index = Object.keys(state.answer_list).length;
-  const keyword_index = Object.keys(state.keyword_list).length;
+  const answer_temp_index = Object.keys(state.answer_list).length;
+  const keyword_temp_index = Object.keys(state.keyword_list).length;
 
   switch (action.type){
     case actionTypes.SET_DIALOGUE_STATE:
@@ -84,7 +84,6 @@ export default function (state = initialState,action) {
       return Object.assign({},state,{parent_answer_id: action.payload.parent_answer_id});
     case actionTypes.INPUT_ANSWER_TEXT:
       const makeAnswerState = (state,index,inputData) => {
-        // const new_list_item = Object.assign({}, state.answer_list[index], {answer_texts: inputData, isValid: inputData !== ''});
         const new_list = [
           ...state.answer_list.slice(0, index),
           Object.assign({}, state.answer_list[index], {answer_texts: inputData, isValid: inputData !== ''}),
@@ -97,10 +96,9 @@ export default function (state = initialState,action) {
       return makeAnswerState(state,action.payload.idx,action.payload.texts);
     case actionTypes.INPUT_WORD:
       const makeKeywordWordState = (state,index,answer_index,inputWord) => {
-        const new_list_item = Object.assign({}, state.keyword_list[index], {word: inputWord, isValid: inputWord !== ''});
         const new_list = [
           ...state.keyword_list.slice(0, index),
-          Object.assign({},new_list_item,{answer_temp_id: answer_index}),
+          Object.assign({}, state.keyword_list[index], {answer_temp_id: answer_index, word: inputWord, isValid: inputWord !== ''}),
           ...state.keyword_list.slice(index + 1)
         ];
         return Object.assign({},state,{
@@ -110,10 +108,9 @@ export default function (state = initialState,action) {
       return makeKeywordWordState(state,action.payload.idx,action.payload.answer_idx,action.payload.word);
     case actionTypes.INPUT_WEIGHT:
       const makeKeywordWeightState = (state,index,answer_index,inputWeight) => {
-        const new_list_item = Object.assign({}, state.keyword_list[index], {weight: inputWeight});
         const new_list = [
           ...state.keyword_list.slice(0, index),
-          Object.assign({},new_list_item,{answer_temp_id: answer_index}),
+          Object.assign({}, state.keyword_list[index], {answer_temp_id: answer_index, weight: inputWeight}),
           ...state.keyword_list.slice(index + 1)
         ];
         return Object.assign({},state,{
@@ -152,11 +149,11 @@ export default function (state = initialState,action) {
       return Object.assign({},state,{
         answer_list:[
           ...state.answer_list,
-          {answer_temp_id: answer_index, answer_texts: '', isRequired: true, isValid: false, errorCode: 'answer_empty_error', keywords: []}
+          {answer_temp_id: answer_temp_index, answer_texts: '', isRequired: true, isValid: false, errorCode: 'answer_empty_error', keywords: []}
         ],
         keyword_list:[
           ...state.keyword_list,
-          {answer_temp_id: answer_index, keyword_temp_id: keyword_index, word: '', weight: 0, isRequired: true, isValid: false, errorCode: 'keyword_empty_error'}
+          {answer_temp_id: answer_temp_index, keyword_temp_id: keyword_temp_index, word: '', weight: 0, isRequired: true, isValid: false, errorCode: 'keyword_empty_error'}
         ]
       });
     case actionTypes.DELETE_ANSWER:
@@ -174,7 +171,7 @@ export default function (state = initialState,action) {
         ],
         keyword_list: [
           ...keywordRelatedAnswer,
-          {answer_temp_id: action.payload.idx, keyword_temp_id: keyword_index, word: '', weight: 0, isRequired: true, isValid: false, errorCode: 'keyword_empty_error'}
+          {answer_temp_id: action.payload.idx, keyword_temp_id: keyword_temp_index, word: '', weight: 0, isRequired: true, isValid: false, errorCode: 'keyword_empty_error'}
         ]
       });
     case actionTypes.CLEAR_DIALOGUE:
