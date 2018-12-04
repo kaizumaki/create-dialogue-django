@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './QuestionField.scss';
 import FormItem from '../FormItem/FormItem';
 import ValidateIcon from '../../atoms/ValidateIcon/ValidateIcon';
 import Attention from '../../atoms/Attention/Attention';
@@ -24,6 +25,7 @@ export default class QuestionField extends Component {
               onChange={(e) => this.props.actions.inputQuestionText(e.target.value)} />
             <span className="font-bold">{this.props.title_parent_answer_id} : </span>
             <select
+              className={styles.selectBox}
               value={this.props.parent_answer_id}
               onChange={(e) => this.props.actions.inputParentAnswerId(e.target.value)}>
               <option value="-1">なし</option>
