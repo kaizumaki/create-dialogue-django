@@ -42,9 +42,10 @@ def handle_text_message(event):
 
 def reply_text(event):
     client = APIClient()
-    keyword = client.get('/api/v1/keywords/?word=' + event.message.text)
-    responses = client.get('/api/v1/answers/' + keyword['answer_id'] + '/')
-    answer = responses.json()
+    keyword_responses = client.get('/api/v1/keywords/?word=' + event.message.text)
+    keyword = keyword_responses.json()
+    answer_responses = client.get('/api/v1/answers/' + keyword['answer_id'] + '/')
+    answer = answer_responses.json()
     answer_text = str(answer['answer_texts'][0])
     # answer_text = event.message.text
     return answer_text
