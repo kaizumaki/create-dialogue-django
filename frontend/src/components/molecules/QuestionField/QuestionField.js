@@ -17,7 +17,7 @@ export default class QuestionField extends Component {
         titleText={this.props.title_question}
         isRequired={this.props.isRequired}>
         <div data-gridlex="grid-noGutter">
-          <div data-gridlex="col">
+          <div data-gridlex="col-11">
             <Textarea
               label="question"
               value={this.props.question_text}
