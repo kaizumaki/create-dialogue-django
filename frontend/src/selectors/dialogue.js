@@ -4,7 +4,7 @@ export function getDialogueState(state, payload) {
   const answerObj = payload.answers;
   Object.keys(answerObj).forEach((value, index) => {
     let splitAnswerTexts = answerObj[index].answer_texts.split(',');
-    let keywordRelatedAnswer = payload.keywords.filter((value, i) => {return value.answer_temp_id === answerObj[index].answer_temp_id});
+    let keywordRelatedAnswer = payload.keywords.filter((v, i) => {return v.answer_temp_id === answerObj[index].answer_temp_id});
     answerWithKeyword[index] = Object.assign({}, answerObj[index], {answer_texts: splitAnswerTexts, keywords: keywordRelatedAnswer});
     answers.push(answerWithKeyword[index]);
   });
