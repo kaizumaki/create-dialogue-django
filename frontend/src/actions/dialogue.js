@@ -116,11 +116,12 @@ export function addAnswer() {
   }
 }
 
-export function deleteAnswer(idx) {
+export function deleteAnswer(idx, answer_temp_idx) {
   return {
     type: DELETE_ANSWER,
     payload:{
-      idx: parseInt(idx)
+      idx: parseInt(idx),
+      answer_temp_idx: parseInt(answer_temp_idx)
     }
   }
 }

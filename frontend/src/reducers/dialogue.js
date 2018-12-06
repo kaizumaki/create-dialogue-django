@@ -60,8 +60,8 @@ const initialState = {
  * @returns {*}
  */
 export default function (state = initialState,action) {
-  const answer_temp_index = Object.keys(state.answer_list).length;
-  const keyword_temp_index = Object.keys(state.keyword_list).length;
+  const answer_temp_index = Math.max(...state.answer_list.map((value) => value.answer_temp_id)) + 1;
+  const keyword_temp_index = Math.max(...state.keyword_list.map((value) => value.keyword_temp_id)) + 1;
 
   switch (action.type){
     case actionTypes.SET_DIALOGUE_STATE:
@@ -157,7 +157,7 @@ export default function (state = initialState,action) {
         ]
       });
     case actionTypes.DELETE_ANSWER:
-      const keywordRelatedAnswer = state.keyword_list.filter((value, i) => {return value.answer_temp_id !== action.payload.idx});
+      const keywordRelatedAnswer = state.keyword_list.filter((value, i) => {return value.answer_temp_id !== action.payload.answer_temp_idx});
       return state.answer_list.length > 1 ? Object.assign({},state,{
         answer_list:[
           ...state.answer_list.slice(0,action.payload.idx),
@@ -167,11 +167,11 @@ export default function (state = initialState,action) {
         })
       : Object.assign({},state,{
         answer_list:[
-          {answer_temp_id: action.payload.idx, answer_texts: '', isRequired: true, isValid: false, errorCode: 'answer_empty_error', keywords: []}
+          {answer_temp_id: action.payload.answer_temp_idx, answer_texts: '', isRequired: true, isValid: false, errorCode: 'answer_empty_error', keywords: []}
         ],
         keyword_list: [
           ...keywordRelatedAnswer,
-          {answer_temp_id: action.payload.idx, keyword_temp_id: keyword_temp_index, word: '', weight: 0, isRequired: true, isValid: false, errorCode: 'keyword_empty_error'}
+          {answer_temp_id: action.payload.answer_temp_idx, keyword_temp_id: keyword_temp_index, word: '', weight: 0, isRequired: true, isValid: false, errorCode: 'keyword_empty_error'}
         ]
       });
     case actionTypes.CLEAR_DIALOGUE:

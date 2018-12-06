@@ -44,7 +44,7 @@ export default class AnswerField extends Component {
             <Btn
               text="del"
               tone="light"
-              onClick={() => this.props.actions.deleteAnswer(this.props.idx)} />
+              onClick={() => this.props.actions.deleteAnswer(this.props.idx, this.props.answer.answer_temp_id)} />
           </div>
         </div>
         {(this.props.answer.isRequired && !this.props.answer.isValid && this.props.isShowError) && <Attention text={this.props.errorMsg[this.props.answer.errorCode]} />}
