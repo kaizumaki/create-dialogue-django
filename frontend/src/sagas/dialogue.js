@@ -1,7 +1,7 @@
 import { take, call, put, select } from 'redux-saga/effects';
 import * as dialogueActions from '../actions/dialogue';
 import { show_error } from '../actions/error';
-import { setDialogueAnswerTemp, getDialogueState, setDialogueTemp, isValidState } from '../selectors/dialogue';
+import { getDialogueState, setDialogueTemp, isValidState } from '../selectors/dialogue';
 import * as API from '../apis/API';
 
 // export function* initQuestion() {
@@ -31,8 +31,7 @@ export function* fetchAnswers() {
 export function* createDialogue() {
   while (true) {
     const action = yield take(dialogueActions.CREATE_DIALOGUE);
-    const answers = yield select(setDialogueAnswerTemp,action.payload);
-    const state = yield select(getDialogueState,action.payload,answers);
+    const state = yield select(getDialogueState,action.payload);
     const isValid  = yield select(isValidState);
     if (isValid) {
       const { payload, error } = yield call(API.create,'questions',state.temp);
@@ -61,8 +60,7 @@ export function* setDialogue() {
 export function* updateDialogue() {
   while (true) {
     const action = yield take(dialogueActions.UPDATE_DIALOGUE);
-    const answers = yield select(setDialogueAnswerTemp,action.payload);
-    const state = yield select(getDialogueState,action.payload,answers);
+    const state = yield select(getDialogueState,action.payload);
     const isValid  = yield select(isValidState);
     if (isValid) {
       const { payload, error } = yield call(API.update,'questions',action.payload.question_id,state.temp);
@@ -73,16 +71,6 @@ export function* updateDialogue() {
     }
   }
 }
-
-
-// export function* updateQuestion() {
-//   while (true) {
-//     const action = yield take(questionActions.UPDATE_ARTICLE);
-//     yield call(API.update,'article',action.payload.index,action.payload.data);
-//     const { payload, error } = yield call(_searchWordToReadAPI,'article',action);
-//     yield call(_setQuestion,payload,error)
-//   }
-// }
 
 // export function* fetchPageQuestion() {
 //   while (true) {

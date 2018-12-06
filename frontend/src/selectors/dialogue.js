@@ -1,4 +1,4 @@
-export function setDialogueAnswerTemp(state, payload) {
+export function getDialogueState(state, payload) {
   let answerWithKeyword = [];
   let answers = [];
   const answerObj = payload.answers;
@@ -8,10 +8,6 @@ export function setDialogueAnswerTemp(state, payload) {
     answerWithKeyword[index] = Object.assign({}, answerObj[index], {answer_texts: splitAnswerTexts, keywords: keywordRelatedAnswer});
     answers.push(answerWithKeyword[index]);
   });
-  return answers;
-}
-
-export function getDialogueState(state, payload, answers) {
   return Object.assign({},state,{
     temp:{
       question_text: payload.question_text,
