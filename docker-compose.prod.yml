@@ -18,14 +18,14 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile-production
-    command: bash -c "python manage.py collectstatic --noinput && gunicorn config.wsgi -b 0.0.0.0:8080"
+    command: bash -c "python manage.py collectstatic --noinput && gunicorn config.wsgi -b 0.0.0.0:8000"
     env_file:
       - ./env/production/.env
     volumes:
       - .:/code
       - ./static:/code/static
     expose:
-      - '8080'
+      - '8000'
     depends_on:
       - db
 
@@ -37,7 +37,7 @@ services:
     restart: always
     environment:
       DOMAINS: >-
-        kaizumaki.net -> http://web:8080,
+        kaizumaki.net -> http://web:8000,
         mail.kaizumaki.net
       STAGE: 'production'
 #      FORCE_RENEW: 'true'
